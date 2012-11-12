@@ -1,0 +1,45 @@
+.loginMenu{
+   position:absolute;
+   top:20px;
+   right:2%;
+   width:400px;
+
+}
+
+#logForm{
+   padding: 5px
+}
+
+
+#login{
+
+   width:150px;
+   background-color: #474747;
+   opacity:0.9;
+   color: #DDD7D7;
+   height:19px;
+   margin-left:10px;
+}
+
+#inputField{
+   font-size:16px;
+   text-align: center;
+   color: #DDD7D7;
+}
+
+
+.logbutton{
+   width:50px;
+   margin-left:10px;
+}
+
+/* --------------------------------------------------*/
+
+.logoutMenu{
+   position:absolute;
+   top:20px;
+   right:2%;
+   width:400px;
+}
+
+

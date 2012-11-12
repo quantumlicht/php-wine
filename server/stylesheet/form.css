@@ -1,0 +1,36 @@
+html{
+   background: url(bg.png) repeat-x left center fixed;
+}
+span.test{
+   position:fixed;
+   top:50px;
+   left:550px;
+}
+
+
+td{
+   text-align: right;
+   padding:3px 0px 3px 5px;
+}
+
+
+#textalign{
+   text-align: right;
+}
+
+table{
+position:relative;
+left:250px;
+}
+
+#formNotValid{
+   font-size:24px;
+   color: black;
+}
+
+.error{
+   width:250px;
+   font-size: 18px;
+   color: red;
+   font-weight: bold;
+}
