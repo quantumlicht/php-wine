@@ -18,8 +18,12 @@
    <div id='navTitle'>QuantumLicht</div>
    <div id='navContainer'>
       <button type='button' id='navbutton' class='navbuttonPos' onclick='window.location.href="http://localhost/server/qlicht.php"'>Menu Principal</button>
-      <button type='button' id='navbutton' class='navbuttonPos' onclick='window.location.href="http://localhost/server/forum.php"'>Forum</button>
+  <?php if(isset($_SESSION['username'])){ ?>    
+     <button type='button' id='navbutton' class='navbuttonPos' onclick='window.location.href="http://localhost/server/forum.php"'>Forum</button>
+   <?php } ?> 
+   <?php if(!isset($_SESSION['username'])){ ?>    
       <button type='button' id='navbutton' class='navbuttonPos' onclick="window.location.href='http://localhost/server/controller/qlicht/subscribe.php'">Formulaire d'inscription</button>
+   <?php } ?>
       <button type='button' id='navbutton' class='navbuttonPos' onclick='window.location.href="#"'>Contact</button>
       <button type='button' id='navbutton' class='navbuttonPos' onclick='window.location ="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845"'>About</button>
       </div>
