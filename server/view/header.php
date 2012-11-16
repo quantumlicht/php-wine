@@ -1,7 +1,7 @@
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link href="boot/css/bootstrap.min.css" rel="stylesheet" media="screen">
-   <script src="boot/js/bootstrap.min.js"></script>
+      <link href="http://localhost/server/boot/css/bootstrap.min.css" rel="stylesheet" media="screen">
+      <script src="http://localhost/server/boot/js/bootstrap.min.js"></script>
       <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/header.css" media="screen" />
       <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/homepage.css" media="screen" />
       <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/logMenu.css" media="screen" />
