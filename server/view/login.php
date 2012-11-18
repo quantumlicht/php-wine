@@ -4,5 +4,5 @@
    <label class='checkbox'>
       <input type='checkbox' name='rememberMe' value='yes' /> Remember Me</td>
    </label>
-   <button type='submit' name='submit' class='btn'/>Sign in</button>
+   <button type='submit' name='submit' class='btn btn-primary'/>Sign in</button>
 </form>

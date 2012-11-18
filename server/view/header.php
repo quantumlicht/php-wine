@@ -18,8 +18,9 @@
    <h1> QuantumLicht <small>Learning something here.. </small> </h1>
 </div>
 
-<div class='container'>
-   <div class='navbar'>
+<div class='row-fluid'>
+   <div class='span8 offset2'>
+   <div class='navbar navbar-inverse'>
       <div class='navbar-inner'>
          <a class='brand' href='#'>Qlicht</a>
          <ul class='nav'>
@@ -32,7 +33,10 @@
          <?php } ?>
          <li><a href="http://localhost/server/controller/mail/mailto.php">Contact</a></li>
          <li><a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">About</a></li>
+         <li class='divider-vertical'></li>
+         <li><?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?></li>
          </ul>
       </div>
+   </div>
    </div>
 </div>
