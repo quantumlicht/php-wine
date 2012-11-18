@@ -5,7 +5,7 @@
   <!--    <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/header.css" media="screen" /> -->
   <!--    <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/homepage.css" media="screen" />-->
  <!--      <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/logMenu.css" media="screen" />-->
-      <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/forum.css" media="screen" />
+ <!--     <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/forum.css" media="screen" /> -->
       <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
       <script type='text/javascript' src="http://code.jquery.com/jquery-latest.pack.js"></script>
 <!--      <script type='text/javascript' src='http://localhost/server/controller/onload.js'> </script> -->
