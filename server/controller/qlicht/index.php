@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('/opt/lampp/htdocs/server/model/qlicht/get_users.php');
 include_once('/opt/lampp/htdocs/server/controller/header.php');
 include_once('/opt/lampp/htdocs/server/model/check_user_db.php');
@@ -11,7 +12,6 @@ foreach($users as $key => $user)
 
             
 if(!isset($_SESSION['username'])) {
-   session_start();
       //check the cookie
       if(isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
          $query_result=check_user_db($_COOKIE['username'],$_COOKIE['password']);
@@ -31,7 +31,7 @@ if(!isset($_SESSION['username'])) {
       }
 }
 else{
-   include_once('/opt/lampp/htdocs/server/view/qlicht/index.php');
+   include_once('/opt/lampp/htdocs/server/view/qlicht/member_homepage.php');
 }
 
 
