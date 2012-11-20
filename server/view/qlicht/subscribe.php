@@ -1,39 +1,43 @@
-<html>
- <head>
-   <body>
-      <form id='inputForm' action="/server/model/qlicht/subscribe_user.php"  method='post'> 
-        <table >
-          <tr>
-            <td>Votre Nom d'utilisateur:</td>
-            <td><input type="text" onblur='isValidUsername(this.form)' name="username" id='user' /></td>
-            <td> <img src='http://localhost/server/stylesheet/invalid_pass.png'  width="25" height="25" style='display:none' id='invalidUsername'> </td>
-            <td class='error' id ='errorUser'></td>
-          </tr>
+<div class='row-fluid'>
+  <div class='span8 offset2'>
+      <form class='form-horizontal'  action="/server/model/qlicht/subscribe_user.php"  method='post'> 
+         <fieldset>
+            <legend> Formulaire d'inscription</legend> 
+            <div class='control-group'>
+               <label class='control-label' for='username'>Username</label>
+               <div class='controls'>   
+                  <input type="text" onblur='isValidUsername(this.form)' placeholder='Username' name="username" id='username' />
+               </div>
+            </div>
 
-          <tr>
-            <td> Votre Adresse Email:</td>
-            <td> <input type="text" onblur='isValidEmail(this.form)' name="email" id='email' /> </td>
-            <td> <img src='http://localhost/server/stylesheet/invalid_pass.png'  width="25"  height="25" style='display:none' id='invalidEmail'> </td>
-            <td class='error' id='errorEmail'></td>
-          </tr>
+            <div class='control-group'>
+               <label class='control-label' for='email'>Email Address</label>
+               <div class='controls'>   
+                  <input type="text" onblur='isValidEmail(this.form)' placeholder='Email Address' name="email" id='email' />
+               </div>
+            </div>
+            
+             <div class='control-group'>
+               <label class='control-label' for='pass'>Password</label>
+               <div class='controls'>   
+                  <input type="password" placeholder='Type Password' name="typePass" id='pass' />
+               </div>
+            </div>
+            
+            <div class='control-group'>
+               <label class='control-label' for='repass'> Retype Password</label>
+               <div class='controls'>   
+                  <input type="password" onblur='isSamePassword(this.form)' placeholder='Retype Password' name="retypePass" id='repass' />
+               </div>
+            </div>
 
-          <tr>
-            <td>Définir un mot de passe:</td>
-            <td><input  type="password" name="typePass" id='pass'/></td>
-          </tr>
-          <tr>
-            <td> Réécrire votre mot de passe:</td>
-            <td> <input  type='password' onblur='isSamePassword(this.form)' name='retypePass' id='repass' /> </td>
-            <td> <img src='http://localhost/server/stylesheet/invalid_pass.png'  width="25" height="25" style='display:none' id='invalidPass'> </td>
-            <td class ='error' id='errorPass'></td>
-          </tr>
-          <tr>
-            <td><span id='formNotValid'></span></td><td><input id='submitButton' type='submit' value='soumettre'></td><td></td>
-          </tr>
+            <div class='control-group'>
+               <div class='controls'>   
+                  <button type='submit' class='btn'>Submit</button>
+               </div>
+            </div>
 
-        </table>
+         </fieldset>
       </form>
-
-
-   </body>
-</html>
+   </div>
+</div>
