@@ -3,7 +3,7 @@
    <div class='container-fluid'>
       
       <div class='row-fluid'>
-         <div id='scrollContainer' class='span6 offset2' style='max-height:70%;overflow-y:scroll;'>
+         <div id='scrollContainer' class='span6 offset2' style='height:70%;max-height:70%;overflow-y:scroll;'>
            <?php foreach ($posts as $post){ ?>
               <div class='well well-small'>
                  <?php echo $post['time']. ': '.$post['username'] . ': '. $post['content'];?>
