@@ -44,3 +44,8 @@ function isValidUsername (form){
    return bRes;
 }
 
+function ScrollBottom (){
+   var container = $('#scrollContainer');
+   container.scrollTop(container.prop('scrollHeight')); 
+}
+

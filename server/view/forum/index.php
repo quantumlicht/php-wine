@@ -3,7 +3,7 @@
    <div class='container-fluid'>
       
       <div class='row-fluid'>
-         <div class='span6 offset2' style='max-height:70%;overflow-y:scroll;'>
+         <div id='scrollContainer' class='span6 offset2' style='max-height:70%;overflow-y:scroll;'>
            <?php foreach ($posts as $post){ ?>
               <div class='well well-small'>
                  <?php echo $post['time']. ': '.$post['username'] . ': '. $post['content'];?>
@@ -16,7 +16,7 @@
          <div class='span6 offset4'>
             <form id='addContentForm' action='http://localhost/server/controller/forum/addContent.php' method='post'>
                <?php echo $_SESSION['username'] .':';  ?>
-               <input type='text' id='commentBox' name='comment'/>
+               <input onmouseover='ScrollBottom()' type='text' id='commentBox' name='comment'/>
                <input type='submit' name='submit' id='navbutton' value='Post'>
 	    </form>
         </div>
