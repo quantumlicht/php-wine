@@ -46,7 +46,11 @@
       <div class='control-group'>
          <label class='control-label' for='pays'>Pays</label>
          <div class='controls'>
-            <input class='span8' type='text' name='pays' id='pays'/>
+            <select class='span8'  name='pays' id='pays' >
+             <?php foreach($pays as $key=>$value){ ?>
+             <option><?php echo $value; ?> </option>
+             <?php } ?>         
+            </select>
          </div>
       </div>
 
@@ -79,9 +83,21 @@
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='date'>Date de degustation</label>
+         <label class='control-label' for='date'>Date de degustation </label>
          <div class='controls'>
-            <input class='span8' type='text' name='date' id='date'/>
+            <input class='span2' type='text' name='date-jour' id='date'/>
+            
+            <select class='span4' name='date-mois' >
+               <?php foreach($date as $key=>$value){ ?>
+                <option><?php echo $value; ?> </option>
+               <?php } ?>
+            </select>         
+      
+            <select class='span3' name='date-annee' >
+             <?php for( $i=1920; $i<$max=2050; $i++){ ?>
+             <option><?php echo $i; ?> </option>
+             <?php } ?>
+            </select>         
          </div>
       </div>
 
