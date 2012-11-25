@@ -60,7 +60,7 @@
       <div class='control-group'>
          <label class='control-label' for='encepagement'>Encepagement</label>
          <div class='controls'>
-            <select id='scrollContainer' >
+            <select class='span8' id='scrollContainer' >
              <?php for( $i=0; $i<$max=100; $i++){ ?>
              <option><?php echo 'test'. $i; ?> </option>
              <?php } ?>         
@@ -88,7 +88,7 @@
       <div class='control-group'>
          <label class='control-label' for='code'>Code SAQ</label>
          <div class='controls'>
-            <input type='text' name='code' id='code'/>
+            <input class='span8' type='text' name='code' id='code'/>
          </div>
       </div>
 
