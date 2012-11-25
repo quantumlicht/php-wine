@@ -15,7 +15,7 @@
   </head>
 
 <div class='page-header'>
-   <h1> QuantumLicht <small>Learning something here.. </small> </h1>
+   <h1> QuantumLicht <small>Index des vins // Wine index </small> </h1>
 </div>
 
 <div class='row-fluid'>
@@ -27,8 +27,9 @@
             <li class='active'><a href="http://localhost/server/qlicht.php">Menu Principal</a></li>
          <?php if(isset($_SESSION['username'])){ ?>    
            <li><a href="http://localhost/server/forum.php">Forum</a></li>
-         <?php } 
-            if(!isset($_SESSION['username'])){ ?>    
+         <?php }?>
+           <li><a href="http://localhost/server/indexvins.php">Index des vins</a></li> 
+            <?php if(!isset($_SESSION['username'])){ ?>    
             <li><a href="http://localhost/server/controller/qlicht/subscribe.php">Formulaire d'inscription</a></li>
          <?php } ?>
          <li><a href="http://localhost/server/controller/mail/mailto.php">Contact</a></li>
