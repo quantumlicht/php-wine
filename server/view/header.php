@@ -6,12 +6,11 @@
   <!--    <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/homepage.css" media="screen" />-->
  <!--      <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/logMenu.css" media="screen" />-->
  <!--     <link rel="stylesheet" type="text/css" href="http://localhost/server/stylesheet/forum.css" media="screen" /> -->
-      <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
-      <script type='text/javascript' src="http://code.jquery.com/jquery-latest.pack.js"></script>
+      <script type='text/javascript' src="http://localhost/server/jquery/jquery.js"></script>
 <!--      <script type='text/javascript' src='http://localhost/server/controller/onload.js'> </script> -->
       <script type='text/javascript' src='http://localhost/server/controller/formValidation.js'> </script>
 
-      <title>DandBos</title>
+      <title>VinsIndexWine</title>
   </head>
 
 <div class='page-header'>
@@ -22,7 +21,7 @@
    <div class='span8 offset2'>
    <div class='navbar navbar-inverse'>
       <div class='navbar-inner'>
-         <a class='brand' href='#'>Qlicht</a>
+         <a class='brand' href='#'>L'index des vins</a>
          <ul class='nav'>
             <li class='active'><a href="http://localhost/server/qlicht.php">Menu Principal</a></li>
          <?php if(isset($_SESSION['username'])){ ?>    

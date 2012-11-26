@@ -64,11 +64,12 @@
       <div class='control-group'>
          <label class='control-label' for='encepagement'>Encepagement</label>
          <div class='controls'>
-            <select class='span8' id='scrollContainer' >
-             <?php for( $i=0; $i<$max=100; $i++){ ?>
+            <select class='span8' multiple='multiple' >
+             <?php for( $i=0; $i<$max=10; $i++){ ?>
              <option><?php echo 'test'. $i; ?> </option>
              <?php } ?>         
             </select>
+            <span class='help-block'>Selectionnez plusieurs cepages en maintenant Shift.</span>
          </div>
       </div>
 
@@ -140,6 +141,7 @@
 </div>     
 <!--  -->
    </div>
+<button class='btn btn-primary'>Soumettre</button>
    </form> 
 </div>
 
