@@ -123,8 +123,14 @@
 </div>
 <!-- contenu deuxieme colonne -->      
 <div class='span6'>
-<fieldset>
-<legend>L'oeil</legend>
+   <fieldset>
+   <legend>L'oeil</legend>
+   <div class='controls'>
+   <div class="btn-group"  data-toggle="buttons-radio">
+      <button onclick='toggleItem()' id='couleur' name='rouge' data-toggle='button' type='button' class='btn'>Vin rouge</button>
+      <button onclick='toggleItem()' id='couleur' name='blanc' data-toggle='button' type='button' class='btn'>Vin blanc</button>
+   </div>
+   </div>
 </fieldset>
 
 <fieldset>
