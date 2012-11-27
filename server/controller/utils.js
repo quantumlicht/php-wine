@@ -49,9 +49,3 @@ function ScrollBottom (){
    container.scrollTop(container.prop('scrollHeight')); 
 }
 
-function toggleItem(){
-$("button.couleur").click(function () {
-    $(this).toggleClass("active");
-});
-}
-

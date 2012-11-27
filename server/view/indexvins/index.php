@@ -1,5 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+
+<script>
+$('.test').on('click', function(e){
+    $('.test').removeClass("active");
+    $(e.target).addClass("active");
+i});
+
+</script>
 <!-- top container -->
 <div class='container-fluid'>
    <div class='row-fluid'>
@@ -125,12 +133,25 @@
 <div class='span6'>
    <fieldset>
    <legend>L'oeil</legend>
-   <div class='controls'>
-   <div class="btn-group"  data-toggle="buttons-radio">
-      <button onclick='toggleItem()' id='couleur' name='rouge' data-toggle='button' type='button' class='btn'>Vin rouge</button>
-      <button onclick='toggleItem()' id='couleur' name='blanc' data-toggle='button' type='button' class='btn'>Vin blanc</button>
-   </div>
-   </div>
+   <div class='control-group'>
+   <label class='control-label' for='type-couleur'>Couleur du vin</label>
+      <div class='controls'>
+         <div class='btn-group' data-toggle="buttons-radio">
+            <button  name='rouge'  type='button' class='btn'>Vin rouge</button>
+            <button   name='blanc'  type='button' class='btn'>Vin blanc</button>
+         </div>
+      </div>
+   </div> 
+   <div class='control-group'>
+   <label class='control-label' for='couleur'>Teinte </label>
+      <div class='controls'>
+         <select id='couleur' class='span4' name='date-mois' >
+            <?php foreach($blanc as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+            <?php } ?>
+         </select>         
+      </div>
+   <div>
 </fieldset>
 
 <fieldset>
