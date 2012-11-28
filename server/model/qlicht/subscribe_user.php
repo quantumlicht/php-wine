@@ -17,11 +17,11 @@ if (preg_match('/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i',$_POST['email']) AND
       'user' => $_POST['username'],
       'email' => $_POST['email'],
       'pass' =>  $hashed_pass)) or die(print_r($bdd->errorInfo()));
-   header('Location: http://localhost/server/qlicht.php?accountCreationStatus=success');
+   header('Location: http://philippeguay.com/server/qlicht.php?accountCreationStatus=success');
 }
 else
 {
-header("Location: http://localhost/server/controller/qlicht/subscribe.php?subscribestatus=invalid");
+header("Location: http://philippeguay.com/server/controller/qlicht/subscribe.php?subscribestatus=invalid");
 exit;
 }
 ?>

@@ -4,7 +4,7 @@ include_once('/opt/lampp/htdocs/server/model/connectdb.php');
 include_once('/opt/lampp/htdocs/server/model/check_user_db.php');
 
 if (!isset($_POST['username'])|| $_POST['username']=='' || !isset($_POST['password']) || $_POST['password']== ''){
-   Header('Location: http://localhost/server/qlicht.php');
+   Header('Location: http://philippeguay.com/server/qlicht.php');
    die();
 }
 
@@ -13,7 +13,7 @@ $username = trim($_POST['username']);
 $query_result=check_user_db($username,$password);
 
 if (!$query_result){
-   Header('Location: http://localhost/server/qlicht.php');
+   Header('Location: http://philippeguay.com/server/qlicht.php');
 }
 else{
    $_SESSION['username'] = $username;
@@ -27,7 +27,7 @@ else{
       setcookie('username', '', time() - 1*24*60*60);
       setcookie('password', '', time() - 1*24*60*60);
    }
-   Header('Location: http://localhost/server/controller/qlicht/member_homepage.php');
+   Header('Location: http://philippeguay.com/server/controller/qlicht/member_homepage.php');
 }
 
 die();

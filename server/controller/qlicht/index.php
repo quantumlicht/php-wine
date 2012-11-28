@@ -21,13 +21,12 @@ if(!isset($_SESSION['username'])) {
          }
          else{
            $_SESSION['username'] = $_COOKIE['username'];
-           header('location: http://localhost/server/controller/qlicht/member_homepage.php');
+           header('location: http://philippeguay.com/server/controller/qlicht/member_homepage.php');
            die();
          }
       }
       else {
          include_once('/opt/lampp/htdocs/server/view/qlicht/index.php');
-       //header('location: http://localhost/server/qlicht.php');
       }
 }
 else{

@@ -1,8 +1,8 @@
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <script type='text/javascript' src="http://localhost/server/jquery/jquery.js"></script>
+      <script type='text/javascript' src='http://philippeguay.com/server/jquery/jquery.js'></script>
       <link href="http://philippeguay.com/server/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-      <script src="http://philippeguay.com/server/bootstrap/js/bootstrap.min.js"></script>
+      <script type='text/javascript' src='http://philippeguay.com/server/bootstrap/js/bootstrap.min.js'></script>
      <!-- <script type='text/javascript' src='http://localhost/server/controller/utils.js'> </script>-->
 
       <title>VinsIndexWine</title>
