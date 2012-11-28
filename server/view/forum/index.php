@@ -14,7 +14,7 @@
 
       <div id='row-fluid'>
          <div class='span6 offset4'>
-            <form id='addContentForm' action='http://localhost/server/controller/forum/addContent.php' method='post'>
+            <form id='addContentForm' action='http://philippeguay.com/server/controller/forum/addContent.php' method='post'>
                <?php echo $_SESSION['username'] .':';  ?>
                <input onmouseover='ScrollBottom()' type='text' id='commentBox' name='comment'/>
                <input type='submit' name='submit' id='navbutton' value='Post'>
