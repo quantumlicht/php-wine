@@ -7,6 +7,6 @@ $from = "someonelse@example.com";
 $headers = "From:" . $from;
 mail($to,$subject,$message,$headers);
 
-Header('Location: http://localhost/server/qlicht.php');
+Header('Location: http://philippeguay.com/qlicht.php');
 
 ?>

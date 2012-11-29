@@ -1,6 +1,6 @@
 <div class='row-fluid'>
   <div class='span8 offset2'>
-      <form class='form-horizontal'  action="/server/model/qlicht/subscribe_user.php"  method='post'> 
+      <form class='form-horizontal'  action="/model/qlicht/subscribe_user.php"  method='post'> 
          <fieldset>
             <legend> Formulaire d'inscription</legend> 
             <div class='control-group'>

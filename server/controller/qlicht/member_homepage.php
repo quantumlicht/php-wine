@@ -11,7 +11,7 @@ if(!isset($_SESSION['username'])) {
          $query_result=check_user_db($_COOKIE['username'],$_COOKIE['password']);
 
          if(!$query_result) {
-            header('location: http://localhost/server/qlicht.php');
+            header('location: http://philippeguay.com/qlicht.php');
          }
          else{
            $_SESSION['username'] = $_COOKIE['username'];
@@ -19,7 +19,7 @@ if(!isset($_SESSION['username'])) {
          }
       }
       else {
-         header('location: http://localhost/server/qlicht.php');
+         header('location: http://philippeguay.com/qlicht.php');
       }
 }
 else{
