@@ -6,28 +6,28 @@
             <div class='control-group'>
                <label class='control-label' for='username'>Username</label>
                <div class='controls'>   
-                  <input type="text" onblur='isValidUsername(this.form)' placeholder='Username' name="username" id='username' />
+                  <input class='span4' type="text" onblur='isValidUsername(this.form)' placeholder='Username' name="username" id='username' />
                </div>
             </div>
 
             <div class='control-group'>
                <label class='control-label' for='email'>Email Address</label>
                <div class='controls'>   
-                  <input type="text" onblur='isValidEmail(this.form)' placeholder='Email Address' name="email" id='email' />
+                  <input class='span4' type="text" onblur='isValidEmail(this.form)' placeholder='Email Address' name="email" id='email' />
                </div>
             </div>
             
              <div class='control-group'>
                <label class='control-label' for='pass'>Password</label>
                <div class='controls'>   
-                  <input type="password" placeholder='Type Password' name="typePass" id='pass' />
+                  <input class='span4' type="password" placeholder='Type Password' name="typePass" id='pass' />
                </div>
             </div>
             
             <div class='control-group'>
                <label class='control-label' for='repass'> Retype Password</label>
                <div class='controls'>   
-                  <input type="password" onblur='isSamePassword(this.form)' placeholder='Retype Password' name="retypePass" id='repass' />
+                  <input class='span4' type="password" onblur='isSamePassword(this.form)' placeholder='Retype Password' name="retypePass" id='repass' />
                </div>
             </div>
 
