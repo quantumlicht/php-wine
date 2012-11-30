@@ -2,14 +2,12 @@
 <html>
    <div class='container-fluid'>
       <div class='row-fluid'>
-         <div class='span5 offset2'>
-            <p>Bienvenue!</p>
-	    <p> Vous pouvez vous inscrire afin de participez au forum et partager vos degustations ou simplement consulter l'index des vins et voir ce que les utilisateurs ont dit sur ce vin.</p>
+        <div class='span5 offset2'>
+           <?php if (isset($_GET['accountCreationStatus']) AND $_GET['accountCreationStatus']=='success') { ?>
+            <p ><strong>Le compte a été crée avec succès !</strong></p><?php }
+           ?>
+           <p class='well well-small'>Bienvenue!</br> Vous pouvez vous inscrire afin de participer au forum et partager vos dégustations ou simplement consulter l'index des vins et voir ce que les utilisateurs ont dit sur ce vin.</p>
         </div>
-        <?php if (isset($_GET['accountCreationStatus']) AND $_GET['accountCreationStatus']=='success') { ?>
-         <p class='accountCreationSuccess'>Account was created successfully !</p><?php }
-      //TODO : text to display when we get a invalidLogin response in the url
-        ?>
          <div class='span3'>
          <?php
          foreach ($users as $user)
