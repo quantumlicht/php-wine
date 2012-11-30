@@ -47,7 +47,7 @@
       <div class='control-group'>
          <label class='control-label' for='pays'>Pays</label>
          <div class='controls'>
-            <select class='span8'  name='pays' id='pays' >
+            <select style='text-align:center' class='span8'  name='pays' id='pays' >
              <?php foreach($pays as $key=>$value){ ?>
              <option><?php echo $value; ?> </option>
              <?php } ?>         
@@ -129,7 +129,7 @@
    <div class='control-group'>
    <label class='control-label' for='type-couleur'>Couleur du vin</label>
       <div class='controls'>
-         <div class='btn-group' data-toggle="buttons-radio">
+         <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
             <button  name='rouge'  type='button' class='btn'>Vin rouge</button>
             <button   name='blanc'  type='button' class='btn'>Vin blanc</button>
          </div>
@@ -144,15 +144,105 @@
             <?php } ?>
          </select>         
       </div>
-   <div>
+   </div>
 </fieldset>
 
 <fieldset>
 <legend>Le nez</legend>
-</fieldset>
+   <div class='control-group'>
+   <label class='control-label' for='intensite-nez'>Intensité</label>
+      <div class='controls'>
+         <select id='intensite-nez' class='span4' name='intensite-nez' >
+            <?php for($i=1;$i<=5; $i++){ ?>
+               <option><?php echo $i; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
 
+   <div class='control-group'>
+   <label class='control-label' for='arome'>Arôme</label>
+      <div class='controls'>
+         <select id='couleur' class='span4' name='arome' >
+            <?php foreach($arome_saveur as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+
+   <div class='control-group'>
+   <label class='control-label' for='impression-nez'>Impression</label>
+      <div class='controls'>
+         <textarea rows='3' id='impression-nez' class='span4'></textarea>
+      </div>
+   </div>
+
+</fieldset>
 <fieldset>
 <legend>La bouche</legend>
+   <div class='control-group'>
+   <label class='control-label' for='intensite-bouche'>Intensité</label>
+      <div class='controls'>
+         <select id='intensite-bouche' class='span4' name='intensite-bouche' >
+            <?php for($i=1;$i<=5; $i++){ ?>
+               <option><?php echo $i; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+
+   <div class='control-group'>
+   <label class='control-label' for='persistance'>Persistance</label>
+      <div class='controls'>
+         <select id='persistance' class='span4' name='persistance' >
+            <?php for($i=1;$i<=5; $i++){ ?>
+               <option><?php echo $i; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+
+   <div class='control-group'>
+   <label class='control-label' for='saveur'>Saveur</label>
+      <div class='controls'>
+         <select id='saveur' class='span4' name='saveur' >
+            <?php foreach($arome_saveur as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+  
+   <div class='control-group'>
+   <label class='control-label' for='acidite'>Acidité</label>
+      <div class='controls'>
+         <select id='acidite' class='span4' name='acidite' >
+            <?php foreach($acidite as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+
+   <div class='control-group'>
+   <label class='control-label' for='tanin'>Tanins</label>
+      <div class='controls'>
+         <select id='saveur' class='span4' name='tanin' >
+            <?php foreach($tanin as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+            <?php } ?>
+         </select>
+      </div>
+   </div>
+
+   <div class='control-group'>
+   <label class='control-label' for='impression-nez'>Impression</label>
+      <div class='controls'>
+         <textarea rows='3' id='impression-nez' class='span4'></textarea>
+      </div>
+   </div>
+
 </fieldset>
 
 <fieldset>
