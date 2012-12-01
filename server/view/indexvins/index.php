@@ -8,20 +8,20 @@
 <div class='container-fluid'>
    <form class='form-horizontal' action='' method='post'>
    <div class='row-fluid'>
-      <div class='span8 offset3'>
-         <div class='control-group'>
-            <div class='controls'>
+      <div class='span4'></div>
+      <div class='span4'>
+         <div class='offset3 control-group'>
             <span class='help-block'><h3>Sélectionnez un vin</h3></span>
                <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
                  <button  name='rouge' id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
                  <button  name='blanc'id='load-ajax' value='2'type='button' class='btn btn-large btn-primary'>Vin blanc</button>
               </div>
-          </div>
-      </div> 
+         </div> 
+      </div>
+      <div class='span4'></div>
       <noscript>
          <input type="submit" name="action" value="Chargez les couleurs" />
       </noscript>
-      </div>
    </div>   
    <div class='row-fluid'>
 <!-- contenu 1ere colonne -->     
@@ -263,9 +263,11 @@
 <!--  -->
    </div>
 <div class='row-fluid'>
-<div class='span4 offset5'>
-<button class='btn-large btn-primary'>Soumettre</button>
-</div>
+   <div class='span4'></div>
+   <div class='span4'>
+      <button class='offset4 btn btn-large btn-primary'>Soumettre</button>
+   </div>
+   <div class='span4'></div>
 </div>
    </form> 
 </div>

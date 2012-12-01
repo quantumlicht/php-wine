@@ -1,4 +1,6 @@
 $(function(){
+   $('ul.nav').click(function(){
+   });
    $("button#load-ajax").click(function(){
       $.ajaxSetup({
          async:false}

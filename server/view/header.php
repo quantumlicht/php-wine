@@ -14,23 +14,34 @@
 </div>
 
 <div class='row-fluid'>
-   <div class='span10 offset1'>
+   <div class='span9 offset2'>
    <div class='navbar navbar-inverse'>
       <div class='navbar-inner'>
          <a class='brand' href='#'>L'index des vins</a>
          <ul class='nav'>
-            <li class='active'><a href="http://philippeguay.com/qlicht.php">Menu Principal</a></li>
-         <?php if(isset($_SESSION['username'])){ ?>    
-           <li><a href="http://philippeguay.com/forum.php">Forum</a></li>
-         <?php }?>
-           <li><a href="http://philippeguay.com/indexvins.php">Index des vins</a></li> 
+            <li <?php getActiveTab('qlicht'); ?>>
+               <a href="http://philippeguay.com/qlicht.php">Menu Principal</a></li>
+
+            <?php if(isset($_SESSION['username'])){ ?>    
+            <li <?php getActiveTab('forum');?>>
+               <a href="http://philippeguay.com/forum.php">Forum</a></li>
+            <?php }?>
+            <li <?php getActiveTab('indexvins');?>>
+               <a href="http://philippeguay.com/indexvins.php">Index des vins</a></li> 
+
             <?php if(!isset($_SESSION['username'])){ ?>    
-            <li><a href="http://philippeguay.com/controller/qlicht/subscribe.php">Formulaire d'inscription</a></li>
-         <?php } ?>
-         <li><a href="http://philippeguay.com/controller/mail/mailto.php">Contact</a></li>
-         <li><a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">About</a></li>
-         <li class='divider-vertical'></li>
-         <li><?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?></li>
+            <li<?php getActiveTab('subscribe') ?>>
+               <a href="http://philippeguay.com/subscribe.php">Inscription</a></li>
+            <?php } ?>
+
+            <li <?php getActiveTab('mailto.php')?>>
+               <a href="http://philippeguay.com/controller/mail/mailto.php">Contact</a></li>
+
+            <li>
+               <a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">About</a></li>
+
+            <li class='divider-vertical'></li>
+            <li><?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?></li>
          </ul>
       </div>
    </div>
