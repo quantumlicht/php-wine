@@ -3,7 +3,8 @@
       <script type='text/javascript' src='http://philippeguay.com/jquery/jquery.js'></script>
       <link href="http://philippeguay.com/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
       <script type='text/javascript' src='http://philippeguay.com/bootstrap/js/bootstrap.min.js'></script>
-      <script type='text/javascript' src='http://philippeguay.com/controller/utils.js'> </script>-
+      <script type='text/javascript' src='http://philippeguay.com/controller/utils.js'> </script>
+      <script type='text/javascript' src='http://philippeguay.com/controller/onload.js'></script>
 
       <title>VinsIndexWine</title>
   </head>

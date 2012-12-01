@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-
 <!-- top container -->
-<div class='container-fluid'>
+<div id='test'>aaaaaaaaa</div>
+<div class='container-fluid '>
    <div class='row-fluid'>
       <div class='span2'></div>
-      <div class='span8'>
+      <div class='span8 well'>
 <!-- top container -->
 
 <div class='container-fluid'>
@@ -14,7 +12,7 @@
 <!-- contenu 1ere colonne -->     
 <div class='span6'>        
    <fieldset>
-   <legend> Caracteristiques </legend>
+   <legend> Caractéristiques </legend>
 
       <div class='control-group'>
          <label class='control-label' for='nom'>Nom</label>
@@ -31,7 +29,7 @@
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='annee'>Annee</label>
+         <label class='control-label' for='annee'>Année</label>
          <div class='controls'>
             <input class='span8' type='text' name='annee' id='annee'/>
          </div>
@@ -56,21 +54,21 @@
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='region'>Region</label>
+         <label class='control-label' for='region'>Région</label>
          <div class='controls'>
             <input class='span8' type='text' name='region' id='region'/>
          </div>
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='encepagement'>Encepagement</label>
+         <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
             <select class='span8' multiple='multiple' >
              <?php for( $i=0; $i<$max=10; $i++){ ?>
              <option><?php echo 'test'. $i; ?> </option>
              <?php } ?>         
             </select>
-            <span class='help-block'>Selectionnez plusieurs cepages en maintenant Shift.</span>
+            <span class='help-block'>Selectionnez plusieurs cépages en maintenant Shift.</span>
          </div>
       </div>
 
@@ -85,7 +83,7 @@
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='date'>Date de degustation </label>
+         <label class='control-label' for='date'>Date de dégustation </label>
          <div class='controls'>
             <input class='span2' type='text' name='date-jour' id='date'/>
             
@@ -130,18 +128,22 @@
    <label class='control-label' for='type-couleur'>Couleur du vin</label>
       <div class='controls'>
          <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
-            <button  name='rouge'  type='button' class='btn'>Vin rouge</button>
-            <button   name='blanc'  type='button' class='btn'>Vin blanc</button>
+            <button  name='rouge' id='load-ajax' value='1' type='button' class='btn'>Vin rouge</button>
+            <button   name='blanc'id='load-ajax' value='2'type='button' class='btn'>Vin blanc</button>
          </div>
       </div>
    </div> 
+   <noscript>
+    <input type="submit" name="action" value="Chargez les couleurs" />
+   </noscript>
+   
    <div class='control-group'>
    <label class='control-label' for='couleur'>Teinte </label>
       <div class='controls'>
          <select id='couleur' class='span4' name='date-mois' >
-            <?php foreach($blanc as $key=>$value){ ?>
-               <option><?php echo $value; ?> </option>
-            <?php } ?>
+            <?php foreach(getCouleur($_REQUEST['id']) as $key=>$value){ 
+              echo '   <option value="'. $key.'">'. $value . "</option>\n";
+            } ?>
          </select>         
       </div>
    </div>
@@ -163,7 +165,7 @@
    <div class='control-group'>
    <label class='control-label' for='arome'>Arôme</label>
       <div class='controls'>
-         <select id='couleur' class='span4' name='arome' >
+         <select id='arome' class='span4' name='arome' >
             <?php foreach($arome_saveur as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -244,14 +246,24 @@
    </div>
 
 </fieldset>
+</div>
+<div class='row-fluid'>
+   <div class='span8 offset2'>
+      <fieldset>
+      <legend>Impression d'ensemble</legend>
 
-<fieldset>
-<legend>Impression d'ensemble</legend>
-</fieldset>
+
+       jsdhsjkdhsdkjshdksjdhsdkjshd
+      </fieldset>
+   </div>
 </div>     
 <!--  -->
    </div>
-<button class='btn btn-primary'>Soumettre</button>
+<div class='row-fluid'>
+<div class='span4 offset5'>
+<button class='btn-large btn-primary'>Soumettre</button>
+</div>
+</div>
    </form> 
 </div>
 
@@ -259,13 +271,6 @@
       </div>
    </div> 
 </div>
-</html>
-
-
-
-
-
-
 
 
 
