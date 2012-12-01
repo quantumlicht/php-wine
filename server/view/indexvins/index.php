@@ -1,5 +1,4 @@
 <!-- top container -->
-<div id='test'>aaaaaaaaa</div>
 <div class='container-fluid '>
    <div class='row-fluid'>
       <div class='span2'></div>
@@ -7,7 +6,23 @@
 <!-- top container -->
 
 <div class='container-fluid'>
-   <form class='form-horizontal' action='' method='post'>   
+   <form class='form-horizontal' action='' method='post'>
+   <div class='row-fluid'>
+      <div class='span8 offset3'>
+         <div class='control-group'>
+            <div class='controls'>
+            <span class='help-block'><h3>Sélectionnez un vin</h3></span>
+               <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
+                 <button  name='rouge' id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
+                 <button  name='blanc'id='load-ajax' value='2'type='button' class='btn btn-large btn-primary'>Vin blanc</button>
+              </div>
+          </div>
+      </div> 
+      <noscript>
+         <input type="submit" name="action" value="Chargez les couleurs" />
+      </noscript>
+      </div>
+   </div>   
    <div class='row-fluid'>
 <!-- contenu 1ere colonne -->     
 <div class='span6'>        
@@ -124,23 +139,11 @@
 <div class='span6'>
    <fieldset>
    <legend>L'oeil</legend>
-   <div class='control-group'>
-   <label class='control-label' for='type-couleur'>Couleur du vin</label>
-      <div class='controls'>
-         <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
-            <button  name='rouge' id='load-ajax' value='1' type='button' class='btn'>Vin rouge</button>
-            <button   name='blanc'id='load-ajax' value='2'type='button' class='btn'>Vin blanc</button>
-         </div>
-      </div>
-   </div> 
-   <noscript>
-    <input type="submit" name="action" value="Chargez les couleurs" />
-   </noscript>
    
    <div class='control-group'>
    <label class='control-label' for='couleur'>Teinte </label>
       <div class='controls'>
-         <select id='couleur' class='span4' name='date-mois' >
+         <select id='couleur' class='span6' name='date-mois' >
             <?php foreach(getCouleur($_REQUEST['id']) as $key=>$value){ 
               echo '   <option value="'. $key.'">'. $value . "</option>\n";
             } ?>
@@ -154,7 +157,7 @@
    <div class='control-group'>
    <label class='control-label' for='intensite-nez'>Intensité</label>
       <div class='controls'>
-         <select id='intensite-nez' class='span4' name='intensite-nez' >
+         <select id='intensite-nez' class='span6' name='intensite-nez' >
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -165,7 +168,7 @@
    <div class='control-group'>
    <label class='control-label' for='arome'>Arôme</label>
       <div class='controls'>
-         <select id='arome' class='span4' name='arome' >
+         <select id='arome' class='span6' name='arome' >
             <?php foreach($arome_saveur as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -176,7 +179,7 @@
    <div class='control-group'>
    <label class='control-label' for='impression-nez'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-nez' class='span4'></textarea>
+         <textarea rows='3' id='impression-nez' class='span6'></textarea>
       </div>
    </div>
 
@@ -186,7 +189,7 @@
    <div class='control-group'>
    <label class='control-label' for='intensite-bouche'>Intensité</label>
       <div class='controls'>
-         <select id='intensite-bouche' class='span4' name='intensite-bouche' >
+         <select id='intensite-bouche' class='span6' name='intensite-bouche' >
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -197,7 +200,7 @@
    <div class='control-group'>
    <label class='control-label' for='persistance'>Persistance</label>
       <div class='controls'>
-         <select id='persistance' class='span4' name='persistance' >
+         <select id='persistance' class='span6' name='persistance' >
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -208,7 +211,7 @@
    <div class='control-group'>
    <label class='control-label' for='saveur'>Saveur</label>
       <div class='controls'>
-         <select id='saveur' class='span4' name='saveur' >
+         <select id='saveur' class='span6' name='saveur' >
             <?php foreach($arome_saveur as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -219,7 +222,7 @@
    <div class='control-group'>
    <label class='control-label' for='acidite'>Acidité</label>
       <div class='controls'>
-         <select id='acidite' class='span4' name='acidite' >
+         <select id='acidite' class='span6' name='acidite' >
             <?php foreach($acidite as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -227,10 +230,10 @@
       </div>
    </div>
 
-   <div class='control-group'>
+   <div id='tanin' class='control-group'>
    <label class='control-label' for='tanin'>Tanins</label>
       <div class='controls'>
-         <select id='saveur' class='span4' name='tanin' >
+         <select id='tanin' class='span6' name='tanin' >
             <?php foreach($tanin as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -241,7 +244,7 @@
    <div class='control-group'>
    <label class='control-label' for='impression-nez'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-nez' class='span4'></textarea>
+         <textarea rows='3' id='impression-nez' class='span6'></textarea>
       </div>
    </div>
 

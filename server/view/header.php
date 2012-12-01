@@ -14,7 +14,7 @@
 </div>
 
 <div class='row-fluid'>
-   <div class='span8 offset2'>
+   <div class='span10 offset1'>
    <div class='navbar navbar-inverse'>
       <div class='navbar-inner'>
          <a class='brand' href='#'>L'index des vins</a>
