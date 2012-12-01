@@ -3,7 +3,7 @@ session_start();
 
 $date = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 $pays = ['Australie','Canada','Chili','Etats-Unis','France','Italie','Portugal'];
-$blanc = array('0'=>'Reflets verts','1'=>'Jaune pâle','2'=>'Doré','3'=>'Jaune paille','4'=>'Ambre');
+$blanc = array('0'=>'Reflets verts','1'=>'Jaune pâle','2'=>'Doré','3'=>'Jaune paille','4'=>'Ambré');
 $rouge = array('0'=>'Pourpre','1'=>'Grenat','2'=>'Rubis','3'=>'Cerise','4'=>'Brique','5'=>'Orangé');
 $arome_saveur = ['Animal','Boisé','Épicé','Floral','Fruité','Végétal'];
 $acidite = ['Mou','Frais','Vif','Nerveux','Mordant','Excessif'];
@@ -33,11 +33,12 @@ else{
 }
  
 function getCouleur($id) {
- 
+   global $rouge;
+   global $blanc; 
    if ($id == 1) {
-      $couleur = array(0=>'Pourpre',1=>'Grenat',2=>'Rubis',3=>'Cerise',4=>'Brique',5=>'Orangé');
+      $couleur = $rouge; 
    } else if ($id == 2) {
-      $couleur = array(0=>'Reflêts verts',1=>'Jaune pâle',2=>'Doré',3=>'Jaune paille',4=>'Ambré');
+      $couleur = $blanc;
    }
    return $couleur;
 }

@@ -10,7 +10,11 @@
   </head>
 
 <div class='page-header'>
-   <h1> QuantumLicht <small>Index des vins // Wine index </small> </h1>
+  <div class='row-fluid'> 
+     <div class='span6 offset5'>
+        <h1> QuantumLicht <small>Index des vins // Wine index </small> </h1>
+     </div>
+  </div>
 </div>
 
 <div class='row-fluid'>
@@ -26,11 +30,12 @@
             <li <?php getActiveTab('forum');?>>
                <a href="http://philippeguay.com/forum.php">Forum</a></li>
             <?php }?>
+
             <li <?php getActiveTab('indexvins');?>>
                <a href="http://philippeguay.com/indexvins.php">Index des vins</a></li> 
 
             <?php if(!isset($_SESSION['username'])){ ?>    
-            <li<?php getActiveTab('subscribe') ?>>
+            <li <?php getActiveTab('subscribe'); ?>>
                <a href="http://philippeguay.com/subscribe.php">Inscription</a></li>
             <?php } ?>
 
