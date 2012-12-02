@@ -9,6 +9,8 @@ catch(Exception $e)
 }
     
 function add_vin($data){
+  $table= $data['couleur']==1 ? 'rouge':'blanc';
+  echo $table . '</br>';
    foreach($data as $key=>$value){
       if(!isset($data[$key]) || $data[$key]==''){
         echo 'variable '. $key. ' not set or empty.</br>';
@@ -16,13 +18,11 @@ function add_vin($data){
       echo $key . ' '.$value. '</br>';
    }
 }
-//   foreach($data['encepagement'] as $key => $value){
- //     echo $key . ' '  .$value . '</br>';
-//   }
 //   echo '</br>'.$data['pays'];
 //   global $bdd;
-//   $query = $bdd->prepare('INSERT INTO  (username,content,time) VALUES (:user,:content,NOW())');
+//   $query = $bdd->prepare('INSERT INTO :table (username,content,time) VALUES (:user,:content,NOW())');
 //   $query->execute(array(
+//     'table =>'vin_'.$table; 
 //     'user' => $_SESSION['username'],
 //      'content' => $comment)) or die(print_r('error' .$bdd->errorInfo()));
 //  return true;

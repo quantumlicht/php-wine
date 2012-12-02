@@ -1,6 +1,4 @@
 $(function(){
-   $('ul.nav').click(function(){
-   });
    $("button#load-ajax").click(function(){
       $.ajaxSetup({
          async:false}
@@ -23,7 +21,6 @@ $(function(){
 
    $('.btn#load-ajax').each(function(){
       $(this).click(function(){
-         alert($(this).val() + '{' +$('input[name=couleur]').val() +'}');
          $('input[name=couleur]').val( $(this).val() );
       });
    });
