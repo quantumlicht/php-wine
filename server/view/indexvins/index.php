@@ -6,15 +6,16 @@
 <!-- top container -->
 
 <div class='container-fluid'>
-   <form class='form-horizontal' action='' method='post'>
+   <form class='form-horizontal' action='http://philippeguay.com/controller/indexvins/add_vin.php' method='post'>
    <div class='row-fluid'>
       <div class='span4'></div>
       <div class='span4'>
          <div class='offset3 control-group'>
             <span class='help-block'><h3>Sélectionnez un vin</h3></span>
+               <input type='hidden' name='couleur' value='1' id=btn-input'/>
                <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
-                 <button  name='rouge' id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
-                 <button  name='blanc'id='load-ajax' value='2'type='button' class='btn btn-large btn-primary'>Vin blanc</button>
+                 <button id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
+                 <button id='load-ajax' value='2'type='button' class='btn btn-large btn-primary'>Vin blanc</button>
               </div>
          </div> 
       </div>
@@ -78,12 +79,12 @@
       <div class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
-            <select class='span8' multiple='multiple' >
+            <select class='span8' name='encepagement[]' multiple='multiple' >
              <?php for( $i=0; $i<$max=10; $i++){ ?>
              <option><?php echo 'test'. $i; ?> </option>
              <?php } ?>         
             </select>
-            <span class='help-block'>Selectionnez plusieurs cépages en maintenant Shift.</span>
+            <span class='help-block'><small>Selectionnez plusieurs cépages en maintenant Ctrl.</small></span>
          </div>
       </div>
 
@@ -162,6 +163,7 @@
                <option><?php echo $i; ?> </option>
             <?php } ?>
          </select>
+         <span class='help-block'><small>1 étant peu intense et 5 très intense.</small></span>
       </div>
    </div>
 
@@ -179,7 +181,7 @@
    <div class='control-group'>
    <label class='control-label' for='impression-nez'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-nez' class='span6'></textarea>
+         <textarea rows='3' id='impression-nez' name='impression-nez' class='span6'></textarea>
       </div>
    </div>
 
@@ -194,6 +196,7 @@
                <option><?php echo $i; ?> </option>
             <?php } ?>
          </select>
+         <span class='help-block'><small>1 étant peu intense et 5 très intense.</small></span>
       </div>
    </div>
 
@@ -205,6 +208,7 @@
                <option><?php echo $i; ?> </option>
             <?php } ?>
          </select>
+         <span class='help-block'><small>1 étant peu intense et 5 très intense.</small></span>
       </div>
    </div>
 
@@ -242,9 +246,9 @@
    </div>
 
    <div class='control-group'>
-   <label class='control-label' for='impression-nez'>Impression</label>
+   <label class='control-label' for='impression-bouche'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-nez' class='span6'></textarea>
+         <textarea rows='3' id='impression-bouche' name='impression-bouche' class='span6'></textarea>
       </div>
    </div>
 
@@ -265,7 +269,7 @@
 <div class='row-fluid'>
    <div class='span4'></div>
    <div class='span4'>
-      <button class='offset4 btn btn-large btn-primary'>Soumettre</button>
+      <button type='submit' class='offset4 btn btn-large btn-primary'>Soumettre</button>
    </div>
    <div class='span4'></div>
 </div>
