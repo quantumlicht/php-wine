@@ -62,9 +62,10 @@
          <label class='control-label' for='pays'>Pays</label>
          <div class='controls'>
             <select style='text-align:center' class='span8'  name='pays' id='pays' >
-             <?php foreach($pays as $key=>$value){ ?>
-             <option><?php echo $value; ?> </option>
-             <?php } ?>         
+               <option></option>
+               <?php foreach($pays as $key=>$value){ ?>
+               <option><?php echo $value; ?> </option>
+               <?php } ?>         
             </select>
          </div>
       </div>
@@ -80,9 +81,10 @@
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
             <select class='span8' name='encepagement[]' multiple='multiple' >
-             <?php for( $i=0; $i<$max=10; $i++){ ?>
-             <option><?php echo 'test'. $i; ?> </option>
-             <?php } ?>         
+               <option></option>
+               <?php for( $i=0; $i<$max=10; $i++){ ?>
+               <option><?php echo 'test'. $i; ?> </option>
+               <?php } ?>         
             </select>
             <span class='help-block'><small>Selectionnez plusieurs cépages en maintenant Ctrl.</small></span>
          </div>
@@ -104,16 +106,19 @@
             <input class='span2' type='text' name='date-jour' id='date'/>
             
             <select class='span4' name='date-mois' >
+               <option></option>
                <?php foreach($date as $key=>$value){ ?>
-                <option><?php echo $value; ?> </option>
+               <option><?php echo $value; ?> </option>
                <?php } ?>
             </select>         
       
             <select class='span3' name='date-annee' >
-             <?php for( $i=1920; $i<$max=2050; $i++){ ?>
-             <option><?php echo $i; ?> </option>
-             <?php } ?>
+               <option></option>
+               <?php for( $i=1920; $i<$max=2050; $i++){ ?>
+               <option><?php echo $i; ?> </option>
+               <?php } ?>
             </select>         
+          <span class='help-block'><small>jour-mois-année</small></span>
          </div>
       </div>
 
@@ -144,7 +149,8 @@
    <div class='control-group'>
    <label class='control-label' for='couleur'>Teinte </label>
       <div class='controls'>
-         <select id='couleur' class='span6' name='date-mois' >
+         <select id='couleur' class='span6' name='date-mois' > 
+            <option></option>
             <?php foreach(getCouleur($_REQUEST['id']) as $key=>$value){ 
               echo '   <option value="'. $key.'">'. $value . "</option>\n";
             } ?>
@@ -158,7 +164,8 @@
    <div class='control-group'>
    <label class='control-label' for='intensite-nez'>Intensité</label>
       <div class='controls'>
-         <select id='intensite-nez' class='span6' name='intensite-nez' >
+         <select id='intensite-nez' class='span6' name='intensite-nez' > 
+            <option></option>
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -171,6 +178,7 @@
    <label class='control-label' for='arome'>Arôme</label>
       <div class='controls'>
          <select id='arome' class='span6' name='arome' >
+            <option></option>
             <?php foreach($arome_saveur as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -192,6 +200,7 @@
    <label class='control-label' for='intensite-bouche'>Intensité</label>
       <div class='controls'>
          <select id='intensite-bouche' class='span6' name='intensite-bouche' >
+            <option></option>
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -204,6 +213,7 @@
    <label class='control-label' for='persistance'>Persistance</label>
       <div class='controls'>
          <select id='persistance' class='span6' name='persistance' >
+            <option></option>
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
             <?php } ?>
@@ -216,6 +226,7 @@
    <label class='control-label' for='saveur'>Saveur</label>
       <div class='controls'>
          <select id='saveur' class='span6' name='saveur' >
+            <option></option>
             <?php foreach($arome_saveur as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -227,6 +238,7 @@
    <label class='control-label' for='acidite'>Acidité</label>
       <div class='controls'>
          <select id='acidite' class='span6' name='acidite' >
+            <option></option>
             <?php foreach($acidite as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>
@@ -234,10 +246,11 @@
       </div>
    </div>
 
-   <div id='tanin' class='control-group'>
+   <div id='tanin-group' class='control-group'>
    <label class='control-label' for='tanin'>Tanins</label>
       <div class='controls'>
          <select id='tanin' class='span6' name='tanin' >
+            <option></option>
             <?php foreach($tanin as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
             <?php } ?>

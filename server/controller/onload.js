@@ -12,10 +12,12 @@ $(function(){
      $("select#couleur").html(options);
      
      if($(this).val()==2){
-        $('#tanin').hide();
+        $('#tanin-group').hide();
+        $('#tanin').attr('disabled','');
      }
      else{
-        $('#tanin').show();
+        $('#tanin').removeAttr('disabled');
+        $('#tanin-group').show();
      }
    });
 
