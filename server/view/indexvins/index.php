@@ -6,8 +6,8 @@
 <!-- top container -->
 
 <div class='container-fluid'>
-   <form class='form-horizontal' action='http://philippeguay.com/controller/indexvins/add_vin.php' method='post'>
-   <div class='row-fluid'>
+   <form id='index-vins' class='form-horizontal' action='http://philippeguay.com/controller/indexvins/add_vin.php' method='post'>
+   <div id='section-row' class='row-fluid'>
       <div class='span4'></div>
       <div class='span4'>
          <div class='offset3 control-group'>
@@ -24,7 +24,7 @@
          <input type="submit" name="action" value="Chargez les couleurs" />
       </noscript>
    </div>   
-   <div class='row-fluid'>
+   <div id='section-row' class='row-fluid'>
 <!-- contenu 1ere colonne -->     
 <div class='span6'>        
    <fieldset>
@@ -80,7 +80,7 @@
       <div class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
-            <select class='span8' name='encepagement[]' multiple='multiple' >
+            <select id='encepagement' class='span8' name='encepagement[]' multiple='multiple' >
                <option></option>
                <?php for( $i=0; $i<$max=10; $i++){ ?>
                <option><?php echo 'test'. $i; ?> </option>
@@ -105,14 +105,14 @@
          <div class='controls'>
             <input class='span2' type='text' name='date-jour' id='date'/>
             
-            <select class='span4' name='date-mois' >
+            <select id='date-mois' class='span4' name='date-mois' >
                <option></option>
                <?php foreach($date as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
                <?php } ?>
             </select>         
       
-            <select class='span3' name='date-annee' >
+            <select id='date-annee' class='span3' name='date-annee' >
                <option></option>
                <?php for( $i=1920; $i<$max=2050; $i++){ ?>
                <option><?php echo $i; ?> </option>
@@ -279,7 +279,7 @@
 </div>     
 <!--  -->
    </div>
-<div class='row-fluid'>
+<div id='section-row' class='row-fluid'>
    <div class='span4'></div>
    <div class='span4'>
       <button type='submit' class='offset4 btn btn-large btn-primary'>Soumettre</button>

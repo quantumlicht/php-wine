@@ -27,4 +27,26 @@ $(function(){
       });
    });
 
+   $('form#index-vins div#section-row').eq(2).mouseover(function(){
+      inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(input[type=textarea])');
+
+      $('form#index-vins div.control-group').click(function(){
+         $(this).removeClass('error');
+      });
+
+      $.each(inputs,function(){
+         if( $(this).val()==''){// || $(this).val()== null) ){
+            $(this).closest('.control-group').addClass('error');
+         }
+      });
+        
+      if($('.error').length!=0){
+         $(' form#index-vins button[type=submit]').addClass('disabled');  
+         $(' form#index-vins button[type=submit]').attr('disabled','');  
+      }
+      else{
+         $(' form#index-vins button[type=submit]').removeClass('disabled');   
+         $(' form#index-vins button[type=submit]').removeAttr('disabled');   
+      }   
+});
 });
