@@ -8,16 +8,16 @@
            ?>
            <p class='well well-small'>Bienvenue!</br> Vous pouvez vous inscrire afin de participer au forum et partager vos dégustations ou simplement consulter l'index des vins et voir ce que les utilisateurs ont dit sur ce vin.</p>
         </div>
-         <div class='span3'>
+         <div class='span4'>
          <?php
          foreach ($users as $user)
          {
          ?>
             <div class='well well-small'>
-               <strong>user</strong> : <?php echo $user['username']; ?><br />
-               <strong> email</strong> : <?php echo $user['email']; ?> <br />
-               <strong>password</strong>: <?php echo $user['password']; ?> <br />
-               <strong>last login</strong>: <?php echo $user['lastLogin']; ?> <br/>
+               <strong>usager</strong> : <?php echo $user['username']; ?><br />
+               <strong>courriel</strong> : <?php echo $user['email']; ?> <br />
+               <strong>mot de passe</strong>: <?php echo $user['password']; ?> <br />
+               <strong>date de creation</strong>: <?php echo $user['lastLogin']; ?> <br/>
             </div>
          <?php
          }

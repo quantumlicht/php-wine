@@ -1,4 +1,6 @@
 $(function(){
+
+//-----------------------------------------------------------------------------------------------------------------
    $("button#load-ajax").click(function(){
       $.ajaxSetup({
          async:false}
@@ -26,10 +28,11 @@ $(function(){
          $('input[name=couleur]').val( $(this).val() );
       });
    });
-
+//----------------------------------------------------------------------------------------------------------------------
+   
+   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(input[type=textarea])');
    $('form#index-vins div#section-row').eq(2).mouseover(function(){
-      inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(input[type=textarea])');
-
+      //TODO : ajouter le bouton pour type de vins dans la validation d'erreur. On peut mettre un plus beau message d'erreur ou barrer la suite du formulaire si on a pas choisi un type de vin.
       $('form#index-vins div.control-group').click(function(){
          $(this).removeClass('error');
       });
@@ -47,6 +50,24 @@ $(function(){
       else{
          $(' form#index-vins button[type=submit]').removeClass('disabled');   
          $(' form#index-vins button[type=submit]').removeAttr('disabled');   
-      }   
-});
+      }
+   });
+   
+   $('form#index-vins div#section-row').eq(1).mouseover(function(){
+      if($('form#index-vins input[type=hidden]').val()=='0'){
+         inputs.addClass('disabled');
+         inputs.attr('disabled','');
+         $('form#index-vins div.control-group').eq(0).addClass('error');
+         $('form#index-vins div.btn-group').eq(0).find('button').addClass('btn-danger');
+         $(' form#index-vins button[type=submit]').addClass('disabled');  
+         $(' form#index-vins button[type=submit]').attr('disabled','');  
+      }else{
+         inputs.removeClass('disabled');
+         inputs.removeAttr('disabled');
+         $('form#index-vins div.control-group').eq(0).removeClass('error');
+         $('form#index-vins div.btn-group').eq(0).find('button').removeClass('btn-danger');
+      }
+      
+   
+   });
 });

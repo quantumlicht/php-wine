@@ -43,7 +43,7 @@
                <a href="http://philippeguay.com/controller/mail/mailto.php">Contact</a></li>
 
             <li>
-               <a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">About</a></li>
+               <a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">À propos</a></li>
 
             <li class='divider-vertical'></li>
             <li><?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?></li>
