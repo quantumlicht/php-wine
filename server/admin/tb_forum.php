@@ -21,7 +21,7 @@ if(mysql_query($query,$con)){
    echo '</br>forum table created';
 }
 else{
-   echo '</br> creating forum table failed';
+   echo '</br> creating forum table failed.' . mysql_error();
 }
 
 ?>
