@@ -9,9 +9,10 @@ catch(Exception $e)
 }
     
 function add_vin($data){
+  $new_data = array_merge(array_diff($data,array($data['couleur']))); 
   $table= $data['couleur']==1 ? 'rouge':'blanc';
   echo $table . '</br>';
-   foreach($data as $key=>$value){
+   foreach($new_data as $key=>$value){
       if(!isset($data[$key]) || $data[$key]==''){
         echo 'variable '. $key. ' not set or empty.</br>';
       }
