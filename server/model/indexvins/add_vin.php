@@ -18,15 +18,14 @@ function add_vin($data){
       }
       echo $key . ' '.$value. '</br>';
    }
-}
-//   echo '</br>'.$data['pays'];
-//   global $bdd;
-//   $query = $bdd->prepare('INSERT INTO :table (username,content,time) VALUES (:user,:content,NOW())');
+
+//global $bdd;
+//$query = $bdd->prepare('INSERT INTO :table (username,content,time) VALUES (:user,:content,NOW())');
 //   $query->execute(array(
 //     'table =>'vin_'.$table; 
 //     'user' => $_SESSION['username'],
 //      'content' => $comment)) or die(print_r('error' .$bdd->errorInfo()));
 //  return true;
-//} 
+} 
 ?>
 

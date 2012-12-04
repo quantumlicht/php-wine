@@ -17,7 +17,6 @@ $sql_rouge = "CREATE TABLE IF NOT EXISTS `vin_rouge`(
 `appelation` varchar(255)  NOT NULL default '',
 `pays` varchar(30) NOT NULL default '',
 `region` varchar(50) NOT NULL default '',
-`encepagement` varchar(255) NOT NULL default '',
 `alcool` DECIMAL(5,3),
 `date` DATE,
 `code-saq` INT UNSIGNED,
