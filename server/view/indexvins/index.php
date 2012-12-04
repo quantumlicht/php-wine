@@ -94,7 +94,7 @@
          <label class='control-label' for='alcool'>Alcool</label>
          <div class='controls'>
             <div class='input-append'>
-               <input class='span4' type='text' name='alcool' placeholder='13,5' id='alcool appendedInput'/>
+               <input class='span4' type='text' name='alcool' placeholder='13.5' id='alcool appendedInput'/>
                <span class='add-on'>%</span>
             </div>            
          </div>
@@ -103,16 +103,16 @@
       <div class='control-group'>
          <label class='control-label' for='date'>Date de dégustation </label>
          <div class='controls'>
-            <input class='span2' type='text' name='date-jour' id='date'/>
+            <input class='span2' type='text' name='date_jour' id='date'/>
             
-            <select id='date-mois' class='span4' name='date-mois' >
+            <select id='date-mois' class='span4' name='date_mois' >
                <option></option>
                <?php foreach($date as $key=>$value){ ?>
                <option><?php echo $value; ?> </option>
                <?php } ?>
             </select>         
       
-            <select id='date-annee' class='span3' name='date-annee' >
+            <select id='date-annee' class='span3' name='date_annee' >
                <option></option>
                <?php for( $i=1920; $i<$max=2050; $i++){ ?>
                <option><?php echo $i; ?> </option>
@@ -123,9 +123,9 @@
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='code'>Code SAQ</label>
+         <label class='control-label' for='code_saq'>Code SAQ</label>
          <div class='controls'>
-            <input class='span8' type='text' name='code' id='code'/>
+            <input class='span8' type='text' name='code_saq' id='code_saq'/>
          </div>
       </div>
 
@@ -133,7 +133,7 @@
       <label class='control-label' for='prix'>Prix</label>
          <div class='controls'>
             <div class='input-append'>
-               <input class='span4' type='text' placeholder='19,99' name='prix' id='prix appendedInput'/>
+               <input class='span4' type='text' placeholder='19.99' name='prix' id='prix appendedInput'/>
                <span class='add-on'>$</span>
             </div>            
          </div>
@@ -149,7 +149,7 @@
    <div class='control-group'>
    <label class='control-label' for='couleur'>Teinte </label>
       <div class='controls'>
-         <select id='couleur' class='span6' name='date-mois' > 
+         <select id='couleur' class='span6' name='teinte' > 
             <option></option>
             <?php foreach(getCouleur($_REQUEST['id']) as $key=>$value){ 
               echo '   <option value="'. $key.'">'. $value . "</option>\n";
@@ -162,9 +162,9 @@
 <fieldset>
 <legend>Le nez</legend>
    <div class='control-group'>
-   <label class='control-label' for='intensite-nez'>Intensité</label>
+   <label class='control-label' for='nez_intensite'>Intensité</label>
       <div class='controls'>
-         <select id='intensite-nez' class='span6' name='intensite-nez' > 
+         <select id='nez_intensite' class='span6' name='nez_intensite' > 
             <option></option>
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
@@ -187,9 +187,9 @@
    </div>
 
    <div class='control-group'>
-   <label class='control-label' for='impression-nez'>Impression</label>
+   <label class='control-label' for='nez_impression'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-nez' name='impression-nez' class='span6'></textarea>
+         <textarea rows='3' id='nez_impression' name='nez_impression' class='span6'></textarea>
       </div>
    </div>
 
@@ -197,9 +197,9 @@
 <fieldset>
 <legend>La bouche</legend>
    <div class='control-group'>
-   <label class='control-label' for='intensite-bouche'>Intensité</label>
+   <label class='control-label' for='bouche_intensite'>Intensité</label>
       <div class='controls'>
-         <select id='intensite-bouche' class='span6' name='intensite-bouche' >
+         <select id='bouche_intensite' class='span6' name='bouche_intensite' >
             <option></option>
             <?php for($i=1;$i<=5; $i++){ ?>
                <option><?php echo $i; ?> </option>
@@ -259,9 +259,9 @@
    </div>
 
    <div class='control-group'>
-   <label class='control-label' for='impression-bouche'>Impression</label>
+   <label class='control-label' for='bouche_impression'>Impression</label>
       <div class='controls'>
-         <textarea rows='3' id='impression-bouche' name='impression-bouche' class='span6'></textarea>
+         <textarea rows='3' id='bouche_impression' name='bouche_impression' class='span6'></textarea>
       </div>
    </div>
 

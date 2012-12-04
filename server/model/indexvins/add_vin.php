@@ -7,25 +7,43 @@ catch(Exception $e)
 {
    die('error : '.$e->getMessage());
 }
+
+# remove by key:
+function array_remove_key ()
+{
+  $args  = func_get_args();
+  return array_diff_key($args[0],array_flip(array_slice($args,1)));
+}
+
     
 function add_vin($data){
-  $new_data = array_merge(array_diff($data,array($data['couleur']))); 
-  $table= $data['couleur']==1 ? 'rouge':'blanc';
-  echo $table . '</br>';
-   foreach($new_data as $key=>$value){
+  $table = $data['couleur']==1 ? 'rouge':'blanc';
+  $arrEncepagement = $data['encepagement'];
+
+  $new_data = array_remove_key($data,'couleur','encepagement');
+
+ /*TODO : DATA SANITiZATION
+   former requete pour: date
+   Stripper la virgule de alcool et prix
+ */ 
+  foreach($new_data as $key=>$value){
       if(!isset($data[$key]) || $data[$key]==''){
         echo 'variable '. $key. ' not set or empty.</br>';
       }
       echo $key . ' '.$value. '</br>';
    }
-
-//global $bdd;
-//$query = $bdd->prepare('INSERT INTO :table (username,content,time) VALUES (:user,:content,NOW())');
-//   $query->execute(array(
-//     'table =>'vin_'.$table; 
-//     'user' => $_SESSION['username'],
-//      'content' => $comment)) or die(print_r('error' .$bdd->errorInfo()));
-//  return true;
+//--------------------------------------------------------
+   $strQuery = 'INSERT INTO vin_'. $table . ' SET ';
+   foreach($new_data as $key=>$value){
+      $strQuery .= (string)$key.'=\''.(string)$value.'\', ';
+   }
+ 
+   $strQuery = substr($strQuery,0,-2); //remove the last ', '
+   echo $strQuery;
+ 
+   global $bdd;
+   $query = $bdd->exec($strQuery);
+   return true;
 } 
 ?>
 
