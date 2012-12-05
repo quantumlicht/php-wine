@@ -7,7 +7,7 @@ $(function(){
         );
      var objAjaxResponse =  $.getJSON("http://philippeguay.com/indexvins.php",{id: $(this).val(), ajax: 'true'});
      var jsonCouleur = $.parseJSON(objAjaxResponse.responseText);
-     var options = '';
+     var options = '<option></option>';
      for (var i = 0; i < jsonCouleur.length; i++) {
         options += '<option value="' + jsonCouleur[i].id + '">' + jsonCouleur[i].couleur + '</option>';
      }

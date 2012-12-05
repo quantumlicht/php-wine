@@ -10,6 +10,7 @@ mysql_select_db("db_vins",$con);
 
 $sql = "CREATE TABLE IF NOT EXISTS `encepagement`(
 `vinID` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`couleur` SMALLINT NOT NULL,
 `1` varchar(50) NOT NULL default '',
 `2` varchar(50) default '',
 `3` varchar(50) default '',

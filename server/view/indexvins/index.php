@@ -49,7 +49,7 @@
          <div class='controls'>
             <select id='annee' class='span3' name='annee' >
                <option></option>
-               <?php for( $i=1920; $i<$max=date("Y")+1; $i++){ ?>
+               <?php for( $i=1920; $i<$max=2030; $i++){ ?>
                <option><?php echo $i; ?> </option>
                <?php } ?>
             </select>
@@ -69,8 +69,8 @@
          <div class='controls'>
             <select style='text-align:center' class='span8'  name='pays' id='pays' >
                <option></option>
-               <?php foreach($pays as $key=>$value){ ?>
-               <option><?php echo $value; ?> </option>
+               <?php foreach($pays as $country){ ?>
+               <option><?php echo $country['pays']; ?> </option>
                <?php } ?>         
             </select>
          </div>
