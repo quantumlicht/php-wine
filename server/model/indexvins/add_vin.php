@@ -22,9 +22,18 @@ function add_vin($data){
 
   $new_data = array_remove_key($data,'couleur','encepagement');
 
+//---------------------------------------------------------------------
+  echo $new_data['alcool'] .'---'.  $new_data['prix']. '</br>';
+  $new_data['code_saq'] = intval($new_data['code_saq']);
+  $new_data['date'] = $new_data['date_annee'].'-'.$new_data['date_mois'].'-'.$new_data['date_jour'];
+  $new_data = array_remove_key($new_data,'date_annee','date_mois','date_jour');
+
+  echo $new_data['date'];
  /*TODO : DATA SANITiZATION
    former requete pour: date
+   assurer date_jour, alcool et prix sont numeriques
    Stripper la virgule de alcool et prix
+   conversionn type code saq
  */ 
   foreach($new_data as $key=>$value){
       if(!isset($data[$key]) || $data[$key]==''){

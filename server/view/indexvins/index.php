@@ -47,14 +47,20 @@
       <div class='control-group'>
          <label class='control-label' for='annee'>Année</label>
          <div class='controls'>
-            <input class='span8' type='text' name='annee' id='annee'/>
+            <select id='annee' class='span3' name='annee' >
+               <option></option>
+               <?php for( $i=1920; $i<$max=date("Y")+1; $i++){ ?>
+               <option><?php echo $i; ?> </option>
+               <?php } ?>
+            </select>
+
          </div>
       </div>
 
       <div class='control-group'>
-         <label class='control-label' for='type'>Type (Appelation)</label>
+         <label class='control-label' for='appelation'>Type (Appelation)</label>
          <div class='controls'>
-            <input class='span8' type='text' name='type' id='type'/>
+            <input class='span8' type='text' name='appelation' id='appelation'/>
          </div>
       </div>
       
@@ -105,16 +111,16 @@
          <div class='controls'>
             <input class='span2' type='text' name='date_jour' id='date'/>
             
-            <select id='date-mois' class='span4' name='date_mois' >
+            <select id='date_mois' class='span4' name='date_mois' >
                <option></option>
-               <?php foreach($date as $key=>$value){ ?>
-               <option><?php echo $value; ?> </option>
-               <?php } ?>
+               <?php foreach($date as $key=>$value){ 
+                  echo '<option value=\''. $key . '\'>' . $value . '</option>';
+               } ?>
             </select>         
       
-            <select id='date-annee' class='span3' name='date_annee' >
+            <select id='date_annee' class='span3' name='date_annee' >
                <option></option>
-               <?php for( $i=1920; $i<$max=2050; $i++){ ?>
+               <?php for( $i=1920; $i<$max=date("Y")+1; $i++){ ?>
                <option><?php echo $i; ?> </option>
                <?php } ?>
             </select>         
