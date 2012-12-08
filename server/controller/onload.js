@@ -1,4 +1,20 @@
 $(function(){
+   $.ajaxSetup({
+      async:false
+   });
+   $('input#tag').typeahead({
+      source: function(typeahead,query){
+         arr=[];
+         var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',flag:'typeahead'});
+         var json = $.parseJSON(obj.responseText);
+         for (var i = 0; i<json.length;i++ ){
+            arr.push(json[i]);
+         }
+         return arr;
+      },
+      items:5
+   });
+
 
 //-----------------------------------------------------------------------------------------------------------------
    $("button#load-ajax").click(function(){
@@ -19,7 +35,7 @@ $(function(){
      }
      $("select#encepagement").html(options);
      $('select#encepagement').scrollTop(0);
-     
+    
      if($(this).val()==2){
         $('#tanin-group').hide();
         $('#tanin').attr('disabled','');
@@ -80,4 +96,5 @@ $(function(){
       
    
    });
+
 });

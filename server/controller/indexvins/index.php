@@ -1,7 +1,7 @@
 <?php
 include_once('/opt/lampp/htdocs/server/model/indexvins/get_pays.php');
 include_once('/opt/lampp/htdocs/server/model/indexvins/get_encepagement.php');
-
+include_once('/opt/lampp/htdocs/server/model/indexvins/get_tags.php');
 session_start();
 
 $pays = get_pays();
@@ -16,39 +16,48 @@ $tanin = ['Fins','Soyeux','Râpeux','Rugueux','Astringents'];
 
 
 if (!isset($_REQUEST['ajax'])) {
-  if(!isset($_REQUEST['id'])){
-     $_REQUEST['id']=1;
-  }
-  
-  // ensure we select the top level select box is pre-selected
-  //$selected = array('1' => '', '2' => '');
-  //$selected[$_REQUEST['id']] = 'selected="selected"';
+  if(!isset($_REQUEST['id'])) $_REQUEST['id']=1;
   
    include_once('/opt/lampp/htdocs/server/controller/header.php');
    include_once('/opt/lampp/htdocs/server/view/indexvins/index.php');
 }
 else{
-  $couleurs = get_couleur($_REQUEST['id']);
-  $encepagements = get_encepagement($_REQUEST['id']);
-
-  $json = "{\"couleur\":["; // start the json array element
-  $json_couleur = array();
-  foreach ($couleurs as $id => $couleur) {
-     $json_couleur[] = "{\"id\": $id, \"couleur\": \"$couleur\"}";
-  }
+  if(!isset($_REQUEST['flag'])){
+     $couleurs = get_couleur($_REQUEST['id']);
+     $encepagements = get_encepagement($_REQUEST['id']);
  
-  $json .= implode(',', $json_couleur); // join the objects by commas;
+     $json = "{\"couleur\":["; // start the json array element
+     $json_couleur = array();
+     foreach ($couleurs as $id => $couleur) {
+        $json_couleur[] = "{\"id\": $id, \"couleur\": \"$couleur\"}";
+     }
+ 
+     $json .= implode(',', $json_couleur); // join the objects by commas;
 
-  $json .= '],"encepagement":['; // end the json array element
+     $json .= '],"encepagement":['; // end the json array element
 
-  $json_encepagement = array();
+     $json_encepagement = array();
 
-  foreach($encepagements as $encepagement){
-     $json_encepagement[] = "{\"id\":". $encepagement['encepagementID'].", \"encepagement\": \"". $encepagement['encepagement']."\"}";
+     foreach($encepagements as $encepagement){
+        $json_encepagement[] = "{\"id\":". $encepagement['encepagementID'].", \"encepagement\": \"". $encepagement['encepagement']."\"}";
+      }
+      $json .= implode(',',$json_encepagement);
+      $json .= ']}';
+      echo $json;
    }
-   $json .= implode(',',$json_encepagement);
-   $json .= ']}';
-echo $json;
+   else{
+      $tags = get_tags();
+      $json = '[';
+      $json_tags = array();
+     
+      foreach($tags as $tag){
+         $json_tags[]="\"".$tag['tag']."\"";
+      }
+      $json.= implode(',',$json_tags);
+      $json.= ']';
+      echo $json; 
+  
+   }
 }
  
 function get_couleur($id) {

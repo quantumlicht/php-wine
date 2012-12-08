@@ -277,7 +277,7 @@
    <div class='span8 offset2'>
       <fieldset>
       <legend>Impression d'ensemble</legend>
-      <input type='text' autocomplete='off' id='tag' data-provide="type-ahead">
+      <input type='text' autocomplete='off' data-item="2" id='tag' data-provide="type-ahead" data-source=[test,allo,babai]>
       <button class='btn'>Ajouter un tag</button>
       
       </fieldset>
