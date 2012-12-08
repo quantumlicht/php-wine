@@ -279,7 +279,13 @@
       <legend>Impression d'ensemble</legend>
       <input type='text' autocomplete='off' id='tag' data-provide="type-ahead">
       <button class='btn'>Ajouter un tag</button>
-      
+      <div class='row-fluid'>
+         <div class='span2'>
+            <div class='well well-small'>teeest
+               <button class='close'>&times;</button>
+            </div>
+         </div>
+      </div>      
       </fieldset>
    </div>
 </div>     
