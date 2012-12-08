@@ -88,8 +88,9 @@
          <div class='controls'>
             <select id='encepagement' class='span8' name='encepagement[]' multiple='multiple' >
                <option></option>
-               <?php for( $i=0; $i<$max=10; $i++){ ?>
-               <option><?php echo 'test'. $i; ?> </option>
+
+               <?php foreach(get_encepagement($_REQUEST['id']) as $encepagement){ ?>
+              <option><?php echo $encepagement['encepagement']  ?> </option>
                <?php } ?>         
             </select>
             <span class='help-block'><small>Selectionnez plusieurs cépages en maintenant Ctrl.</small></span>
@@ -157,7 +158,7 @@
       <div class='controls'>
          <select id='couleur' class='span6' name='teinte' > 
             <option></option>
-            <?php foreach(getCouleur($_REQUEST['id']) as $key=>$value){ 
+            <?php foreach(get_couleur($_REQUEST['id']) as $key=>$value){ 
               echo '   <option value="'. $key.'">'. $value . "</option>\n";
             } ?>
          </select>         

@@ -6,12 +6,18 @@ $(function(){
          async:false}
         );
      var objAjaxResponse =  $.getJSON("http://philippeguay.com/indexvins.php",{id: $(this).val(), ajax: 'true'});
-     var jsonCouleur = $.parseJSON(objAjaxResponse.responseText);
+     var json = $.parseJSON(objAjaxResponse.responseText);
      var options = '<option></option>';
-     for (var i = 0; i < jsonCouleur.length; i++) {
-        options += '<option value="' + jsonCouleur[i].id + '">' + jsonCouleur[i].couleur + '</option>';
+     for (var i = 0; i < json.couleur.length; i++) {
+        options += '<option value="' + json.couleur[i].id + '">' + json.couleur[i].couleur + '</option>';
      }
+     
      $("select#couleur").html(options);
+     var options = '<option></option>';
+     for (var i = 0; i < json.encepagement.length; i++) {
+        options += '<option value="' + json.encepagement[i].id + '">' + json.encepagement[i].encepagement + '</option>';
+     }
+     $("select#encepagement").html(options);
      
      if($(this).val()==2){
         $('#tanin-group').hide();
