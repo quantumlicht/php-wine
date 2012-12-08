@@ -17,18 +17,18 @@ function array_remove_key ()
 
     
 function add_vin($data){
+  
   $table = $data['couleur']==1 ? 'rouge':'blanc';
   $arrEncepagement = $data['encepagement'];
 
+ // $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
   $new_data = array_remove_key($data,'couleur','encepagement');
 
 //---------------------------------------------------------------------
-  echo $new_data['alcool'] .'---'.  $new_data['prix']. '</br>';
   $new_data['code_saq'] = intval($new_data['code_saq']);
   $new_data['date'] = $new_data['date_annee'].'-'.$new_data['date_mois'].'-'.$new_data['date_jour'];
   $new_data = array_remove_key($new_data,'date_annee','date_mois','date_jour');
 
-  echo $new_data['date'];
  /*TODO : DATA SANITiZATION
    former requete pour: date
    assurer date_jour, alcool et prix sont numeriques
@@ -44,7 +44,7 @@ function add_vin($data){
 //--------------------------------------------------------
    $strQuery = 'INSERT INTO vin_'. $table . ' SET ';
    foreach($new_data as $key=>$value){
-      $strQuery .= (string)$key.'=\''.(string)$value.'\', ';
+      $strQuery .= (string)$key.'=\''.addslashes((string)$value).'\', ';
    }
  
    $strQuery = substr($strQuery,0,-2); //remove the last ', '

@@ -18,6 +18,7 @@ $(function(){
         options += '<option value="' + json.encepagement[i].id + '">' + json.encepagement[i].encepagement + '</option>';
      }
      $("select#encepagement").html(options);
+     $('select#encepagement').scrollTop(0);
      
      if($(this).val()==2){
         $('#tanin-group').hide();
@@ -36,7 +37,7 @@ $(function(){
    });
 //----------------------------------------------------------------------------------------------------------------------
    
-   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(input[type=textarea])');
+   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(textarea)');
    $('form#index-vins div#section-row').eq(2).mouseover(function(){
       //TODO : ajouter le bouton pour type de vins dans la validation d'erreur. On peut mettre un plus beau message d'erreur ou barrer la suite du formulaire si on a pas choisi un type de vin.
       $('form#index-vins div.control-group').click(function(){
@@ -44,10 +45,13 @@ $(function(){
       });
 
       $.each(inputs,function(){
-         if( $(this).val()==''){// || $(this).val()== null) ){
+         if( $(this).val()=='' && $(this).attr('id')!='tanin'){// || $(this).val()== null) ){
             $(this).closest('.control-group').addClass('error');
          }
       });
+      if($('#encepagement').val()==null){
+       $('#encepagement').closest('.control-group').addClass('error');
+      }
         
       if($('.error').length!=0){
          $(' form#index-vins button[type=submit]').addClass('disabled');  

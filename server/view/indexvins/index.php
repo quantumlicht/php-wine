@@ -49,8 +49,8 @@
          <div class='controls'>
             <select id='annee' class='span3' name='annee' >
                <option></option>
-               <?php for( $i=1920; $i<$max=2030; $i++){ ?>
-               <option><?php echo $i; ?> </option>
+               <?php for( $max=date("Y");$max>$i=1950; $max--){ ?>
+               <option><?php echo $max; ?> </option>
                <?php } ?>
             </select>
 
@@ -82,7 +82,6 @@
             <input class='span8' type='text' name='region' id='region'/>
          </div>
       </div>
-
       <div class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
@@ -121,8 +120,8 @@
       
             <select id='date_annee' class='span3' name='date_annee' >
                <option></option>
-               <?php for( $i=1920; $i<$max=date("Y")+1; $i++){ ?>
-               <option><?php echo $i; ?> </option>
+               <?php for( $max=date("Y");$max>$i=1950; $max--){ ?>
+               <option><?php echo $max; ?> </option>
                <?php } ?>
             </select>         
           <span class='help-block'><small>jour-mois-année</small></span>

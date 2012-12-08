@@ -21,9 +21,9 @@ if (!isset($_REQUEST['ajax'])) {
   }
   
   // ensure we select the top level select box is pre-selected
-  $selected = array('1' => '', '2' => '');
-  $selected[$_REQUEST['id']] = 'selected="selected"';
-
+  //$selected = array('1' => '', '2' => '');
+  //$selected[$_REQUEST['id']] = 'selected="selected"';
+  
    include_once('/opt/lampp/htdocs/server/controller/header.php');
    include_once('/opt/lampp/htdocs/server/view/indexvins/index.php');
 }
