@@ -1,8 +1,10 @@
 $(function(){
+//==========================================================================================================================
+ // TAG TYPEAHEAD
    $.ajaxSetup({
       async:false
    });
-   $('input#tag').typeahead({
+   $('input#inputtag').typeahead({
       source: function(typeahead,query){
          arr=[];
          var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',flag:'typeahead'});
@@ -15,8 +17,8 @@ $(function(){
       items:5
    });
 
-
-//-----------------------------------------------------------------------------------------------------------------
+//============================================================================================================================
+// COULEUR VIN POPULATING
    $("button#load-ajax").click(function(){
       $.ajaxSetup({
          async:false}
@@ -51,8 +53,8 @@ $(function(){
          $('input[name=couleur]').val( $(this).val() );
       });
    });
-//----------------------------------------------------------------------------------------------------------------------
-   
+//=========================================================================================================================== 
+// FORM LOCK
    inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(textarea)');
    $('form#index-vins div#section-row').eq(2).mouseover(function(){
       //TODO : ajouter le bouton pour type de vins dans la validation d'erreur. On peut mettre un plus beau message d'erreur ou barrer la suite du formulaire si on a pas choisi un type de vin.
@@ -96,5 +98,53 @@ $(function(){
       
    
    });
+//=================================================================================================
+// ADD TAGS
+   var tagId = 0;
+   $('button#addtag').click(function(){
+     var currentTag = String($('input#inputtag').val());
+     if(currentTag !='' && currentTag.length<20){
+        $('<div/>',{
+           id: 'tag'+tagId,
+           class: 'well well-small span1',
+           text: currentTag,
+           css: {
+              "margin-left": "0px"
+           }
+        }).appendTo('#tagcontainer');
 
+        $('<button/>',{
+           id: 'button'+tagId,
+           type: 'button',
+           class: 'close',
+           html: '&times;',
+           click: function(){
+              $(this).parent().remove();
+           }
+        }).appendTo('#tag'+tagId);
+
+        // width = largeur texte + 2*padding + spacer + largeur boutton + 2*margin boutton 
+        var width = getTextWidth(currentTag) +
+           2 * parseInt($('#tag'+tagId).css('padding')) + 
+           $('#button'+tagId).width() +
+           10;
+
+        $('#tag'+tagId).css('width',width);  
+        tagId ++;    
+     }
+   });
+//================================================================================================================
+// HELPER FUNCTIONS
+   function getTextWidth(text){
+      var org = $(this)
+      var html = $('<span style="postion:absolute;width:auto;left:-9999px">' + (text || org.html()) + '</span>');
+      if (!text) {
+         html.css("font-family", org.css("font-family"));
+         html.css("font-size", org.css("font-size"));
+      }
+      $('body').append(html);
+      var width = html.width();
+      html.remove();
+      return width;
+   }
 });
