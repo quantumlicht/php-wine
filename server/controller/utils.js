@@ -3,11 +3,13 @@ function isSamePassword (form) {
    if(form.typePass.value !=form.retypePass.value){
       $('#control-group-repass,#control-group-pass').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      $('<span/>',{
-         id:'pass',
-         class:'help-block',
-         text:"Les mots de passes saisis ne sont pas identiques."    
-      }).appendTo('#control-group-pass > div.controls');
+      if($('#control-group-pass > div.controls > span').length==0 ){ 
+         $('<span/>',{
+            id:'pass',
+            class:'help-block',
+            text:"Les mots de passes saisis ne sont pas identiques."    
+         }).appendTo('#control-group-pass > div.controls');
+     }
    }
    else{
       bRes = true;
@@ -25,11 +27,13 @@ function isValidEmail (form){
    if (!validEmail.test(form.email.value)){
       $('#control-group-courriel').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      $('<span/>',{
-         id:'courriel',
-         class:'help-block',
-         text:"Le courriel n'est pas valide."    
-      }).appendTo('#control-group-courriel > div.controls');
+      if($('#control-group-courriel > div.controls > span').length==0 ){ 
+         $('<span/>',{
+            id:'courriel',
+            class:'help-block',
+            text:"Le courriel n'est pas valide."    
+         }).appendTo('#control-group-courriel > div.controls');
+      }
    }
    else{
       bRes = true;
@@ -47,11 +51,13 @@ function isValidUsername (form){
    if (invalidName.test(form.username.value)){
       $('#control-group-username').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      $('<span/>',{
-         id: 'username',
-         class:'help-block',
-         text:"Ce nom d'utilisateur n'est pas valide."    
-      }).appendTo('#control-group-username > div.controls');
+      if($('#control-group-username > div.controls > span').length==0 ){ 
+         $('<span/>',{
+            id: 'username',
+            class:'help-block',
+            text:"Le nom d'utilisateur ne peut pas contenir d'espace."    
+         }).appendTo('#control-group-username > div.controls');
+      }
    }
    else{
       bRes = true;
