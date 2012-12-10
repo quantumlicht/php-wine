@@ -52,7 +52,7 @@ function add_vin($data){
  
    global $bdd;
    $query = $bdd->exec($strQuery);
-   Header('Location:http://philippeguay.com/indexvins.php?submit=success');
+//   Header('Location:http://philippeguay.com/indexvins.php?submit=success');
 } 
 ?>
 
