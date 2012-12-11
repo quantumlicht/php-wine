@@ -8,6 +8,8 @@ catch(Exception $e)
    die('error : '.$e->getMessage());
 }
 
+//=======================================================================
+//HELPER FUNCTIONS
 # remove by key:
 function array_remove_key ()
 {
@@ -15,7 +17,16 @@ function array_remove_key ()
   return array_diff_key($args[0],array_flip(array_slice($args,1)));
 }
 
+function is_in_tag_list($tag){
+  $q = 'SELECT * FROM `tag_vin` WHERE tag=\''.$tag.'\';'; 
+  global $bdd;
+  $query = $bdd->prepare($q);
+  $query->execute();
+  $result = $query->fetchAll(); 
+  return  count($result)!=0;
+}
     
+//==========================================================================
 function add_vin($data){
   
   $table = $data['couleur']==1 ? 'rouge':'blanc';
@@ -25,8 +36,6 @@ function add_vin($data){
   $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
   $new_data = array_remove_key($data,'couleur','encepagement','tags');
 
-
-//---------------------------------------------------------------------
 
   $new_data['code_saq'] = intval($new_data['code_saq']);
   $new_data['date'] = $new_data['date_annee'].'-'.$new_data['date_mois'].'-'.$new_data['date_jour'];
@@ -66,6 +75,22 @@ function add_vin($data){
    //DEBUG
    echo '</br> encepagement store query ==>'.$strQuery;
    $qEncepagement = $bdd->exec($strQuery);
+
+
+//======================================================================
+// TAGS STORE INSERT
+
+// Validation si le tag existe
+   $basequery = 'INSERT INTO `tag_store` (`tagId`,`vinId`) VALUES';
+   foreach($arrTags as $key=>$tag){
+      if(is_in_tag_list($tag)){
+         echo '</br>'. $tag.  ' is in</br>';
+      }
+      else{
+         echo '</br>'. $tag.' is out </br>';
+      }
+      
+   }
 
 
 
