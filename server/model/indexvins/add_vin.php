@@ -20,39 +20,56 @@ function add_vin($data){
   
   $table = $data['couleur']==1 ? 'rouge':'blanc';
   $arrEncepagement = $data['encepagement'];
+  $arrTags = explode(',',$data['tags']);
 
- // $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
-  $new_data = array_remove_key($data,'couleur','encepagement');
+  $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
+  $new_data = array_remove_key($data,'couleur','encepagement','tags');
+
 
 //---------------------------------------------------------------------
+
   $new_data['code_saq'] = intval($new_data['code_saq']);
   $new_data['date'] = $new_data['date_annee'].'-'.$new_data['date_mois'].'-'.$new_data['date_jour'];
   $new_data = array_remove_key($new_data,'date_annee','date_mois','date_jour');
 
- /*TODO : DATA SANITiZATION
-   former requete pour: date
-   assurer date_jour, alcool et prix sont numeriques
-   Stripper la virgule de alcool et prix
-   conversionn type code saq
- */ 
+  //DEBUG
   foreach($new_data as $key=>$value){
       if(!isset($data[$key]) || $data[$key]==''){
         echo 'variable '. $key. ' not set or empty.</br>';
       }
       echo $key . ' '.$value. '</br>';
    }
-//--------------------------------------------------------
+
+//=====================================================================
+// MAIN QUERY
    $strQuery = 'INSERT INTO vin_'. $table . ' SET ';
    foreach($new_data as $key=>$value){
       $strQuery .= (string)$key.'=\''.addslashes((string)$value).'\', ';
    }
  
    $strQuery = substr($strQuery,0,-2); //remove the last ', '
-   echo $strQuery;
+    //DEBUG
+    echo $strQuery;
  
    global $bdd;
    $query = $bdd->exec($strQuery);
-//   Header('Location:http://philippeguay.com/indexvins.php?submit=success');
+//======================================================================
+// ENCEPAGEMENT STORE INSERT
+   $strQuery = 'INSERT INTO `encepagement_store`(`encepagementId`,`vinId`) VALUES'; 
+   $strEncepagement = array();
+   foreach($arrEncepagement as $encepagement){
+      $strEncepagement[]= '(\''. $encepagement .'\',\''.$bdd->lastInsertId() .'\')';   
+   }
+   $strQuery.=implode(',',$strEncepagement);
+   $strQuery.=';';
+   
+   //DEBUG
+   echo '</br> encepagement store query ==>'.$strQuery;
+   $qEncepagement = $bdd->exec($strQuery);
+
+
+
+ 
 } 
 ?>
 

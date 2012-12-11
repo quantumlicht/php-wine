@@ -101,6 +101,23 @@ $(function(){
 //=================================================================================================
 // ADD TAGS
    var tagId = 0;
+   arrTags = [];
+   $('form#index-vins').ready(function(){ 
+      $('<input/>',{
+         id:'tagscontainer',
+         type:'hidden',
+         readonly:'readonly',
+         name:'tags'  
+      }).appendTo('form#index-vins');
+   });
+
+   // Stringify the tags array and convert it back as an array in php to inject it into the db.
+   $('form#index-vins').submit(function(){
+      var strArrTags = arrTags.toString();
+      $('#tagscontainer').val(strArrTags);
+   });
+
+
    $('button#addtag').click(function(){
      var currentTag = String($('input#inputtag').val());
      currentTag = currentTag.replace(/\s/g,'');
@@ -113,12 +130,6 @@ $(function(){
               "margin-left": "0px"
            }
         }).appendTo('#tagcontainer');
-        $('<input/>',{
-           type:'hidden',
-           value: currentTag,
-           readonly:'readonly',
-           name:'tag'+tagId  
-        }).appendTo('#tag'+tagId);
  
         $('<button/>',{
            id: 'button'+tagId,
@@ -129,7 +140,7 @@ $(function(){
               $(this).parent().remove();
            }
         }).appendTo('#tag'+tagId);
-        
+        arrTags.push(currentTag);
         // width = largeur texte + 2*padding + spacer + largeur boutton + 2*margin boutton 
         var spacer = 10;
         var width = getTextWidth(currentTag) +
