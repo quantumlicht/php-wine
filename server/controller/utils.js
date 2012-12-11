@@ -49,4 +49,17 @@ function ScrollBottom (){
    container.scrollTop(container.prop('scrollHeight')); 
 }
 
+function getTextWidth(text){
+   var org = $(this)
+   var html = $('<span style="postion:absolute;width:auto;left:-9999px">' + (text || org.html()) + '</span>');
+   if (!text) {
+      html.css("font-family", org.css("font-family"));
+      html.css("font-size", org.css("font-size"));
+   }
+   $('body').append(html);
+   var width = html.width();
+   html.remove();
+   return width;
+}
+
 

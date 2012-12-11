@@ -39,7 +39,7 @@ else{
      $json_encepagement = array();
 
      foreach($encepagements as $encepagement){
-        $json_encepagement[] = "{\"id\":". $encepagement['encepagementID'].", \"encepagement\": \"". $encepagement['encepagement']."\"}";
+        $json_encepagement[] = "{\"id\":". $encepagement['encepagementId'].", \"encepagement\": \"". $encepagement['encepagement']."\"}";
       }
       $json .= implode(',',$json_encepagement);
       $json .= ']}';
