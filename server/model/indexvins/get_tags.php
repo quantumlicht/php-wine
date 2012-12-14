@@ -11,7 +11,7 @@ catch(Exception $e)
 
 function get_tags(){
    global $bdd;
-   $query = $bdd-> prepare('SELECT * FROM  tag_vin ORDER BY tag');
+   $query = $bdd-> prepare('SELECT * FROM  tags ORDER BY tag');
    $query->execute();
    $tags = $query->fetchAll();
 

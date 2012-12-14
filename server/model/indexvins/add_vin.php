@@ -18,7 +18,7 @@ function array_remove_key ()
 }
 
 function is_in_tag_list($tag){
-  $q = 'SELECT * FROM `tag_vin` WHERE tag=\''.$tag.'\';'; 
+  $q = 'SELECT * FROM `tags` WHERE tag=\''.$tag.'\';'; 
   global $bdd;
   $query = $bdd->prepare($q);
   $query->execute();
@@ -29,12 +29,12 @@ function is_in_tag_list($tag){
 //==========================================================================
 function add_vin($data){
   
-  $table = $data['couleur']==1 ? 'rouge':'blanc';
   $arrEncepagement = $data['encepagement'];
   $arrTags = explode(',',$data['tags']);
 
+  $data['couleur'] = $data['couleur']==1 ? 'rouge':'blanc';
   $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
-  $new_data = array_remove_key($data,'couleur','encepagement','tags');
+  $new_data = array_remove_key($data,'encepagement','tags');
 
 
   $new_data['code_saq'] = intval($new_data['code_saq']);
@@ -51,7 +51,7 @@ function add_vin($data){
 
 //=====================================================================
 // MAIN QUERY
-   $strQuery = 'INSERT INTO vin_'. $table . ' SET ';
+   $strQuery = 'INSERT INTO vins SET ';
    foreach($new_data as $key=>$value){
       $strQuery .= (string)$key.'=\''.addslashes((string)$value).'\', ';
    }
