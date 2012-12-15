@@ -82,7 +82,7 @@
             <input class='span8' type='text' name='region' id='region'/>
          </div>
       </div>
-      <div class='control-group'>
+      <div id='control-group-encepagement' class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
             <select id='encepagement' class='span8' name='encepagement[]' multiple='multiple' >

@@ -5,6 +5,7 @@
       <script type='text/javascript' src='http://philippeguay.com/bootstrap/js/bootstrap.min.js'></script>
       <script type='text/javascript' src='http://philippeguay.com/controller/utils.js'> </script>
       <script type='text/javascript' src='http://philippeguay.com/controller/formload.js'></script>
+      <script type='text/javascript' src='http://philippeguay.com/controller/formValidation.js'></script>
 
       <title>VinsIndexWine</title>
   </head>
