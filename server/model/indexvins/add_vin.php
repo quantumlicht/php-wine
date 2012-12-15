@@ -17,13 +17,13 @@ function array_remove_key ()
   return array_diff_key($args[0],array_flip(array_slice($args,1)));
 }
 
-function is_in_tag_list($tag){
+function get_tag_in_list($tag){
   $q = 'SELECT * FROM `tags` WHERE tag=\''.$tag.'\';'; 
   global $bdd;
   $query = $bdd->prepare($q);
   $query->execute();
   $result = $query->fetchAll(); 
-  return  count($result)!=0;
+  return $result;
 }
     
 //==========================================================================
@@ -31,7 +31,7 @@ function add_vin($data){
   
   $arrEncepagement = $data['encepagement'];
   $arrTags = explode(',',$data['tags']);
-
+  print_r($arrEncepagement);
   $data['couleur'] = $data['couleur']==1 ? 'rouge':'blanc';
   $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
   $new_data = array_remove_key($data,'encepagement','tags');
@@ -62,12 +62,13 @@ function add_vin($data){
  
    global $bdd;
    $query = $bdd->exec($strQuery);
+   $wineId = $bdd->lastInsertId();
 //======================================================================
 // ENCEPAGEMENT STORE INSERT
    $strQuery = 'INSERT INTO `encepagement_store`(`encepagementId`,`vinId`) VALUES'; 
    $strEncepagement = array();
    foreach($arrEncepagement as $encepagement){
-      $strEncepagement[]= '(\''. $encepagement .'\',\''.$bdd->lastInsertId() .'\')';   
+      $strEncepagement[]= '(\''. $encepagement .'\',\''. $wineId .'\')';   
    }
    $strQuery.=implode(',',$strEncepagement);
    $strQuery.=';';
@@ -82,19 +83,37 @@ function add_vin($data){
 
 // Validation si le tag existe
    $basequery = 'INSERT INTO `tag_store` (`tagId`,`vinId`) VALUES';
+   $strTag = array();
+   
+    
    foreach($arrTags as $key=>$tag){
-      if(is_in_tag_list($tag)){
-         echo '</br>'. $tag.  ' is in</br>';
+      $results =  get_tag_in_list($tag);   
+      $is_in_tag_list = count($results) !=0;
+
+      if($is_in_tag_list){
+         $tagId = $results[0]['tagID'];
+         $strTag[] = '(\''. $tagId .'\',\''. $wineId . '\')';
       }
       else{
-         echo '</br>'. $tag.' is out </br>';
+         // first register tag in tags list, then add the winte id and new tag id into tag store
+         $qNewTag = 'INSERT INTO `db_vins`.`tags` (`tagID`,`tag`,`tooltip`) VALUES (NULL,\''. $tag.'\',\'\');';
+         echo '</br> new tag query ==>'.$qNewTag;
+         $response = $bdd->exec($qNewTag); 
+         $newTagId = $bdd->lastInsertId();
+       
+         // then we can link this new tag to tag_store
+         $strTag[] = '(\''. $newTagId .'\',\''. $wineId . '\')';
       }
-      
    }
+   $basequery.= implode(',',$strTag);
+   $basequery.=';';
 
+   echo '</br> tags store querty ==>'. $basequery;
+   $qTag = $bdd->exec($basequery);
 
-
- 
+   //VALIDATION IF WE SHOULD CONSIDER THIS WAS A SUCCES OR NOT
+   $submissionState=true;
+   return $submissionState; 
 } 
 ?>
 
