@@ -20,7 +20,7 @@
              <div id='control-group-pass' class='control-group'>
                <label class='control-label' for='pass'>Mot de passe</label>
                <div class='controls'>   
-                  <input class='span4' id='pass' type="password" placeholder='Saisir mot de passe' name="typePass" id='pass' />
+                  <input class='span4' id='pass' type="password" onblur='isSamePassword(this.form)' placeholder='Saisir mot de passe' name="typePass" id='pass' />
                </div>
             </div>
             

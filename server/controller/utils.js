@@ -1,9 +1,9 @@
 function isSamePassword (form) {
    var bRes = false;
-   if(form.typePass.value !=form.retypePass.value){
+   if(form.typePass.value !=form.retypePass.value && form.retypePass.value != ''){
       $('#control-group-repass,#control-group-pass').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      if($('#control-group-pass > div.controls > span').length==0 ){ 
+      if($('#control-group-pass > div.controls > span').length==0){ 
          $('<span/>',{
             id:'pass',
             class:'help-block',
