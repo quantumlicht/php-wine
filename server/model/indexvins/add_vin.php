@@ -96,7 +96,7 @@ function add_vin($data){
       }
       else{
          // first register tag in tags list, then add the winte id and new tag id into tag store
-         $qNewTag = 'INSERT INTO `db_vins`.`tags` (`tagID`,`tag`,`tooltip`) VALUES (NULL,\''. $tag.'\',\'\');';
+         $qNewTag = 'INSERT INTO `db_vins`.`tags` (`tagID`,`tag`,`tooltip`,`status`) VALUES (NULL,\''. $tag.'\',\'\',\'pending\');';
          echo '</br> new tag query ==>'.$qNewTag;
          $response = $bdd->exec($qNewTag); 
          $newTagId = $bdd->lastInsertId();

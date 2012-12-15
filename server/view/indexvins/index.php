@@ -61,6 +61,7 @@
          <label class='control-label' for='appelation'>Type (Appelation)</label>
          <div class='controls'>
             <input class='span8' type='text' name='appelation' id='appelation'/>
+            <span class='help-block'><small>S'il n'y a pas d'appelation, laissez ce champ vide.</small></span>
          </div>
       </div>
       

@@ -55,7 +55,7 @@ $(function(){
    });
 //=========================================================================================================================== 
 // FORM LOCK
-   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(textarea)');
+   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(textarea, #appelation )');
    $('form#index-vins div#section-row').eq(2).mouseover(function(){
       //TODO : ajouter le bouton pour type de vins dans la validation d'erreur. On peut mettre un plus beau message d'erreur ou barrer la suite du formulaire si on a pas choisi un type de vin.
       $('form#index-vins div.control-group').focusin(function(){

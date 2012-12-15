@@ -6,7 +6,7 @@ $(function(){
    $('select#encepagement').change(function(){
       selected = $('select#encepagement option:selected');
       self = $(this);
-      $.each(selected,function(){
+      $.each(selected,function(id,ele){
          if( $(this).val()==''){
             self.closest('.control-group').addClass('error');      
             $('<span/>',{
