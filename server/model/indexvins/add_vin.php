@@ -26,12 +26,20 @@ function get_tag_in_list($tag){
   return $result;
 }
     
+function get_cepage_in_list($cepage){
+  $q = 'SELECT * FROM `encepagements` WHERE encepagement=\''.$cepage.'\';'; 
+  global $bdd;
+  $query = $bdd->prepare($q);
+  $query->execute();
+  $result = $query->fetchAll(); 
+  return $result;
+}
+    
 //==========================================================================
 function add_vin($data){
   
-  $arrEncepagement = $data['encepagement'];
+  $arrEncepagement = explode(',',$data['encepagement']);
   $arrTags = explode(',',$data['tags']);
-  print_r($arrEncepagement);
   $data['couleur'] = $data['couleur']==1 ? 'rouge':'blanc';
   $data = $data['couleur']==1 ? $data : array_remove_key($data,'tanin');
   $new_data = array_remove_key($data,'encepagement','tags');
@@ -67,8 +75,24 @@ function add_vin($data){
 // ENCEPAGEMENT STORE INSERT
    $strQuery = 'INSERT INTO `encepagement_store`(`encepagementId`,`vinId`) VALUES'; 
    $strEncepagement = array();
-   foreach($arrEncepagement as $encepagement){
-      $strEncepagement[]= '(\''. $encepagement .'\',\''. $wineId .'\')';   
+   foreach($arrEncepagement as $key=>$encepagement){
+      echo '</br> TEST {'. $encepagement.'}';
+      $results = get_cepage_in_list($encepagement);
+      $is_in_cepage_list = count($results) !=0;
+      if($is_in_cepage_list){
+         $cepageId = $results[0]['encepagementID'];
+         $strCepage[] = '(\''. $cepageId .'\',\''. $wineId . '\')';
+      }
+      else{
+         // first register cepage in cepages list, then add the wine id and new ceoageid into cepage store
+         $qNewCepage = 'INSERT INTO `db_vins`.`encepagements` (`encepagementID`,`encepagement`,`status`) VALUES (NULL,\''. $encepagement.'\',\'pending\');';
+         echo '</br> new encepagement query ==>'.$qNewCepage;
+         $response = $bdd->exec($qNewCepage); 
+         $newCepageId = $bdd->lastInsertId();
+       
+         // then we can link this new cepage to cepage_store
+         $strEncepagement[] = '(\''. $newCepageId .'\',\''. $wineId . '\')';
+      }
    }
    $strQuery.=implode(',',$strEncepagement);
    $strQuery.=';';

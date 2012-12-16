@@ -7,7 +7,22 @@ $(function(){
    $('input#inputtag').typeahead({
       source: function(typeahead,query){
          arr=[];
-         var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',flag:'typeahead'});
+         var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',flag:'typeahead-tags'})
+         var json = $.parseJSON(obj.responseText);
+         for (var i = 0; i<json.length;i++ ){
+            arr.push(json[i]);
+         }
+         return arr;
+      },
+      items:5
+   });
+
+//==========================================================================================================================
+// ENCEPAGEMENT TYPEAHEAD
+   $('input#inputencepagement').typeahead({
+      source: function(typeahead,query){
+         arr=[];
+         var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',id:$('button#load-ajax').val(),flag:'typeahead-encepagement'});
          var json = $.parseJSON(obj.responseText);
          for (var i = 0; i<json.length;i++ ){
             arr.push(json[i]);
@@ -55,20 +70,21 @@ $(function(){
    });
 //=========================================================================================================================== 
 // FORM LOCK
-   inputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(textarea, #appelation )');
+   reqinputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(button,textarea, #appelation, #inputencepagement)');
+   allinputs =  $('form#index-vins div#section-row:nth-child(2) :input');
    $('form#index-vins div#section-row').eq(2).mouseover(function(){
       //TODO : ajouter le bouton pour type de vins dans la validation d'erreur. On peut mettre un plus beau message d'erreur ou barrer la suite du formulaire si on a pas choisi un type de vin.
       $('form#index-vins div.control-group').focusin(function(){
          $(this).removeClass('error');
       });
 
-      $.each(inputs,function(){
+      $.each(reqinputs,function(){
          if( $(this).val()=='' && $(this).attr('id')!='tanin'){// || $(this).val()== null) ){
             $(this).closest('.control-group').addClass('error');
          }
       });
-      if($('#encepagement').val()==null){
-       $('#encepagement').closest('.control-group').addClass('error');
+      if($('#cepagecontainer > div').length==0){
+       $('#control-group-encepagement').addClass('error');
       }
         
       if($('.error').length!=0){
@@ -83,15 +99,15 @@ $(function(){
    
    $('form#index-vins div#section-row').eq(1).mouseover(function(){
       if($('form#index-vins input[type=hidden]').val()=='0'){
-         inputs.addClass('disabled');
-         inputs.attr('disabled','');
+         allinputs.addClass('disabled');
+         allinputs.attr('disabled','');
          $('form#index-vins div.control-group').eq(0).addClass('error');
          $('form#index-vins div.btn-group').eq(0).find('button').addClass('btn-danger');
          $(' form#index-vins button[type=submit]').addClass('disabled');  
          $(' form#index-vins button[type=submit]').attr('disabled','');  
       }else{
-         inputs.removeClass('disabled');
-         inputs.removeAttr('disabled');
+         allinputs.removeClass('disabled');
+         allinputs.removeAttr('disabled');
          $('form#index-vins div.control-group').eq(0).removeClass('error');
          $('form#index-vins div.btn-group').eq(0).find('button').removeClass('btn-danger');
       }
@@ -117,7 +133,6 @@ $(function(){
       $('#tagscontainer').val(strArrTags);
    });
 
-
    $('button#addtag').click(function(){
      var currentTag = String($('input#inputtag').val());
      currentTag = currentTag.replace(/\s/g,'');
@@ -127,7 +142,8 @@ $(function(){
            class: 'well well-small span1',
            text: currentTag,
            css: {
-              "margin-left": "0px"
+              "margin-left": "0px",
+              "margin-bottom": "10px"
            }
         }).appendTo('#tagcontainer');
  
@@ -155,6 +171,65 @@ $(function(){
     $('input#inputtag').trigger('focus');
      
    });
+
+
+//=================================================================================================
+// ADD ENCEPAGEMENTS
+   var cepageId = 0;
+   arrCepages = [];
+   $('form#index-vins').ready(function(){ 
+      $('<input/>',{
+         id:'cepagescontainer',
+         type:'hidden',
+         readonly:'readonly',
+         name:'encepagement'  
+      }).appendTo('form#index-vins');
+   });
+
+   // Stringify the tags array and convert it back as an array in php to inject it into the db.
+   $('form#index-vins').submit(function(){
+      var strArrCepages = arrCepages.toString();
+      $('#cepagescontainer').val(strArrCepages);
+   });
+
+   $('button#addencepagement').click(function(){
+     var currentCepage = String($('input#inputencepagement').val());
+     if(currentCepage !='' && currentCepage.length<25){
+        $('<div/>',{
+           id: 'cepage'+cepageId,
+           class: 'well well-small span4',
+           text:currentCepage,
+           css: {
+              "margin-left": "0px",
+              "margin-bottom": "10px"
+           }
+        }).appendTo('#cepagecontainer');
+ 
+        $('<button/>',{
+           id: 'button'+cepageId,
+           type: 'button',
+           class: 'close',
+           html: "&times;",
+           click: function(){
+              $(this).parent().remove();
+           }
+        }).appendTo('#cepage'+cepageId);
+        arrCepages.push(currentCepage);
+        // width = largeur texte + 2*padding + spacer + largeur boutton + 2*margin boutton 
+        var spacer = 20;
+        var width = getTextWidth(currentCepage) +
+           2 * parseInt($('#cepage'+cepageId).css('padding')) + 
+           $('#button'+cepageId).width() +
+           spacer;
+
+        $('#cepage'+cepageId).css('width',width);  
+        cepageId ++;    
+     }
+    $('input#inputencepagement').val('');
+    $('input#inputencepagement').trigger('focus');
+     
+   });
+
 
 
 

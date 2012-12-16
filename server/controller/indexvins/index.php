@@ -2,13 +2,11 @@
 include_once('/opt/lampp/htdocs/server/model/indexvins/get_pays.php');
 include_once('/opt/lampp/htdocs/server/model/indexvins/get_encepagement.php');
 include_once('/opt/lampp/htdocs/server/model/indexvins/get_tags.php');
+include_once('/opt/lampp/htdocs/server/model/indexvins/get_couleur.php');
 session_start();
 
 $pays = get_pays();
 $date = ['01'=>'Janvier','02'=>'Février','03'=>'Mars','04'=>'Avril','05'=>'Mai','06'=>'Juin','07'=>'Juillet','08'=>'Août','09'=>'Septembre','10'=>'Octobre','11'=>'Novembre','12'=>'Décembre'];
-
-$blanc = array('0'=>'Reflets verts','1'=>'Jaune pâle','2'=>'Doré','3'=>'Jaune paille','4'=>'Ambré');
-$rouge = array('0'=>'Pourpre','1'=>'Grenat','2'=>'Rubis','3'=>'Cerise','4'=>'Brique','5'=>'Orangé');
 
 $arome_saveur = ['Animal','Boisé','Épicé','Floral','Fruité','Végétal'];
 $acidite = ['Mou','Frais','Vif','Nerveux','Mordant','Excessif'];
@@ -28,8 +26,8 @@ else{
  
      $json = "{\"couleur\":["; // start the json array element
      $json_couleur = array();
-     foreach ($couleurs as $id => $couleur) {
-        $json_couleur[] = "{\"id\": $id, \"couleur\": \"$couleur\"}";
+     foreach ($couleurs as $couleur) {
+        $json_couleur[] = "{\"id\":". $couleur['teinteId'].", \"couleur\": \"". $couleur['teinte']."\"}";
      }
  
      $json .= implode(',', $json_couleur); // join the objects by commas;
@@ -45,7 +43,7 @@ else{
       $json .= ']}';
       echo $json;
    }
-   else{
+   else if(isset($_REQUEST['flag']) & $_REQUEST['flag']=='typeahead-tags'){
       $tags = get_tags();
       $json = '[';
       $json_tags = array();
@@ -56,19 +54,20 @@ else{
       $json.= implode(',',$json_tags);
       $json.= ']';
       echo $json; 
-  
    }
-}
- 
-function get_couleur($id) {
-   global $rouge;
-   global $blanc; 
-   if ($id == 1) {
-      $couleur = $rouge; 
-   } else if ($id == 2) {
-      $couleur = $blanc;
+   else if(isset($_REQUEST['flag']) & $_REQUEST['flag']=='typeahead-encepagement'){
+      $encepagements = get_encepagement($_REQUEST['id']);
+      $json = '[';
+      $json_encepagements = array();
+     
+      foreach($encepagements as $encepagement){
+         $json_encepagements[]="\"".$encepagement['encepagement']."\"";
+      }
+      $json.= implode(',',$json_encepagements);
+      $json.= ']';
+      echo $json; 
    }
-   return $couleur;
+
 }
 
 ?>

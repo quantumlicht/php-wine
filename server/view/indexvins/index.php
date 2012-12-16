@@ -86,14 +86,11 @@
       <div id='control-group-encepagement' class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
-            <select id='encepagement' class='span8' name='encepagement[]' multiple='multiple' >
-               <option></option>
-
-               <?php foreach(get_encepagement($_REQUEST['id']) as $encepagement){ ?>
-              <option><?php echo $encepagement['encepagement']  ?> </option>
-               <?php } ?>         
-            </select>
-            <span class='help-block'><small>Selectionnez plusieurs cépages en maintenant Ctrl.</small></span>
+            <input type='text' autocomplete='off' id='inputencepagement' class='span8' data-provide="type-ahead">
+            <button type='button' id='addencepagement' class='btn'><i class='icon-plus'></i></button>
+            <span class='help-block'><small>Vous pouvez ajouter plusieurs cépages.</small></span>
+            <div id='cepagecontainer' class='span8 row-fluid well well-small' style='margin-left:0px'>
+            </div>      
          </div>
       </div>
 
@@ -278,8 +275,8 @@
    <div class='span8 offset2'>
       <fieldset>
       <legend>Impression d'ensemble</legend>
-      <input type='text' autocomplete='off' id='inputtag'class='span3' data-provide="type-ahead">
-      <button type='button' id='addtag' class='btn'>Ajouter un tag</button>
+      <input type='text' autocomplete='off' id='inputtag'class='span4' data-provide="type-ahead">
+      <button type='button' id='addtag' class='btn'><i class='icon-plus'></i></button>
       <div id='tagcontainer' class='row-fluid'>
       </div>      
       </fieldset>
