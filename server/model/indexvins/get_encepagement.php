@@ -17,7 +17,7 @@ function get_encepagement($id){
    else if ($id == 2) {
       $couleur = 'blanc';
    } 
-   $query = $bdd-> prepare('SELECT `encepagementId`,`encepagement` FROM  `encepagements` WHERE couleur=\''.$couleur.'\' ORDER BY `encepagement`');
+   $query = $bdd-> prepare('SELECT `encepagementId`,`encepagement` FROM  `encepagements` WHERE couleur=\''.$couleur.'\' AND NOT `status`=\'pending\' ORDER BY `encepagement`');
    $query->execute();
    $encepagement = $query->fetchAll();
 

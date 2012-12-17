@@ -2,34 +2,26 @@ $(function(){
 
 //========================
 //LIMIT ENCEPAGEMNT TO 6
-
-   $('select#encepagement').change(function(){
-      selected = $('select#encepagement option:selected');
+   $('#control-group-encepagement').mouseover(function(){     
       self = $(this);
-      $.each(selected,function(id,ele){
-         if( $(this).val()==''){
-            self.closest('.control-group').addClass('error');      
-            $('<span/>',{
-               id:'encepagement-blank-selected',
-               class:'help-block',
-               text:"Vous ne pouvez choisir un cepage vide."    
-            }).appendTo('#control-group-encepagement > div.controls');
-         }
-      });
-      if(selected.length >=7 ){
+      if($('#cepagecontainer > div').length==0){
+       $('#control-group-encepagement').addClass('error');
+      }
+
+      if($('#cepagecontainer > div').length>=7 ){
          self.closest('.control-group').addClass('error');      
       
-         if($('#control-group-encepagement > div.controls > span').length<=1){    
+         if($('span#encepagement-error').length<=1){    
             $('<span/>',{
-               id:'encepagement',
+               id:'encepagement-error',
                class:'help-block',
                text:"Vous ne pouvez choisir plus de 6 cépages."    
-            }).appendTo('#control-group-encepagement > div.controls');
+            }).appendTo('span.help-block');
          }
       }
       else{
-         $(this).closest('.control-group').removeClass('error');      
-         $('span#encepagement').remove();
+         self.closest('.control-group').removeClass('error');      
+         $('span#encepagement-error').remove();
       }
       
    });
