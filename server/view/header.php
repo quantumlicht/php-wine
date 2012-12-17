@@ -1,5 +1,6 @@
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script type='text/javascript' src='http://philippeguay.com/jquery/jquery.js'></script>
       <link href="http://philippeguay.com/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
       <script type='text/javascript' src='http://philippeguay.com/bootstrap/js/bootstrap.min.js'></script>
@@ -18,8 +19,10 @@
   </div>
 </div>
 
-<div class='row-fluid'>
-   <div class='span10 offset1'>
+<div class='container-fluid'>
+   <div class='row-fluid'>
+   <div class='span2'></div>
+   <div class='span8'> 
    <div class='navbar navbar-inverse'>
       <div class='navbar-inner'>
          <a class='brand' href='#'>L'index des vins</a>
@@ -47,9 +50,10 @@
                <a href="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845">À propos</a></li>
 
             <li class='divider-vertical'></li>
-            <li><?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?></li>
          </ul>
+         <?php include_once('/opt/lampp/htdocs/server/controller/login.php'); ?>
       </div>
+   </div>
    </div>
    </div>
 </div>
