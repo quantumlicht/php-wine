@@ -86,9 +86,9 @@
       <div id='control-group-encepagement' class='control-group'>
          <label class='control-label' for='encepagement'>Encépagement</label>
          <div class='controls'>
-            <input type='text' autocomplete='off' id='inputencepagement' class='span8' data-provide="type-ahead">
-            <button type='button' id='addencepagement' class='btn'><i class='icon-plus'></i></button>
-            <span class='help-block'><small>Vous pouvez ajouter plusieurs cépages.</small></span>
+            <input type='text' autocomplete='off' id='inputencepagement' class='span6' data-provide="type-ahead">
+            <button type='button' id='addencepagement' class='btn'>Ajouter un cépage</button>
+            <span class='help-block'><small><p class='muted'>Vous pouvez ajouter plusieurs cépages</p><p class='text-warning'><strong>N'ajoutez qu'un seul cépage par case.</strong></p></small></span>
             <div id='cepagecontainer' class='span8 row-fluid well well-small' style='margin-left:0px'>
             </div>      
          </div>
@@ -275,8 +275,17 @@
    <div class='span8 offset2'>
       <fieldset>
       <legend>Impression d'ensemble</legend>
+      <div class='row-fluid'>
+         <p class='muted'><small>Ajouter une charactéristique à ce vin. Vous pourrez ensuite rechercher des vins selon ces tags.</small></p>
+         <p class='muted'><small>Ex: Charnu,Capiteux,Vif,Cuir,etc.</small></p>
+         <p class='text-warning'><small><strong>Inserez un seul tag par case</strong></small></p> 
+         
+      </div>
       <input type='text' autocomplete='off' id='inputtag'class='span4' data-provide="type-ahead">
-      <button type='button' id='addtag' class='btn'><i class='icon-plus'></i></button>
+      <button type='button' id='addtag' class='btn'>Ajouter un Tag</button>
+      <div class='row-fluid'>
+       
+      </div>
       <div id='tagcontainer' class='row-fluid'>
       </div>      
       </fieldset>

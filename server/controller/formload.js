@@ -108,7 +108,6 @@ $(function(){
          $('form#index-vins div.btn-group').eq(0).find('button').removeClass('btn-danger');
       }
       
-   
    });
 //=================================================================================================
 // ADD TAGS

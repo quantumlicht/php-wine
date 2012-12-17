@@ -21,7 +21,7 @@ if (preg_match('/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i',$_POST['email']) AND
 }
 else
 {
-header("Location: http://philippeguay.com/controller/subscribe/index.php?subscribestatus=invalid");
+header("Location: http://philippeguay.com/controller/qlicht/subscribe.php?subscribestatus=invalid");
 exit;
 }
 ?>

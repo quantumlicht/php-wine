@@ -1,6 +1,6 @@
 <div class='row-fluid'>
   <div class='span8 offset2'>
-      <form id='subscription' class='form-horizontal'  action="/model/qlicht/subscribe_user.php"  method='post'> 
+      <form id='subscription' class='form-horizontal'  action="/model/subscribe/subscribe_user.php"  method='post'> 
          <fieldset>
             <legend> Formulaire d'inscription</legend> 
             <div id='control-group-username' class='control-group'>
@@ -11,9 +11,9 @@
             </div>
 
             <div id='control-group-courriel' class='control-group'>
-               <label class='control-label' for='email'>Addresse Courriel</label>
+               <label class='control-label' for='email'>Adresse Courriel</label>
                <div class='controls'>   
-                  <input class='span4' id='email' type="text" onblur='isValidEmail(this.form)' placeholder='Addresse Courriel' name="email" id='email' />
+                  <input class='span4' id='email' type="text" onblur='isValidEmail(this.form)' placeholder='Adresse Courriel' name="email" id='email' />
                </div>
             </div>
             
