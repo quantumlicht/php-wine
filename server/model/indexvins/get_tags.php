@@ -1,16 +1,10 @@
 <?php
 
-try{
-   $bdd = new PDO('mysql:host=localhost;dbname=db_vins', 'root', 'xns3hs1a');
-}
-catch(Exception $e)
-{
-   die('error : '.$e->getMessage());
-}
-
+include_once('/opt/lampp/htdocs/server/model/connectdb.php');
+$bdd = connectDb('db_vins');
 
 function get_tags(){
-   global $bdd;
+   global  $bdd;
    $query = $bdd-> prepare('SELECT * FROM  tags WHERE NOT `status`=\'pending\' ORDER BY tag');
    $query->execute();
    $tags = $query->fetchAll();

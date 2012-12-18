@@ -1,10 +1,8 @@
 <?php
-try {
-   $bdd = new PDO('mysql:host=localhost;dbname=db_vins', 'root', 'xns3hs1a');
-}
-catch(Exception $e){
-   die('error : '.$e->getMessage());
-}
+
+include_once('/opt/lampp/htdocs/server/model/connectdb.php');
+$bdd = connectDb('db_vins');
+
 $strQ = 'SELECT * FROM `db_vins`.`tags` WHERE status=\'pending\'';
 $q = $bdd->prepare($strQ);
 $q->execute();
