@@ -6,12 +6,12 @@
 <!-- top container -->
 
          <div class='container-fluid'>
-            <form id='index-vins' class='form-horizontal' action='http://philippeguay.com/controller/indexvins/add_vin.php' method='post'>
+            <form id='index-vins' class='form-horizontal' action='http://philippeguay.com/controller/indexvins/searchwine.php' method='post'>
             <div id='section-row' class='row-fluid'>
                <div class='span4'></div>
                <div class='span4'>
                   <div class='offset3 control-group'>
-                     <span class='help-block'><h3>Sélectionnez un vin</h3></span>
+                     <span class='help-block'><h3>Rechercher un vin</h3></span>
                      <input type='hidden' name='couleur' value='0' id='btn-input'/>
                      <div class='btn-group' id='type-couleur' data-toggle="buttons-radio">
                         <button id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
@@ -188,12 +188,6 @@
          </div>
       </div>
 
-      <div class='control-group'>
-         <label class='control-label' for='nez_impression'>Impression</label>
-         <div class='controls'>
-            <textarea rows='3' id='nez_impression' name='nez_impression' class='span6'></textarea>
-         </div>
-      </div>
    </fieldset>
    <fieldset>
 <legend>La bouche</legend>
@@ -259,33 +253,8 @@
       </div>
    </div>
 
-   <div class='control-group'>
-   <label class='control-label' for='bouche_impression'>Impression</label>
-      <div class='controls'>
-         <textarea rows='3' id='bouche_impression' name='bouche_impression' class='span6'></textarea>
-      </div>
-   </div>
-
           </fieldset>
        </div>
-       <div class='row-fluid'>
-          <div class='span2'></div>
-          <div class='span8'>
-             <fieldset>
-                <legend>Impression d'ensemble</legend>
-                <div class='row-fluid'>
-                   <p class='muted'><small>Ajouter une charactéristique à ce vin. Vous pourrez ensuite rechercher des vins selon ces tags.</small></p>
-                   <p class='muted'><small>Ex: Charnu,Capiteux,Vif,Cuir,etc.</small></p>
-                   <p class='text-warning'><small><strong>Inserez un seul tag par case</strong></small></p>     
-                </div>
-                <input type='text' autocomplete='off' id='inputtag'class='span4' data-provide="type-ahead">
-                <button type='button' id='addtag' class='btn'>Ajouter un Tag</button>
-                <div class='row-fluid'>   
-                </div>
-                <div id='tagcontainer' class='row-fluid'> </div>      
-             </fieldset>
-          </div>
-       </div>     
     </div><!-- row 2 column -->
     <div id='section-row' class='row-fluid'>
        <div class='span4'></div>

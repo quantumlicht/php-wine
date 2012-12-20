@@ -5,8 +5,10 @@
       <link href="http://philippeguay.com/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
       <script type='text/javascript' src='http://philippeguay.com/bootstrap/js/bootstrap.min.js'></script>
       <script type='text/javascript' src='http://philippeguay.com/controller/utils.js'> </script>
-      <script type='text/javascript' src='http://philippeguay.com/controller/formload.js'></script>
-      <script type='text/javascript' src='http://philippeguay.com/controller/formValidation.js'></script>
+      <?php if (basename($_SERVER['REQUEST_URI'],".php")=='indexvins'){ ?>
+        <script type='text/javascript' src='http://philippeguay.com/controller/formload.js'></script>
+        <script type='text/javascript' src='http://philippeguay.com/controller/formValidation.js'></script>         
+      <?php } ?>
 
       <title>VinsIndexWine</title>
   </head>
@@ -35,8 +37,17 @@
                <a href="http://philippeguay.com/forum.php">Forum</a></li>
             <?php }?>
 
-            <li <?php getActiveTab('indexvins');?>>
-               <a href="http://philippeguay.com/indexvins.php">Index des vins</a></li> 
+            <li class='dropdown' <?php getActiveTab('indexvins');?> >
+               <a class='dropdown-toggle' data-toggle='dropdown' href='#'> Les vins
+                  <b class='caret'></b>
+               </a>
+               <ul class='dropdown-menu' role='menu'> 
+                  <li><a href="http://philippeguay.com/indexvins.php">Base de donnees</a></li>
+                  <li><a href="http://philippeguay.com/search.php">Recherche de Vins</a></li>
+               </ul>
+      
+            </li> 
+
 
             <?php if(!isset($_SESSION['username'])){ ?>    
             <li <?php getActiveTab('subscribe'); ?>>

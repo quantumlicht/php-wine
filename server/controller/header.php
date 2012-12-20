@@ -1,10 +1,14 @@
 <?php
 
    function getActiveTab($requestUri) {
-      $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
-      
-      if ($current_file_name == $requestUri)
-        echo 'class="active"';
+   	$bClassSet=false;
+      $dropdownEle = explode(',',$requestUri);
+      foreach ($dropdownEle as $key => $value) {
+	      $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
+	      if ($current_file_name == $value & !$bClassSet){
+	      	echo 'class="active"';
+	     	}
+      }
    }   
 
    include_once('/opt/lampp/htdocs/server/view/header.php');

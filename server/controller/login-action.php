@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('/opt/lampp/htdocs/server/model/connectdb.php');
+$bdd = connectDb('user_db');
 include_once('/opt/lampp/htdocs/server/model/check_user_db.php');
 
 if (!isset($_POST['username'])|| $_POST['username']=='' || !isset($_POST['password']) || $_POST['password']== ''){
