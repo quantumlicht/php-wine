@@ -1,3 +1,8 @@
+<?php 
+require('/opt/lampp/htdocs/server/admin/utils.class.php');
+
+
+?>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,15 +34,15 @@
       <div class='navbar-inner'>
          <a class='brand' href='#'>L'index des vins</a>
          <ul class='nav'>
-            <li <?php getActiveTab('qlicht'); ?>>
+            <li <?php echo "class='". getActiveTab('qlicht')."'"; ?>>
                <a href="http://philippeguay.com/qlicht.php">Menu Principal</a></li>
 
             <?php if(isset($_SESSION['username'])){ ?>    
-            <li <?php getActiveTab('forum');?>>
+            <li <?php echo "class='". getActiveTab('forum')."'";?>>
                <a href="http://philippeguay.com/forum.php">Forum</a></li>
             <?php }?>
 
-            <li class='dropdown' <?php getActiveTab('indexvins');?> >
+            <li <?php echo "class='dropdown ". getActiveTab('indexvins,search')."'"?> >
                <a class='dropdown-toggle' data-toggle='dropdown' href='#'> Les vins
                   <b class='caret'></b>
                </a>
@@ -48,13 +53,12 @@
       
             </li> 
 
-
             <?php if(!isset($_SESSION['username'])){ ?>    
-            <li <?php getActiveTab('subscribe'); ?>>
+            <li <?php echo "class='". getActiveTab('subscribe')."'"; ?>>
                <a href="http://philippeguay.com/subscribe.php">Inscription</a></li>
             <?php } ?>
 
-            <li <?php getActiveTab('mailto.php')?>>
+            <li <?php echo "class='". getActiveTab('mailto')."'";?>>
                <a href="http://philippeguay.com/controller/mail/mailto.php">Contact</a></li>
 
             <li>

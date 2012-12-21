@@ -6,7 +6,8 @@
       foreach ($dropdownEle as $key => $value) {
 	      $current_file_name = basename($_SERVER['REQUEST_URI'], ".php");
 	      if ($current_file_name == $value & !$bClassSet){
-	      	echo 'class="active"';
+	      	$bClassSet = true;
+	      	return 'active';
 	     	}
       }
    }   

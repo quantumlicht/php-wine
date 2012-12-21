@@ -7,6 +7,11 @@ session_start();
 
 
 include_once('/opt/lampp/htdocs/server/controller/header.php');
+$a = new Utils();
+$a->connect_db('test');
+$a->connect_db('db_vins');
+
+
 include_once('/opt/lampp/htdocs/server/view/indexvins/search.php');
 
 ?>
