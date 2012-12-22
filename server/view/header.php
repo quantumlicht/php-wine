@@ -1,8 +1,4 @@
-<?php 
-require('/opt/lampp/htdocs/server/admin/utils.class.php');
 
-
-?>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +11,7 @@ require('/opt/lampp/htdocs/server/admin/utils.class.php');
         <script type='text/javascript' src='http://philippeguay.com/controller/formValidation.js'></script>         
       <?php } ?>
 
-      <title>VinsIndexWine</title>
+    <title>VinsIndexWine</title>
   </head>
 
 <div class='page-header'>

@@ -6,7 +6,7 @@
      <!-- top container -->
 
      <div class='container-fluid'>
-      <form id='index-vins' class='form-horizontal' action='http://philippeguay.com/controller/indexvins/search_vin.php' method='post'>
+      <form id='index-vins' class='form-horizontal' action='http://philippeguay.com/controller/indexvins/searchwine.php' method='post'>
        <div id='section-row' class='row-fluid'>
          <div class='span4'></div>
          <div class='span4'>
