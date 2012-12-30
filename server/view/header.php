@@ -43,7 +43,7 @@
                   <b class='caret'></b>
                </a>
                <ul class='dropdown-menu' role='menu'> 
-                  <li><a href="http://philippeguay.com/indexvins.php">Base de donnees</a></li>
+                  <li><a href="http://philippeguay.com/indexvins.php">Base de données</a></li>
                   <li><a href="http://philippeguay.com/search.php">Recherche de Vins</a></li>
                </ul>
       

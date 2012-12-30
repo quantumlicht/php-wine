@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+$utils = new phpUtils();
 $bdd =  $utils->connect_db('db_vins');
 
 //============================================================

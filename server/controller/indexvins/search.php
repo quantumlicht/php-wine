@@ -7,7 +7,7 @@ include_once('/opt/lampp/htdocs/server/controller/header.php');
 session_start();
 
 $utils = new phpUtils();
-$utils->connect_db('db_vins');
+$bdd = $utils->connect_db('db_vins');
 
 
 include_once('/opt/lampp/htdocs/server/view/indexvins/search.php');
