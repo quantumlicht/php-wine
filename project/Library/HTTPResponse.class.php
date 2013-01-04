@@ -1,7 +1,7 @@
 <?php
 namespace Library;
 
-class HTTPResponse
+class HTTPResponse extends ApplicationComponent
 {
   protected $page;
   
@@ -44,5 +44,15 @@ class HTTPResponse
   {
     setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
   }
+
+  public function deleteCookie($cookie)
+  {
+    session_start();
+    session_destroy();
+
+    // Suppression des cookies de connexion automatique
+    setcookie('login', '', time() - 1*24*60*60);
+    setcookie('password', '', time() - 1*24*60*60);
+    Header('Location: http://philippeguay.com/qlicht.php');
+  }
 }
-?>

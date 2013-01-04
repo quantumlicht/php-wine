@@ -6,13 +6,18 @@ abstract class Application
   protected $httpRequest;
   protected $httpResponse;
   protected $name;
-  
+  protected $user;
+  protected $config;
+
   public function __construct()
   {
     $this->httpRequest = new HTTPRequest($this);
     $this->httpResponse = new HTTPResponse($this);
-    
     $this->name = '';
+    // User et Config utilisent le constructeur de ApplicationComponent pour s'instancier.
+    //Cette classe requiert qu'on lui passe une application.
+    $this->user = new User($this); 
+    $this->config = new Config($this);
   }
   
   public function getController()
@@ -76,5 +81,15 @@ abstract class Application
   public function name()
   {
     return $this->name;
+  }
+
+  public function config()
+  {
+    return $this->config;
+  }
+
+  public function user()
+  {
+    return $this->user;
   }
 }

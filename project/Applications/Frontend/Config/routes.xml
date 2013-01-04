@@ -2,4 +2,7 @@
 <routes>
 	<route url="/" module="News" action="index" />
  	<route url="/news-([0-9]+)\.html" module="News" action="show" vars="id"/>
+ 	<route url="/commenter-([0-9]+)\.html" module="News" action="insertComment" vars="news" />
+ 	<route url="/indexvins\.html" module="IndexVins" action="index"/>
+ 	<route url="/a-propos\.html" module="Custom" action='redirect'></route>
 </routes>

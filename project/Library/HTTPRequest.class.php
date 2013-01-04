@@ -1,8 +1,9 @@
 <?php
 namespace Library;
 
-class HTTPRequest
+class HTTPRequest extends ApplicationComponent
 {
+
   public function cookieData($key)
   {
     return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
@@ -43,4 +44,3 @@ class HTTPRequest
     return $_SERVER['REQUEST_URI'];
   }
 }
-?>

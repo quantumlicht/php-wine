@@ -24,15 +24,13 @@ class Page extends ApplicationComponent
     }
     
     $user = $this->app->user();
-
+    // var_dump($user);
     extract($this->vars);
-    
     ob_start();
-      require $this->contentFile;
+    require $this->contentFile;
     $content = ob_get_clean();
-    
     ob_start();
-      require __DIR__.'/../Applications/'.$this->app->name().'/Templates/layout.php';
+    require __DIR__.'/../Applications/'.$this->app->name().'/Templates/layout.php';
     return ob_get_clean();
   }
   
