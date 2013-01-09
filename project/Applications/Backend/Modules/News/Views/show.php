@@ -22,7 +22,7 @@ foreach ($comments as $comment)
   <fieldset>
     <legend>
       Posté par <strong><?php echo htmlspecialchars($comment['auteur']); ?></strong> le <?php echo $comment['date']->format('d/m/Y à H\hi'); ?>
-      <?php if ($user->isAuthenticated()) { ?> -
+      <?php if ($user->isAdmin()) { ?> -
         <a href="admin/comment-update-<?php echo $comment['id']; ?>.html">Modifier</a>
       <?php } ?>
     </legend>

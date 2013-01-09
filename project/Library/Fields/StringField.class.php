@@ -1,10 +1,9 @@
 <?php
-namespace Library;
+namespace Library\Fields;
 
-class StringField extends Field
+class StringField extends \Library\Field
 {
   protected $maxLength;
-  
   public function buildWidget()
   {
     $widget = '';
@@ -14,7 +13,15 @@ class StringField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<label>'.$this->label.'</label><input type="text" name="'.$this->name.'"';
+    if($this->has_controlgroup){
+      $widget .= '<div class="control-group"><label class="control-label" for="'.$this->name.'">'.
+            $this->label.
+            '</label>'.
+            '<div class="controls">';
+
+    }
+    $widget.= '<input class="'.$this->span.'" type="text"'.' placeholder="'.$this->placeholder.'" name="'.$this->name.'"';
+    
     
     if (!empty($this->value))
     {
@@ -26,7 +33,14 @@ class StringField extends Field
       $widget .= ' maxlength="'.$this->maxLength.'"';
     }
     
-    return $widget .= ' />';
+    if($this->has_controlgroup){
+      // Close input tag , div.control, div.control-group
+      return $widget .= '/></div></div>';
+    }
+    else{
+      // Close the input tag
+      return $widget .='/>';
+    }
   }
   
   public function setMaxLength($maxLength)

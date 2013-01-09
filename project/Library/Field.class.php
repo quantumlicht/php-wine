@@ -6,9 +6,13 @@ abstract class Field
   protected $errorMessage;
   protected $label;
   protected $name;
+  protected $placeholder;
   protected $validators = array();
   protected $value;
-  
+  protected $span ='span8';
+  protected $fieldcontent;
+  protected $has_controlgroup=True;
+
   public function __construct(array $options = array())
   {
     if (!empty($options))
@@ -20,11 +24,10 @@ abstract class Field
   abstract public function buildWidget();
   
   public function hydrate($options)
-  {
+  { 
     foreach ($options as $type => $value)
     {
       $method = 'set'.ucfirst($type);
-      
       if (is_callable(array($this, $method)))
       {
         $this->$method($value);
@@ -46,31 +49,41 @@ abstract class Field
     return true;
   }
   
-  public function label()
-  {
-    return $this->label;
-  }
+  public function fieldcontent(){return $this->fieldcontent;}
+
+  public function has_controlgroup(){return $this->has_controlgroup;}
+
+  public function label(){return $this->label;}
   
-  public function length()
-  {
-    return $this->length;
-  }
+  public function length(){return $this->length;}
   
-  public function name()
-  {
-    return $this->name;
-  }
+  public function name(){return $this->name;}
   
-  public function validators()
-  {
-    return $this->validators;
-  }
+  public function placeholder(){return $this->placeholder;}
+
+  public function span(){return $this->span;}
+
+  public function validators(){return $this->validators;}
   
-  public function value()
-  {
-    return $this->value;
-  }
+  public function value(){return $this->value;}
   
+
+  public function setFieldcontent($fieldcontent)
+  {
+    if (!empty($fieldcontent))
+    {
+      $this->fieldcontent = $fieldcontent;
+    }
+  }
+
+  public function setHas_controlgroup($has_controlgroup)
+  {
+    if (is_bool($has_controlgroup))
+    {
+      $this->has_controlgroup = $has_controlgroup;
+    }
+  }
+
   public function setLabel($label)
   {
     if (is_string($label))
@@ -96,6 +109,22 @@ abstract class Field
       $this->name = $name;
     }
   }
+
+  public function setPlaceholder($placeholder)
+  {
+    if (is_string($placeholder))
+    {
+      $this->placeholder = $placeholder;
+    }
+  }
+
+  public function setSpan($span)
+  {
+    if (is_string($span) && preg_match('/^span/', $span))
+    {
+      $this->span = $span;
+    }
+  }
   
   public function setValidators(array $validators)
   {
@@ -115,4 +144,5 @@ abstract class Field
       $this->value = $value;
     }
   }
+  
 }

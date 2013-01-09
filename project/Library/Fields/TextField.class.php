@@ -1,7 +1,7 @@
 <?php
-namespace Library;
+namespace Library\Fields;
 
-class TextField extends Field
+class TextField extends \Library\Field
 {
   protected $cols;
   protected $rows;
@@ -15,12 +15,17 @@ class TextField extends Field
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<label>'.$this->label.'</label><textarea name="'.$this->name.'"';
-    
-    if (!empty($this->cols))
-    {
-      $widget .= ' cols="'.$this->cols.'"';
+    if($this->has_controlgroup){
+      $widget .= '<div class="control-group"><label class="control-label" for="'.$this->name.'">'.
+            $this->label.
+            '</label>'.
+            '<div class="controls">';
+
     }
+    $widget.= '<textarea class="'.$this->span.' name="'.$this->name.'"';
+    
+    
+    
     
     if (!empty($this->rows))
     {
@@ -28,13 +33,20 @@ class TextField extends Field
     }
     
     $widget .= '>';
-    
+
     if (!empty($this->value))
     {
       $widget .= htmlspecialchars($this->value);
     }
     
-    return $widget.'</textarea>';
+   if($this->has_controlgroup){
+      // Close input tag , div.control, div.control-group
+      return $widget .= '</textarea></div></div>';
+    }
+    else{
+      // Close the input tag
+      return $widget .='</textarea>';
+    }
   }
   
   public function setCols($cols)

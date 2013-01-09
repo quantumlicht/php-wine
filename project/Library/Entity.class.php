@@ -14,6 +14,18 @@ abstract class Entity implements \ArrayAccess
     }
   }
   
+  public function isValid()
+  {
+    $className = new \ReflectionClass(__CLASS__);
+    $attributes = $className->getProperties();
+    foreach ($attributes as $attribute) {
+      if (empty($attribute)) {
+        return False;
+      }
+    }
+    return True;
+  }
+  
   public function isNew()
   {
     return empty($this->id);

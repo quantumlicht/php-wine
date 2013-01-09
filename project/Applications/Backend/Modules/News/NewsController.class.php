@@ -55,7 +55,7 @@ class NewsController extends \Library\BackController
     {
       $comment = new \Library\Entities\Comment(array(
         'id' => $request->getData('id'),
-        'auteur' => $request->postData('pseudo'),
+        'auteur' => $request->postData('auteur'),
         'contenu' => $request->postData('contenu')
       ));
     }

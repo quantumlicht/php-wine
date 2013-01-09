@@ -1,4 +1,3 @@
-<p><a href="#">Deconnexion</a></p>
 <p style="text-align: center">Il y a actuellement <?php echo $nombreNews; ?> news. En voici la liste :</p>
 
 <table class='table table-hover'>

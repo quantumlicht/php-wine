@@ -28,7 +28,7 @@ class NewsController extends \Library\BackController
         $news->setContenu($debut);
       }
     }
-    
+
     // On ajoute la variable $listeNews à la vue.
     $this->page->addVar('listeNews', $listeNews);
   }

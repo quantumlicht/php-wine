@@ -8,12 +8,12 @@
     </title>
     
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <script type='text/javascript' src='http://philippeguay.com/jquery/jquery.js'></script>
+    <script type='text/javascript' src='/jquery/jquery.js'></script>
     <link href="/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+    <script type='text/javascript' src='/bootstrap/js/bootstrap.min.js'></script>
   </head>
   
   <body>
-    <div id="wrap">
       <div class='page-header'>
          <div class='row-fluid'>
             <div class='span6 offset5'>
@@ -31,14 +31,16 @@
                      <a class='brand' href="#">Qlicht</a>
                      <ul class='nav'>
                         <li class='active'><a href="/">Accueil</a></li>
-                        <?php if ($user->isAuthenticated()) { ?>
+                        <?php if ($user->isAdmin()) { ?>
                         <li><a href="/admin/">Admin</a></li>
                         <li><a href="/admin/news-insert.html">Ajouter une news</a></li>
                         <?php } ?>
                      </ul>
-                     <form action='http://philippeguay.com/controller/logout.php' method='post'>
-                        <button type='submit' class='btn btn-primary'/>Sortir</button>
-                     </form>
+                     <?php if ($user->isAdmin()){ ?>
+                      <form class='navbar-form pull-right' action="/admin/logout.html" method="post">
+                        <input type='submit' value="Sortir"  class='btn btn-primary'/>
+                      </form>
+                    <?php } ?>
                   </div>
                </div>
             </div>
@@ -57,6 +59,5 @@
       </div>  
     
       <div id="footer"></div>
-    </div>
   </body>
 </html>

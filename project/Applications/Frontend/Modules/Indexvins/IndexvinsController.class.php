@@ -1,35 +1,43 @@
 <?php
-namespace Applications\Frontend\Modules\News;
+namespace Applications\Frontend\Modules\Indexvins;
 
-class NewsController extends \Library\BackController
+class IndexvinsController extends \Library\BackController
 {
   public function executeIndex(\Library\HTTPRequest $request)
   {
-   
     
     // On ajoute une définition pour le titre.
     $this->page->addVar('title', 'Index des vins');
     
-    // On récupère le manager des news.
-    $manager = $this->managers->getManagerOf('News');
-    
-    // Cette ligne, vous ne pouviez pas la deviner sachant qu'on n'a pas encore touché au modèle.
-    // Contentez-vous donc d'écrire cette instruction, nous implémenterons la méthode ensuite.
-    $listeNews = $manager->getList(0, $nombreNews);
-    
-    foreach ($listeNews as $news)
+    // Si le formulaire a été envoyé.
+    if ($request->method() == 'POST')
     {
-      if (strlen($news->contenu()) > $nombreCaracteres)
-      {
-        $debut = substr($news->contenu(), 0, $nombreCaracteres);
-        $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
-        
-        $news->setContenu($debut);
-      }
+      $fichevin = new \Library\Entities\Fichevin(array(
+        'nom' => $request->postData('nom'),
+        'producteur' => $request->postData('producteur'),
+        'annee' => $request->postData('annee'),
+        'appelation' => $request->postData('appelation'),
+        'pays' => $request->postData('pays')
+      ));
+    }
+    else
+    {
+      $fichevin = new \Library\Entities\Fichevin;
     }
     
-    // On ajoute la variable $listeNews à la vue.
-    $this->page->addVar('listeNews', $listeNews);
+    $formBuilder = new \Library\FormBuilder\FichevinFormBuilder($fichevin);
+    $formBuilder->build();
+  
+    $form = $formBuilder->form();
+    $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('Vins'), $request);
+    
+    if ($formHandler->process())
+    {
+      $this->app->user()->setFlash('La fiche de vin a bien été ajoutée, merci !');
+      $this->app->httpResponse()->redirect('.');
+    }
+    
+    $this->page->addVar('form', $form->createView());
   }
     
 }

@@ -11,10 +11,7 @@ class Comment extends \Library\Entity
   const AUTEUR_INVALIDE = 1;
   const CONTENU_INVALIDE = 2;
   
-  public function isValid()
-  {
-    return !(empty($this->auteur) || empty($this->contenu));
-  }
+  
   
   // SETTERS
   

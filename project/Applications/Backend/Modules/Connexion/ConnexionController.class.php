@@ -14,7 +14,7 @@ class ConnexionController extends \Library\BackController
       
       if ($login == $this->app->config()->get('login') && $password == $this->app->config()->get('pass'))
       {
-        $this->app->user()->setAuthenticated(true);
+        $this->app->user()->setAdmin(true);
         $this->app->httpResponse()->redirect('.');
       }
       else

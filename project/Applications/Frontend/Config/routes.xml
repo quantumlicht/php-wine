@@ -3,6 +3,10 @@
 	<route url="/" module="News" action="index" />
  	<route url="/news-([0-9]+)\.html" module="News" action="show" vars="id"/>
  	<route url="/commenter-([0-9]+)\.html" module="News" action="insertComment" vars="news" />
- 	<route url="/indexvins\.html" module="IndexVins" action="index"/>
- 	<route url="/a-propos\.html" module="Custom" action='redirect'></route>
+   <route url="/indexvins\.html" module="Indexvins" action="index"/>
+ 	<route url="/indexvins\search.html" module="Indexvins" action="search"/>
+ 	<route url="/a-propos\.html" module="Custom" action="redirect"/>
+ 	<route url="/inscription\.html" module="Inscription" action="index"/>
+ 	<route url="/login\.html" module="Inscription" action="login"/>
+ 	<route url="/logout\.html" module="Custom" action="logout"/>
 </routes>

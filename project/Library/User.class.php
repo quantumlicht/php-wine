@@ -23,8 +23,12 @@ class User extends ApplicationComponent
     return isset($_SESSION['flash']);
   }
   
-  public function isAuthenticated()
+  public function isAdmin()
   {
+    return isset($_SESSION['admin']) && $_SESSION['admin'] === true;
+  }
+
+  public function isAuthenticated(){
     return isset($_SESSION['auth']) && $_SESSION['auth'] === true;
   }
   
@@ -41,6 +45,16 @@ class User extends ApplicationComponent
     }
     
     $_SESSION['auth'] = $authenticated;
+  }
+
+  public function setAdmin($admin = true){
+
+    if (!is_bool($admin))
+    {
+      throw new \InvalidArgumentException('La valeur spécifiée à la méthode User::setAdmin() doit être un boolean');
+    }
+    
+    $_SESSION['admin'] = $admin;
   }
   
   public function setFlash($value)

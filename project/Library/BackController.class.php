@@ -8,7 +8,7 @@ abstract class BackController extends ApplicationComponent
   protected $page = null;
   protected $view = '';
   protected $managers = null;
-  
+  protected $login = '';
   public function __construct(Application $app, $module, $action)
   {
     parent::__construct($app);
@@ -18,6 +18,12 @@ abstract class BackController extends ApplicationComponent
     $this->setModule($module);
     $this->setAction($action);
     $this->setView($action);
+
+    $formBuilder = new \Library\FormBuilder\LoginFormBuilder(new \Library\Entities\Login);
+    $formBuilder->build();
+
+    $login = $formBuilder->form()->createView();
+    $this->setLogin($login);
   }
   
   public function execute()
@@ -30,6 +36,10 @@ abstract class BackController extends ApplicationComponent
     }
     
     $this->$method($this->app->httpRequest());
+  }
+
+  public function login(){
+    return $this->login;
   }
   
   public function page()
@@ -55,6 +65,18 @@ abstract class BackController extends ApplicationComponent
     }
     
     $this->action = $action;
+  }
+
+  public function setLogin($login)
+  {
+    if (empty($login))
+    {
+      throw new \InvalidArgumentException('Le login doit être non vide');
+    }
+    
+    $this->login = $login;
+    $this->page->addVar('login',$login);
+
   }
   
   public function setView($view)
