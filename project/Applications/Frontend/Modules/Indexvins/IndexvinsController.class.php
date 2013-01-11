@@ -17,14 +17,29 @@ class IndexvinsController extends \Library\BackController
         'producteur' => $request->postData('producteur'),
         'annee' => $request->postData('annee'),
         'appelation' => $request->postData('appelation'),
-        'pays' => $request->postData('pays')
+        'pays' => $request->postData('pays'),
+        'region' => $request->postData('region'),
+        'alcool' => $request->postData('alcool'),
+        'date' => $request->postData('date'),
+        'code_saq' => $request->postData('code_saq'),
+        'prix' => $request->postData('prix'),
+        'teinte' => $request->postData('teinte'),
+        'nez_intensite' => $request->postData('nez_intensite'),
+        'arome' => $request->postData('arome'),
+        'nez_impression' => $request->postData('nez_impression'),
+        'bouche_intensite' => $request->postData('bouche_intensite'),
+        'persistance' => $request->postData('persistance'),
+        'saveur' => $request->postData('saveur'),
+        'acidite' => $request->postData('acidite'),
+        'tanin' => $request->postData('tanin'),
+        'bouche_impression' => $request->postData('bouche_impression'),
+        'couleur' => $request->postData('couleur')
       ));
     }
     else
     {
       $fichevin = new \Library\Entities\Fichevin;
     }
-    
     $formBuilder = new \Library\FormBuilder\FichevinFormBuilder($fichevin);
     $formBuilder->build();
   

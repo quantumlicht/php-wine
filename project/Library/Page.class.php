@@ -42,4 +42,15 @@ class Page extends ApplicationComponent
     
     $this->contentFile = $contentFile;
   }
+
+  public function contentFile()
+  {
+    return $this->contentFile;
+  }
+
+  public function vars()
+  {
+    return $this->vars;
+  }
+
 }

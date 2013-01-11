@@ -20,7 +20,7 @@ class SelectField extends \Library\Field
             '<div class="controls">';
 
     }
-    $widget.= '<select class="'.$this->span.'"><option>test'.'</option>' ;
+    $widget.= '<select class="'.$this->span.'" name="'.$this->name.'"><option>test'.'</option>' ;
     
     
     if (!empty($this->value))

@@ -7,3 +7,4 @@ RewriteRule ^index/ indexvins.php [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 
 RewriteRule ^(.*)$ frontend.php [QSA,L]
+

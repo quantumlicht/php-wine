@@ -45,7 +45,7 @@ class InscriptionFormBuilder extends \Library\FormBuilder
             new \Library\Validators\NotNullValidator('Merci de spécifier le mot de passe'),
           )
         )),
-        new \Library\Fields\StringField(array(
+        new \Library\Fields\PasswordField(array(
           'placeholder'=>'Resaisir le mot de passe',
           'has_controlgroup'=>True,
           'label'=>'Resaisir le mot de passe',

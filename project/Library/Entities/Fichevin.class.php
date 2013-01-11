@@ -23,8 +23,8 @@ class Fichevin extends \Library\Entity
             $acidite,
             $tanin,
             $bouche_impression,
-            $couleur;  
-  
+            $couleur;
+
   // SETTERS
   
   public function setNom($nom)
@@ -188,7 +188,6 @@ class Fichevin extends \Library\Entity
       $this->couleur = $couleur;
     }
   }
-  
   
   // GETTERS
   

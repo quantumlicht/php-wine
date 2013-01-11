@@ -117,7 +117,7 @@ class NewsController extends \Library\BackController
     $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('News'), $request);
     if ($formHandler->process())
     {
-      $this->managers->getManagerOf('News')->save($news);
+      // $this->managers->getManagerOf('News')->save($news);
       $this->app->user()->setFlash($news->isNew() ? 'La news a bien été ajoutée !' : 'La news a bien été modifiée !');
       $this->app->httpResponse()->redirect('/admin/');
     }

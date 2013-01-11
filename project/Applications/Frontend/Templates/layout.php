@@ -8,9 +8,11 @@
    </title>
 
    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-   <script type='text/javascript' src='/jquery/jquery.js'></script>
-   <link href="/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
-   <script type='text/javascript' src='/bootstrap/js/bootstrap.min.js'></script>
+   <script type='text/javascript' src='/scripts/jquery/jquery.js'></script>
+   <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+   <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>
+   <script type='text/javascript' src='/scripts/formload.js'></script>
+   <script type='text/javascript' src='/scripts/utils.js'></script>
 
 </head>
 

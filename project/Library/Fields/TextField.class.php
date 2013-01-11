@@ -22,11 +22,7 @@ class TextField extends \Library\Field
             '<div class="controls">';
 
     }
-    $widget.= '<textarea class="'.$this->span.' name="'.$this->name.'"';
-    
-    
-    
-    
+    $widget.= '<textarea class="'.$this->span.'" name="'.$this->name.'"';
     if (!empty($this->rows))
     {
       $widget .= ' rows="'.$this->rows.'"';

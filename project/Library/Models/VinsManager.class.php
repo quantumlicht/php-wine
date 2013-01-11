@@ -19,22 +19,14 @@ abstract class VinsManager extends \Library\Manager
   abstract protected function getAcidite();
   abstract protected function getTanin($couleur);
 
-
-  /**
-   * Méthode permettant de savoir si l'utilisateur a entre les bonnes infos pour se connecter.
-   * @param $id L'identifiant du commentaire
-   * @return Comment
-   */
-  abstract public function isAuthenticated(Fichevin $fichevin);
-
-
   /**
    * Méthode permettant de modifier une fichevin.
-   * @param $comment Le commentaire à modifier
+   * @param $fichevin la fiche à modifier
    * @return void
    */
+   
   abstract protected function modify(Fichevin $fichevin);
-
+  
 
   /**
    * Méthode permettant d'enregistrer un commentaire.

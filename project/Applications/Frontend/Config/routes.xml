@@ -8,5 +8,6 @@
  	<route url="/a-propos\.html" module="Custom" action="redirect"/>
  	<route url="/inscription\.html" module="Inscription" action="index"/>
  	<route url="/login\.html" module="Inscription" action="login"/>
- 	<route url="/logout\.html" module="Custom" action="logout"/>
+   <route url="/logout\.html" module="Custom" action="logout"/>
+ 	<route url="/ajax-([a-z]+)-(none|rouge|blanc)" module="Ajax" action="ajax" vars="table,couleur"/>
 </routes>

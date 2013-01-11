@@ -122,10 +122,11 @@ class Form
       // On vérifie que tous les champs sont valides.
       foreach ($this->fields as $field)
       {
+         var_dump($field);
          if (!$field->isValid())
-      {
-         $valid = false;
-      }
+         {
+            $valid = false;
+         }
       }
 
       return $valid;
