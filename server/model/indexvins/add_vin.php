@@ -1,7 +1,9 @@
 <?php
 
-include_once('/opt/lampp/htdocs/server/model/connectdb.php');
-$bdd = connectDb('db_vins');
+$utils = new phpUtils();
+
+// include_once('/opt/lampp/htdocs/server/model/connectdb.php');
+$bdd = $utils->connect_db('db_vins');
 
 //=======================================================================
 //HELPER FUNCTIONS

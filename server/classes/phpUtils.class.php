@@ -1,4 +1,4 @@
-<?php class Utils {
+<?php class phpUtils {
 
 //===================================================================
 // PUBLIC VARIABLES
@@ -24,8 +24,7 @@ private $_tanin = ['Fins','Soyeux','Râpeux','Rugueux','Astringents'];
 //===================================================================
 //CONTRUCTOR
 //===================================================================
-public function __contruct(){
-	echo 'Instanciated Utils Class.';
+public function __construct(){
 
 
 }
@@ -75,7 +74,6 @@ public function connect_db($dbname){
 	if(in_array($dbname, $this->_dbnames)){	
 		try{
 			$bdd = new PDO('mysql:host='.$this->_hostname.';dbname='.$dbname,$this->_dbusername,$this->_dbpassword);
-			// echo '</br>Connection Successful';
 		}
 		catch(Exception $e){
 			die('Error : '. $e->getMessage());
@@ -84,7 +82,7 @@ public function connect_db($dbname){
 		return $bdd;
 	}
 	else{
-		// echo '</br>cannot load '. $dbname.' database';
+		echo '</br>cannot load '. $dbname.' database';
 	}
 }
 
