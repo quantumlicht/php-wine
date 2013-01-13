@@ -7,7 +7,7 @@
       <?php } else { echo $title; } ?>
    </title>
 
-   <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
    <script type='text/javascript' src='/scripts/jquery/jquery.js'></script>
    <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
    <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>

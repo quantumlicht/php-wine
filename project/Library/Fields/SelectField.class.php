@@ -4,6 +4,8 @@ namespace Library\Fields;
 class SelectField extends \Library\Field
 {
   protected $maxLength;
+  protected $fieldcontent=array();
+
   public function buildWidget()
   {
     $widget = '';
@@ -20,8 +22,13 @@ class SelectField extends \Library\Field
             '<div class="controls">';
 
     }
-    $widget.= '<select class="'.$this->span.'" name="'.$this->name.'"><option>test'.'</option>' ;
-    
+    $widget.= '<select class="'.$this->span.'" name="'.$this->name.'"><option></option>' ;
+
+    if(!empty($this->fieldcontent)){
+      foreach ($this->fieldcontent as $content) {
+        $widget.='<option>'.$content.'</option>';
+      }
+    }
     
     if (!empty($this->value))
     {
@@ -44,6 +51,10 @@ class SelectField extends \Library\Field
 
   }
   
+  public function setFieldcontent($fieldcontent){
+    $this->fieldcontent = $fieldcontent;
+  }
+
   public function setMaxLength($maxLength)
   {
     $maxLength = (int) $maxLength;

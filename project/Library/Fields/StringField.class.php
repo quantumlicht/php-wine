@@ -4,6 +4,8 @@ namespace Library\Fields;
 class StringField extends \Library\Field
 {
   protected $maxLength;
+  protected $typeahead;
+
   public function buildWidget()
   {
     $widget = '';
@@ -20,8 +22,13 @@ class StringField extends \Library\Field
             '<div class="controls">';
 
     }
-    $widget.= '<input class="'.$this->span.'" type="text"'.' placeholder="'.$this->placeholder.'" name="'.$this->name.'"';
-    
+    if($this->typeahead){
+      $widget.= '<input class="'.$this->span.'" autocomplete="off" type="text"'.' placeholder="'.$this->placeholder.'" name="'.$this->name.'" data-provide="type-ahead"';
+    }
+    else{
+      $widget.= '<input class="'.$this->span.'" type="text"'.' placeholder="'.$this->placeholder.'" name="'.$this->name.'"';
+    }
+
     
     if (!empty($this->value))
     {
@@ -54,6 +61,14 @@ class StringField extends \Library\Field
     else
     {
       throw new \RuntimeException('La longueur maximale doit être un nombre supérieur à 0');
+    }
+  }
+
+  public function setTypeahead($typeahead)
+  {
+    if(is_bool($typeahead))
+    {
+      $this->typeahead = $typeahead;
     }
   }
 }

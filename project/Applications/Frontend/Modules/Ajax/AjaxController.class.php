@@ -25,7 +25,7 @@ class AjaxController extends \Library\BackController
     }
 
     // BUILDING AJAX REQUEST
-    $json = ''; // start the json array element
+    $json = '['; // start the json array element
     $json_table = array();
     foreach ($contents as $content) {
         $json_table[] = '{"id":"'. $content['id'].'", "content": "'.$content[$table].'"}';
@@ -34,6 +34,24 @@ class AjaxController extends \Library\BackController
     $json .= implode(',', $json_table); // join the objects by commas;
 
     $json .= ']'; // end the json array element
+    exit($json);
+  }
+
+  public function executeXml(\Library\HTTPRequest $request)
+  {
+    $var= $request->getData('xmlvar');
+    $varContent = $this->app->config()->get($var);
+
+    $json = '['; // start the json array element
+    if(!empty($varContent)){    
+        // BUILDING AJAX REQUEST
+        $json .= '{"id":"'. $var.'", "content": "'.$varContent.'"}';
+        $json .= ']'; // end the json array element
+    }
+    else{
+        //empty json
+        $json .= ']';
+    }
     exit($json);
   }
     

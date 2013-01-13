@@ -9,5 +9,6 @@
  	<route url="/inscription\.html" module="Inscription" action="index"/>
  	<route url="/login\.html" module="Inscription" action="login"/>
    <route url="/logout\.html" module="Custom" action="logout"/>
- 	<route url="/ajax-([a-z]+)-(none|rouge|blanc)" module="Ajax" action="ajax" vars="table,couleur"/>
+   <route url="/ajax-([a-z]+)-(none|rouge|blanc)" module="Ajax" action="ajax" vars="table,couleur"/>
+ 	<route url="/xml-([a-z_]+)" module="Ajax" action="xml" vars="xmlvar"/>
 </routes>

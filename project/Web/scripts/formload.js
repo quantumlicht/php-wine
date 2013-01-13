@@ -1,19 +1,78 @@
 $(function(){
-//==========================================================================================================================
-// // BUTTON CREATION
-// $('form#fichevin').ready(function(){ 
-//       $('<input/>',{
-//          name:'couleur'  
-//       }).appendTo('form');
-//    });
+//============================================================================================================================
+   arrSelects = ['pays','teinte','arome','saveur','acidite','tanin'];
 
+   $('.btn-group#couleur > button').click(function(){
+      $.ajaxSetup({
+         async:false,
+         scriptCharset: "utf8",
+         contentType:"application/json; charset=utf8"
+      });
 
-//==========================================================================================================================
- // TAG TYPEAHEAD
+      couleur = $(this).val();
+      
+      // Select Fields filling  
+      $.each(arrSelects,function(id,value){         
+         var objAjaxResponse =  $.getJSON("/ajax-" + arrSelects[id] + "-" + couleur);
+         var json = $.parseJSON(objAjaxResponse.responseText);
+         var options = '<option></option>';
+         for (var i = 0; i < json.length; i++) {
+           options += '<option value="' + json[i].id + '">' + json[i].content + '</option>';
+         }
+         $('[name='+arrSelects[id]+']').html(options);
+      });
+
+      // Toggling tanin
+      if($(this).val()=='blanc'){
+         $('[name=tanin]').attr('disabled','');
+         $('[name=tanin]').closest('.control-group').hide();
+      }
+      else if($(this).val()=='rouge'){
+         $('[name=tanin]').removeAttr('disabled');
+         $('[name=tanin]').closest('.control-group').show();
+      }
+
+      // TypeAhead encepagement
+      $('[name=encepagement]').typeahead({
+
+         source: function(typeahead,query){
+            arr=[];
+            var obj = $.getJSON("/ajax-encepagement-"+couleur);
+            var json = $.parseJSON(obj.responseText);
+            for (var i = 0; i<json.length;i++ ){
+              arr.push(json[i].content);
+            }
+            return arr;
+         },
+         items:5
+      });
+   });
+   // Adding Help blocks
+
+     // $("select#couleur").html(options);
+     // var options = '<option></option>';
+     // for (var i = 0; i < json.encepagement.length; i++) {
+     //    options += '<option value="' + json.encepagement[i].id + '">' + json.encepagement[i].encepagement + '</option>';
+     // }
+     // $("select#encepagement").html(options);
+     // $('select#encepagement').scrollTop(0);
+
+   // Building Date picker
+
+   // Toggling couleur
+   $('.btn-group#couleur > button').each(function(){
+      $(this).click(function(){
+         $('input[name=couleur]').val( $(this).val() );
+      });
+   });
+
+   // TAG TYPEAHEAD
    $.ajaxSetup({
       async:false
    });
+
    $('input#inputtag').typeahead({
+
       source: function(typeahead,query){
          arr=[];
          var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',flag:'typeahead-tags'})
@@ -26,57 +85,7 @@ $(function(){
       items:5
    });
 
-//==========================================================================================================================
-// ENCEPAGEMENT TYPEAHEAD
-   $('input#inputencepagement').typeahead({
-      source: function(typeahead,query){
-         arr=[];
-         var obj =   $.getJSON("http://philippeguay.com/indexvins.php",{ajax: 'true',id:$('button#load-ajax').val(),flag:'typeahead-encepagement'});
-         var json = $.parseJSON(obj.responseText);
-         for (var i = 0; i<json.length;i++ ){
-            arr.push(json[i]);
-         }
-         return arr;
-      },
-      items:5
-   });
 
-//============================================================================================================================
-// COULEUR VIN POPULATING
-   $("button#load-ajax").click(function(){
-      $.ajaxSetup({
-         async:false}
-        );
-     var objAjaxResponse =  $.getJSON("http://philippeguay.com/indexvins.php",{id: $(this).val(), ajax: 'true'});
-     var json = $.parseJSON(objAjaxResponse.responseText);
-     var options = '<option></option>';
-     for (var i = 0; i < json.couleur.length; i++) {
-        options += '<option value="' + json.couleur[i].id + '">' + json.couleur[i].couleur + '</option>';
-     }
-     
-     $("select#couleur").html(options);
-     var options = '<option></option>';
-     for (var i = 0; i < json.encepagement.length; i++) {
-        options += '<option value="' + json.encepagement[i].id + '">' + json.encepagement[i].encepagement + '</option>';
-     }
-     $("select#encepagement").html(options);
-     $('select#encepagement').scrollTop(0);
-    
-     if($(this).val()==2){
-        $('#tanin-group').hide();
-        $('#tanin').attr('disabled','');
-     }
-     else{
-        $('#tanin').removeAttr('disabled');
-        $('#tanin-group').show();
-     }
-   });
-
-   $('.btn#load-ajax').each(function(){
-      $(this).click(function(){
-         $('input[name=couleur]').val( $(this).val() );
-      });
-   });
 //=========================================================================================================================== 
 // FORM LOCK
    reqinputs =  $('form#index-vins div#section-row:nth-child(2) :input:not(button,textarea, #appelation, #inputencepagement)');

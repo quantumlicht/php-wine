@@ -48,19 +48,41 @@ class VinsManager_PDO extends VinsManager
     $fichevin->setId($this->dao->lastInsertId());
   }
 
-  public function getPays()
+  public function getAcidite()
   {
-    $q = $this->dao->prepare('SELECT `id`,`pays` FROM  `pays` ORDER BY `pays`');
+    $q = $this->dao->prepare('SELECT `id`,`acidite` FROM  `acidites` ORDER BY `id` ASC');
     $q->execute();
     return $q->fetchAll();
   }
-  
+
+  public function getArome()
+  {
+    $q = $this->dao->prepare('SELECT `id`,`arome` FROM  `aromes` ORDER BY `id` ASC');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
   public function getEncepagement($couleur)
   {
     $q = $this->dao->prepare('SELECT `id`,`encepagement` FROM  `encepagements` WHERE couleur=\''.$couleur.'\' AND NOT `status`=\'pending\' ORDER BY `encepagement`');
     $q->execute();
     return $q->fetchAll();
   }
+
+  public function getPays()
+  {
+    $q = $this->dao->prepare('SELECT `id`,`pays` FROM  `pays1` ORDER BY `pays`');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
+  public function getSaveur()
+  {
+    $q = $this->dao->prepare('SELECT `id`,`saveur` FROM  `saveurs` ORDER BY `id` ASC');
+    $q->execute();
+    return $q->fetchAll();
+  }
+  
 
   public function getTeinte($couleur)
   {
@@ -69,16 +91,17 @@ class VinsManager_PDO extends VinsManager
     return $q->fetchAll();
   }
 
-  public function getAcidite()
-  {
-    $q = $this->dao->prepare('SELECT `id`,`acidite` FROM  `acidites` ORDER BY `id` ASC');
-    $q->execute();
-    return $q->fetchAll();
-  }
 
   public function getTanin($couleur)
   {
     $q = $this->dao->prepare('SELECT `id`,`tanin` FROM  `tanins` ORDER BY `id` ASC');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
+  public function getTags()
+  {
+    $q = $this->dao->prepare('SELECT `id`,`tag` FROM  `tags` WHERE NOT `status`=\'pending\' ');
     $q->execute();
     return $q->fetchAll();
   }

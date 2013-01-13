@@ -13,11 +13,14 @@ abstract class VinsManager extends \Library\Manager
    */
   abstract protected function add(Fichevin $fichevin);
   
+  abstract protected function getAcidite();
+  abstract protected function getArome();
   abstract protected function getPays();
   abstract protected function getEncepagement($couleur);
+  abstract protected function getSaveur();
   abstract protected function getTeinte($couleur);
-  abstract protected function getAcidite();
   abstract protected function getTanin($couleur);
+  abstract protected function getTags();
 
   /**
    * Méthode permettant de modifier une fichevin.

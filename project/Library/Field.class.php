@@ -10,8 +10,8 @@ abstract class Field
   protected $validators = array();
   protected $value;
   protected $span ='span8';
-  protected $fieldcontent;
   protected $has_controlgroup=True;
+  
 
   public function __construct(array $options = array())
   {
@@ -54,9 +54,7 @@ abstract class Field
   public function has_controlgroup(){return $this->has_controlgroup;}
 
   public function label(){return $this->label;}
-  
-  public function length(){return $this->length;}
-  
+    
   public function name(){return $this->name;}
   
   public function placeholder(){return $this->placeholder;}
@@ -91,17 +89,7 @@ abstract class Field
       $this->label = $label;
     }
   }
-  
-  public function setLength($length)
-  {
-    $length = (int) $length;
     
-    if ($length > 0)
-    {
-      $this->length = $length;
-    }
-  }
-  
   public function setName($name)
   {
     if (is_string($name))
