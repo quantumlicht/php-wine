@@ -12,83 +12,95 @@ class FichevinFormBuilder extends \Library\FormBuilder
       'columnid' =>1,
       'fieldlist'=>array(
         new \Library\Fields\StringField(array(
-        'label' => 'nom',
+        'label' => 'Nom',
         'name' => 'nom',
+        'value'=> $this->form->entity()->nom(),
         'maxLength' => 20,
         'validators' => array(
-          new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 30),
-          new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire')
+          new \Library\Validators\MaxLengthValidator('Le nom spécifié est trop long (30 caractères maximum)', 30),
+          new \Library\Validators\NotNullValidator('Merci de spécifier le nom du vin.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Producteur',
           'name' => 'producteur',
+          'value'=> $this->form->entity()->producteur(),
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier le producteur.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Année',
           'name' => 'annee',
+          'value'=> $this->form->entity()->annee(),
           'span' => 'span3',
-          'fieldcontent'=> range(1950,date("Y")),
+          'fieldcontent'=> array_reverse(range(1950,date("Y"))),
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier l\'année.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Type (Appelation)',
           'name' => 'appelation',
+          'value'=> $this->form->entity()->appelation(),
+          'tooltip' => 'Sil ny a pas dappelation, laissez ce champ vide.',
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Pays',
           'name' => 'pays',
+          'value'=> $this->form->entity()->pays(),
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier le pays d\'origine.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Région',
           'name' => 'region',
+          'value'=> $this->form->entity()->region(),
           'typeahead' => True,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier la région.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Encépagement',
-          'name' => 'encepagement',
+          'name' =>'encepagement',
+          'span'=>'span6',
           'typeahead' => True,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier le ou les cépages.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Alcool',
           'name' => 'alcool',
+          'placeholder'=>'00.0',
+          'value'=> $this->form->entity()->alcool(),
           'span' => 'span3',
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+
           )
         )),
-        new \Library\Fields\SelectField(array(
-          'label' => 'Date',
+        new \Library\Fields\DateField(array(
+          'label' => 'Date de dégustation',
           'name' => 'date',
+          'value'=> $this->form->entity()->date(),
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier la date de dégustation.')
           )
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Prix',
           'name' => 'prix',
+          'placeholder'=>'00.00',
+          'value'=> $this->form->entity()->prix(),
           'span' => 'span3',
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire'),
-            new \Library\Validators\NotNullValidator('Le prix doit être une valeur numérique')
+            new \Library\Validators\NotNullValidator('Merci de spécifier le prix.'),
           )
         ))
       )
@@ -100,14 +112,14 @@ class FichevinFormBuilder extends \Library\FormBuilder
         new \Library\Fields\SelectField(array(
         'label' => 'Teinte',
         'name' => 'teinte',
+        'value'=> $this->form->entity()->teinte(),
         'span' => 'span4',
         'maxLength' => 20,
         'validators' => array(
-          new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 30),
-          new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier la teinte.')
           )
         ))
-      )        
+      )
     )))
     ->addFieldset(new \Library\Entities\Fieldset(array(
       'name' => 'Le nez',
@@ -116,28 +128,29 @@ class FichevinFormBuilder extends \Library\FormBuilder
         new \Library\Fields\SelectField(array(
         'label' => 'Intensité',
         'name' => 'nez_intensite',
+        'value'=> $this->form->entity()->nez_intensite(),
         'span'=> 'span2',
         'fieldcontent'=> range(1,5),
         'maxLength' => 20,
         'validators' => array(
-          new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 30),
-          new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier l\'intensite du nez.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Arôme',
           'name' => 'arome',
+          'value'=> $this->form->entity()->arome(),
           'span' => 'span4',
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier l\'arôme primaire.')
           )
         )),
         new \Library\Fields\TextField(array(
           'label' => 'Impressions',
           'name' => 'nez_impression',
+          'value'=> $this->form->entity()->nez_impression(),
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
           )
         ))
       )
@@ -149,59 +162,64 @@ class FichevinFormBuilder extends \Library\FormBuilder
         new \Library\Fields\SelectField(array(
         'label' => 'Intensité',
         'name' => 'bouche_intensite',
+        'value'=> $this->form->entity()->bouche_intensite(),
         'span'=> 'span2',
         'fieldcontent'=> range(1,5),
         'validators' => array(
-          new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (50 caractères maximum)', 30),
-          new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire')
+          new \Library\Validators\NotNullValidator('Merci de spécifier l\'intensité de la bouche.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Persitance',
           'name' => 'persistance',
+          'value'=> $this->form->entity()->persistance(),
           'span'=> 'span2',
           'fieldcontent'=> range(1,5),
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier la persistance.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Saveur',
           'name' => 'saveur',
+          'value'=> $this->form->entity()->saveur(),
           'span' => 'span4',
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier la saveur.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Acidité',
           'name' => 'acidite',
           'span' => 'span4',
+          'value'=> $this->form->entity()->acidite(),
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier l\'acidité.')
           )
         )),
         new \Library\Fields\SelectField(array(
           'label' => 'Tanins',
           'name' => 'tanin',
+          'value'=> $this->form->entity()->tanin(),
           'span' => 'span4',
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+            new \Library\Validators\NotNullValidator('Merci de spécifier les tanins.')
           )
         )),
         new \Library\Fields\TextField(array(
           'label' => 'Impressions',
-          'name' => 'bouche_Impression',
+          'name' => 'bouche_impression',
+          'value'=> $this->form->entity()->bouche_impression(),
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier votre commentaire')
+
           )
         ))
       )
     )));
-    
+
   }
 }

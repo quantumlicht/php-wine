@@ -11,7 +11,7 @@ abstract class Field
   protected $value;
   protected $span ='span8';
   protected $has_controlgroup=True;
-  
+  protected $tooltip;
 
   public function __construct(array $options = array())
   {
@@ -20,11 +20,11 @@ abstract class Field
       $this->hydrate($options);
     }
   }
-  
+
   abstract public function buildWidget();
-  
+
   public function hydrate($options)
-  { 
+  {
     foreach ($options as $type => $value)
     {
       $method = 'set'.ucfirst($type);
@@ -34,7 +34,7 @@ abstract class Field
       }
     }
   }
-  
+
   public function isValid()
   {
     foreach ($this->validators as $validator)
@@ -45,26 +45,28 @@ abstract class Field
         return false;
       }
     }
-    
+
     return true;
   }
-  
+
   public function fieldcontent(){return $this->fieldcontent;}
 
   public function has_controlgroup(){return $this->has_controlgroup;}
 
   public function label(){return $this->label;}
-    
+
   public function name(){return $this->name;}
-  
+
   public function placeholder(){return $this->placeholder;}
 
   public function span(){return $this->span;}
 
+  public function tooltip(){return $this->tooltip;}
+
   public function validators(){return $this->validators;}
-  
+
   public function value(){return $this->value;}
-  
+
 
   public function setFieldcontent($fieldcontent)
   {
@@ -89,7 +91,7 @@ abstract class Field
       $this->label = $label;
     }
   }
-    
+
   public function setName($name)
   {
     if (is_string($name))
@@ -113,7 +115,15 @@ abstract class Field
       $this->span = $span;
     }
   }
-  
+
+  public function setTooltip($tooltip)
+  {
+    if (!empty($tooltip) && is_string($tooltip))
+    {
+      $this->tooltip = $tooltip;
+    }
+  }
+
   public function setValidators(array $validators)
   {
     foreach ($validators as $validator)
@@ -124,7 +134,7 @@ abstract class Field
       }
     }
   }
-  
+
   public function setValue($value)
   {
     if (is_string($value))
@@ -132,5 +142,5 @@ abstract class Field
       $this->value = $value;
     }
   }
-  
+
 }

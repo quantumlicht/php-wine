@@ -12,24 +12,32 @@ abstract class VinsManager extends \Library\Manager
    * @return void
    */
   abstract protected function add(Fichevin $fichevin);
-  
-  abstract protected function getAcidite();
-  abstract protected function getArome();
-  abstract protected function getPays();
+
+  abstract protected function getAcidite($couleur);
+  abstract protected function getArome($couleur);
+  abstract protected function getPays($couleur);
   abstract protected function getEncepagement($couleur);
-  abstract protected function getSaveur();
+  abstract protected function getSaveur($couleur);
   abstract protected function getTeinte($couleur);
   abstract protected function getTanin($couleur);
-  abstract protected function getTags();
+  abstract protected function getTag($couleur);
 
   /**
    * Méthode permettant de modifier une fichevin.
    * @param $fichevin la fiche à modifier
    * @return void
    */
-   
+
   abstract protected function modify(Fichevin $fichevin);
-  
+
+/**
+   * Méthode permettant de modifier une fichevin.
+   * @param $fichevin la fiche à modifier
+   * @return void
+   */
+
+  abstract protected function getAll();
+
 
   /**
    * Méthode permettant d'enregistrer un commentaire.
@@ -48,5 +56,5 @@ abstract class VinsManager extends \Library\Manager
     }
   }
 
-  
+
 }

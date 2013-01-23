@@ -10,19 +10,15 @@ class AjaxController extends \Library\BackController
     $method='get'.ucfirst($table);
 
     $manager = $this->managers->getManagerOf('Vins');
-    
+
     if (!is_callable(array($manager, $method)))
     {
       throw new \RuntimeException('syntax error: method not available');
     }
 
     // Le ajax doit savoir s'il doit appeler le manager avec une couleur pour obtenir la requete
-    if ($couleur!='none'){
-        $contents = $manager->$method($couleur);
-    }
-    else{
-        $contents = $manager->$method();   
-    }
+    $contents = $manager->$method($couleur);
+
 
     // BUILDING AJAX REQUEST
     $json = '['; // start the json array element
@@ -30,11 +26,11 @@ class AjaxController extends \Library\BackController
     foreach ($contents as $content) {
         $json_table[] = '{"id":"'. $content['id'].'", "content": "'.$content[$table].'"}';
     }
- 
+
     $json .= implode(',', $json_table); // join the objects by commas;
 
     $json .= ']'; // end the json array element
-    exit($json);
+    exit('<head><meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" /></head>'.$json);
   }
 
   public function executeXml(\Library\HTTPRequest $request)
@@ -43,7 +39,7 @@ class AjaxController extends \Library\BackController
     $varContent = $this->app->config()->get($var);
 
     $json = '['; // start the json array element
-    if(!empty($varContent)){    
+    if(!empty($varContent)){
         // BUILDING AJAX REQUEST
         $json .= '{"id":"'. $var.'", "content": "'.$varContent.'"}';
         $json .= ']'; // end the json array element
@@ -52,7 +48,8 @@ class AjaxController extends \Library\BackController
         //empty json
         $json .= ']';
     }
+
     exit($json);
   }
-    
+
 }

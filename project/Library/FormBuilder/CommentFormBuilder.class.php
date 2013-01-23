@@ -9,18 +9,19 @@ class CommentFormBuilder extends \Library\FormBuilder
     $this->form->setHas_fieldsets(True);
     $this->form->addFieldset(new \Library\Entities\Fieldset(array(
       'name' =>'Ajout d\'un commentaire',
-      'fieldlist' => array(new \Library\Fields\StringField(array(
-        'label' => 'Auteur',
-        'name' => 'auteur',
-        'value'=>$this->form->entity()->auteur(),
-        'has_controlgroup'=>True,
-        'span' => 'span3',
-        'maxLength' => 20,
-        'validators' => array(
-          new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (30 caractères maximum)', 30),
-          new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
-          )
-        )),
+      'fieldlist' => array(
+        // new \Library\Fields\StringField(array(
+        // 'label' => 'Auteur',
+        // 'name' => 'auteur',
+        // 'value'=>$this->form->entity()->auteur(),
+        // 'has_controlgroup'=>True,
+        // 'span' => 'span3',
+        // 'maxLength' => 20,
+        // 'validators' => array(
+        //   new \Library\Validators\MaxLengthValidator('L\'auteur spécifié est trop long (30 caractères maximum)', 30),
+        //   new \Library\Validators\NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
+        //   )
+        // )),
         new \Library\Fields\TextField(array(
           'label' => 'Contenu',
           'name' => 'contenu',
