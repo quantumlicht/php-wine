@@ -7,6 +7,7 @@ class Fichevin extends \Library\Entity
             $producteur,
             $annee,
             $appelation,
+            $cepage,
             $pays,
             $region,
             $alcool,
@@ -26,7 +27,7 @@ class Fichevin extends \Library\Entity
             $couleur;
 
   // SETTERS
-  
+
   public function setNom($nom)
   {
     if (is_string($nom) && !empty($nom))
@@ -56,6 +57,15 @@ class Fichevin extends \Library\Entity
     }
   }
 
+    public function setCepage($cepage)
+  {
+    if (!empty($cepage))
+    {
+      $this->cepage = $cepage;
+    }
+  }
+
+
   public function setPays($pays)
   {
     if (is_string($pays) && !empty($pays))
@@ -80,7 +90,7 @@ class Fichevin extends \Library\Entity
     }
   }
 
-  public function setDate(\DateTime $date)
+  public function setDate($date)
   {
     $this->date = $date;
   }
@@ -157,11 +167,11 @@ class Fichevin extends \Library\Entity
     }
   }
 
-  public function setAcidite($Acidite)
+  public function setAcidite($acidite)
   {
-    if (is_string($Acidite) && !empty($Acidite))
+    if (is_string($acidite) && !empty($acidite))
     {
-      $this->Acidite = $Acidite;
+      $this->acidite = $acidite;
     }
   }
 
@@ -188,13 +198,14 @@ class Fichevin extends \Library\Entity
       $this->couleur = $couleur;
     }
   }
-  
+
   // GETTERS
-  
+
   public function nom() {return $this->nom;}
   public function producteur() {return $this->producteur;}
   public function annee() {return $this->annee;}
   public function appelation() {return $this->appelation;}
+  public function cepage() {return $this->cepage;}
   public function pays() {return $this->pays;}
   public function region() {return $this->region;}
   public function alcool() {return $this->alcool;}
@@ -212,5 +223,5 @@ class Fichevin extends \Library\Entity
   public function tanin() {return $this->tanin;}
   public function bouche_impression() {return $this->bouche_impression;}
   public function couleur() {return $this->couleur;}
-  
+
 }

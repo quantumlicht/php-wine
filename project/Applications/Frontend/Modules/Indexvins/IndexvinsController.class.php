@@ -5,10 +5,10 @@ class IndexvinsController extends \Library\BackController
 {
   public function executeIndex(\Library\HTTPRequest $request)
   {
-    
+
     // On ajoute une définition pour le titre.
     $this->page->addVar('title', 'Index des vins');
-    
+
     // Si le formulaire a été envoyé.
     if ($request->method() == 'POST')
     {
@@ -42,17 +42,29 @@ class IndexvinsController extends \Library\BackController
     }
     $formBuilder = new \Library\FormBuilder\FichevinFormBuilder($fichevin);
     $formBuilder->build();
-  
+
     $form = $formBuilder->form();
     $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('Vins'), $request);
-    
     if ($formHandler->process())
     {
       $this->app->user()->setFlash('La fiche de vin a bien été ajoutée, merci !');
       $this->app->httpResponse()->redirect('.');
     }
-    
+
     $this->page->addVar('form', $form->createView());
   }
-    
+
+  public function executeCommentIndex(\Library\HTTPRequest $request)
+  {
+    $vins = $this->managers->getManagerOf('Vins')->getAll();
+
+    $this->page->addVar('title', 'Index des vins');
+    $this->page->addVar('listeVins', $vins);
+  }
+
+  public function executeSearch(\Library\HTTPRequest $request)
+  {
+    $this->page->addVar('title', 'Index des vins');
+  }
+
 }

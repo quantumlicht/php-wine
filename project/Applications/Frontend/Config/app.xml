@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <definitions>
 	<define var="nombre_news" value="5" />
-	<define var="nombre_caracteres" value="200" />
-	<define var="a-propos" value="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845" />
+	<define var="nombre_caracteres" value="250" />
+   <define var="apropos" value="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845" />
+   <define var="github" value="https://github.com/quantumlicht/sandbox" />
+   <define var="numeric_help_block" value="1 étant peu intense et 5 très intense." />
+	<define var="appelation_help_block" value="S'il n'y a pas d'appelation, laissez ce champ vide." />
+   <define var="max_upload" value="100000000"/>
+   <define var="media_path" value="/opt/lampp/htdocs/project/Web/media/"/>
 </definitions>
