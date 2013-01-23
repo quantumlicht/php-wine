@@ -5,7 +5,7 @@
       <?php } else { echo $title; } ?>
    </title>
 
-   <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+   <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
    <script type='text/javascript' src='/scripts/jquery/jquery.js'></script>
    <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
    <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>
@@ -13,7 +13,7 @@
    // <script type='text/javascript' src='/scripts/utils.js'></script>
  -->
 </head>
-
+DEBUG--<a href='/'>Home</a>--DEBUG
 <!-- top container -->
 <div class='container-fluid '>
   <div class='row-fluid'>
@@ -33,16 +33,16 @@
                <button id='load-ajax' value='1' type='button' class=' btn btn-large btn-primary'>Vin rouge</button>
                <button id='load-ajax' value='2'type='button' class='btn btn-large btn-primary'>Vin blanc</button>
             </div>
-         </div> 
+         </div>
       </div>
       <div class='span4'></div>
       <noscript>
         <input type="submit" name="action" value="Chargez les couleurs" />
      </noscript>
-  </div>   
-  <!-- Container Deux colonnes -->     
+  </div>
+  <!-- Container Deux colonnes -->
   <div id='section-row' class='row-fluid'>
-    <div class='span6'>        
+    <div class='span6'>
       <fieldset>
         <legend> Caractéristiques </legend>
         <div class='control-group'>
@@ -87,7 +87,7 @@
       <option></option>
       <?php foreach($pays as $country){ ?>
       <option><?php echo $country['pays']; ?> </option>
-      <?php } ?>         
+      <?php } ?>
    </select>
 </div>
 </div>
@@ -106,7 +106,7 @@
     <button type='button' id='addencepagement' class='btn'>Ajouter un cépage</button>
     <span class='help-block'><small><p class='muted'>Vous pouvez ajouter plusieurs cépages</p><p class='text-warning'><strong>N'ajoutez qu'un seul cépage par case.</strong></p></small></span>
     <div id='cepagecontainer' class='span8 row-fluid well well-small' style='margin-left:0px'>
-    </div>      
+    </div>
  </div>
 </div>
 
@@ -116,7 +116,7 @@
     <div class='input-append'>
       <input class='span4' type='text' name='alcool' placeholder='13.5' id='alcool appendedInput'/>
       <span class='add-on'>%</span>
-   </div>            
+   </div>
 </div>
 </div>
 
@@ -124,20 +124,20 @@
   <label class='control-label' for='date'>Date de dégustation </label>
   <div class='controls'>
     <input class='span2' type='text' name='date_jour' id='date'/>
-    
+
     <select id='date_mois' class='span4' name='date_mois' >
       <option></option>
-      <?php foreach($date as $key=>$value){ 
+      <?php foreach($date as $key=>$value){
         echo '<option value=\''. $key . '\'>' . $value . '</option>';
      } ?>
-  </select>         
+  </select>
 
   <select id='date_annee' class='span3' name='date_annee' >
      <option></option>
      <?php for( $max=date("Y");$max>$i=1950; $max--){ ?>
      <option><?php echo $max; ?> </option>
      <?php } ?>
-  </select>         
+  </select>
   <span class='help-block'><small>jour-mois-année</small></span>
 </div>
 </div>
@@ -155,22 +155,22 @@
   <div class='input-append'>
     <input class='span4' type='text' placeholder='19.99' name='prix' id='prix appendedInput'/>
     <span class='add-on'>$</span>
- </div>            
+ </div>
 </div>
 </div>
 
 </fieldset>
 </div>
-<!-- contenu deuxieme colonne -->      
+<!-- contenu deuxieme colonne -->
 <div class='span6'>
   <fieldset>
     <legend>L'oeil</legend>
     <div class='control-group'>
       <label class='control-label' for='couleur'>Teinte </label>
       <div class='controls'>
-        <select id='couleur' class='span6' name='teinte' > 
+        <select id='couleur' class='span6' name='teinte' >
           <option></option>
-     </select>         
+     </select>
   </div>
 </div>
 </fieldset>
@@ -179,7 +179,7 @@
  <div class='control-group'>
    <label class='control-label' for='nez_intensite'>Intensité</label>
    <div class='controls'>
-     <select id='nez_intensite' class='span6' name='nez_intensite' > 
+     <select id='nez_intensite' class='span6' name='nez_intensite' >
        <option></option>
        <?php for($i=1;$i<=5; $i++){ ?>
        <option><?php echo $i; ?> </option>
@@ -289,16 +289,16 @@
      <div class='row-fluid'>
        <p class='muted'><small>Ajouter une charactéristique à ce vin. Vous pourrez ensuite rechercher des vins selon ces tags.</small></p>
        <p class='muted'><small>Ex: Charnu,Capiteux,Vif,Cuir,etc.</small></p>
-       <p class='text-warning'><small><strong>Inserez un seul tag par case</strong></small></p>     
+       <p class='text-warning'><small><strong>Inserez un seul tag par case</strong></small></p>
     </div>
     <input type='text' autocomplete='off' id='inputtag'class='span4' data-provide="type-ahead">
     <button type='button' id='addtag' class='btn'>Ajouter un Tag</button>
-    <div class='row-fluid'>   
+    <div class='row-fluid'>
     </div>
-    <div id='tagcontainer' class='row-fluid'> </div>      
+      <div id='tagcontainer' class='row-fluid'> </div>
  </fieldset>
 </div>
-</div>     
+</div>
 </div><!-- row 2 column -->
 <div id='section-row' class='row-fluid'>
   <div class='span4'></div>
@@ -307,10 +307,10 @@
  </div>
  <div class='span4'></div>
 </div>
-</form> 
+</form>
 </div><!-- form container -->
 </div><!-- top span -->
-</div><!-- top row --> 
+</div><!-- top row -->
 </div><!-- top container -->
 
 

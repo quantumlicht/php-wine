@@ -8,16 +8,15 @@ class VinsManager_PDO extends VinsManager
   protected function add(Fichevin $fichevin)
   {
     $query = 'INSERT INTO fichevins SET nom=:nom, producteur=:producteur, annee =:annee, appelation=:appelation, pays=:pays, region=:region,'.
-      'alcool=:alcool, date=:date, code_saq=:code_saq, prix=:prix, teinte=:teinte, nez_intensite=:nez_intensite, arome=:arome, bouche_intensite=:bouche_intensite'.
-      'persistance=:persistance, saveur=:saveur, acidite=:acidite, couleur=:couleur';
-    
+      'alcool=:alcool, date=:date, code_saq=:code_saq, prix=:prix, teinte=:teinte, nez_intensite=:nez_intensite, arome=:arome, bouche_intensite=:bouche_intensite,'.
+      'persistance=:persistance, saveur=:saveur, acidite=:acidite, couleur=:couleur' ;
+
     if ($fichevin->couleur()=='rouge')
     {
       $query.=', tanin=:tanin';
     }
 
     $q = $this->dao->prepare($query);
-    
 
     $q->bindValue(':nom', $fichevin->nom());
     $q->bindValue(':producteur', $fichevin->producteur());
@@ -42,19 +41,24 @@ class VinsManager_PDO extends VinsManager
     {
       $q->bindValue(':tanin',$fichevin->tanin());
     }
-
     $q->execute();
-    
     $fichevin->setId($this->dao->lastInsertId());
   }
 
-  public function getPays()
+  public function getAcidite($couleur)
   {
-    $q = $this->dao->prepare('SELECT `id`,`pays` FROM  `pays` ORDER BY `pays`');
+    $q = $this->dao->prepare('SELECT `id`,`acidite` FROM  `acidites` ORDER BY `id` ASC');
     $q->execute();
     return $q->fetchAll();
   }
-  
+
+  public function getArome($couleur)
+  {
+    $q = $this->dao->prepare('SELECT `id`,`arome` FROM  `aromes` ORDER BY `id` ASC');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
   public function getEncepagement($couleur)
   {
     $q = $this->dao->prepare('SELECT `id`,`encepagement` FROM  `encepagements` WHERE couleur=\''.$couleur.'\' AND NOT `status`=\'pending\' ORDER BY `encepagement`');
@@ -62,16 +66,24 @@ class VinsManager_PDO extends VinsManager
     return $q->fetchAll();
   }
 
-  public function getTeinte($couleur)
+  public function getPays($couleur)
   {
-    $q = $this->dao->prepare('SELECT `id`,`teinte` FROM  `teintes` WHERE couleur=\''.$couleur.'\' ORDER BY `id` ASC');
+    $q = $this->dao->prepare('SELECT `id`,`pays` FROM  `pays` ORDER BY `pays`');
     $q->execute();
     return $q->fetchAll();
   }
 
-  public function getAcidite()
+  public function getSaveur($couleur)
   {
-    $q = $this->dao->prepare('SELECT `id`,`acidite` FROM  `acidites` ORDER BY `id` ASC');
+    $q = $this->dao->prepare('SELECT `id`,`saveur` FROM  `saveurs` ORDER BY `id` ASC');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
+
+  public function getTeinte($couleur)
+  {
+    $q = $this->dao->prepare('SELECT `id`,`teinte` FROM  `teintes` WHERE couleur=\''.$couleur.'\' ORDER BY `id` ASC');
     $q->execute();
     return $q->fetchAll();
   }
@@ -83,17 +95,34 @@ class VinsManager_PDO extends VinsManager
     return $q->fetchAll();
   }
 
-  
+  public function getTag($couleur)
+  {
+    $q = $this->dao->prepare('SELECT `id`,`tag` FROM  `tags` WHERE NOT `status`=\'pending\' ');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
   protected function modify(Fichevin $fichevin)
   {
     $q = $this->dao->prepare('UPDATE fichevins SET utilisateur = :utilisateur, courriel = :courriel, motdepasse = :motdepasse, dateAjout = NOW() WHERE id = :id');
-    
+
     $q->bindValue(':utilisateur', $comment->utilisateur());
     $q->bindValue(':courriel', $comment->utilisateur());
     $q->bindValue(':motdepasse', sha1($comment->motdepasse()));
     $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
-    
+
     $q->execute();
   }
-  
+
+  public function getAll()
+  {
+    $sql = 'SELECT id, nom, annee, pays, prix FROM fichevins';
+
+    $q = $this->dao->query($sql);
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Fichevin');
+    $listeVins = $q->fetchAll();
+
+    $q->closeCursor();
+    return $listeVins;
+  }
 }

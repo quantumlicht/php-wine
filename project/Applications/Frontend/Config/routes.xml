@@ -4,10 +4,14 @@
  	<route url="/news-([0-9]+)\.html" module="News" action="show" vars="id"/>
  	<route url="/commenter-([0-9]+)\.html" module="News" action="insertComment" vars="news" />
    <route url="/indexvins\.html" module="Indexvins" action="index"/>
- 	<route url="/indexvins\search.html" module="Indexvins" action="search"/>
- 	<route url="/a-propos\.html" module="Custom" action="redirect"/>
- 	<route url="/inscription\.html" module="Inscription" action="index"/>
- 	<route url="/login\.html" module="Inscription" action="login"/>
+ 	<route url="/indexvins/search\.html" module="Indexvins" action="search"/>
+   <route url="/indexvins/comment\.html" module="Indexvins" action="commentIndex"/>
+   <route url="/lien-externe-([a-z]+)\.html" module="Custom" action="redirect" vars="lien"/>
+   <route url="/inscription\.html" module="Inscription" action="index"/>
+   <route url="/login\.html" module="Inscription" action="login"/>
    <route url="/logout\.html" module="Custom" action="logout"/>
- 	<route url="/ajax-([a-z]+)-(none|rouge|blanc)" module="Ajax" action="ajax" vars="table,couleur"/>
+   <route url="/ajax-([a-z]+)-(none|rouge|blanc)" module="Ajax" action="ajax" vars="table,couleur"/>
+   <route url="/xml-([a-z_]+)" module="Ajax" action="xml" vars="xmlvar"/>
+   <route url="/upload" module="Custom" action="upload"/>
+   <route url="/courriel\.html" module="Courriel" action="index"/>
 </routes>

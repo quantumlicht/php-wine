@@ -3,11 +3,11 @@ function isSamePassword (form) {
    if(form.typePass.value !=form.retypePass.value && form.retypePass.value != ''){
       $('#control-group-repass,#control-group-pass').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      if($('#control-group-pass > div.controls > span').length==0){ 
+      if($('#control-group-pass > div.controls > span').length==0){
          $('<span/>',{
             id:'pass',
             class:'help-block',
-            text:"Les mots de passes saisis ne sont pas identiques."    
+            text:"Les mots de passes saisis ne sont pas identiques."
          }).appendTo('#control-group-pass > div.controls');
      }
    }
@@ -27,11 +27,11 @@ function isValidEmail (form){
    if (!validEmail.test(form.email.value)){
       $('#control-group-courriel').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      if($('#control-group-courriel > div.controls > span').length==0 ){ 
+      if($('#control-group-courriel > div.controls > span').length==0 ){
          $('<span/>',{
             id:'courriel',
             class:'help-block',
-            text:"Le courriel n'est pas valide."    
+            text:"Le courriel n'est pas valide."
          }).appendTo('#control-group-courriel > div.controls');
       }
    }
@@ -51,11 +51,11 @@ function isValidUsername (form){
    if (invalidName.test(form.username.value)){
       $('#control-group-username').addClass('error');
       $('form#subscription button[type=submit]').attr('disabled','disabled');
-      if($('#control-group-username > div.controls > span').length==0 ){ 
+      if($('#control-group-username > div.controls > span').length==0 ){
          $('<span/>',{
             id: 'username',
             class:'help-block',
-            text:"Le nom d'utilisateur ne peut pas contenir d'espace."    
+            text:"Le nom d'utilisateur ne peut pas contenir d'espace."
          }).appendTo('#control-group-username > div.controls');
       }
    }
@@ -70,11 +70,11 @@ function isValidUsername (form){
 
 function ScrollBottom (){
    var container = $('#scrollContainer');
-   container.scrollTop(container.prop('scrollHeight')); 
+   container.scrollTop(container.prop('scrollHeight'));
 }
 
 function getTextWidth(text){
-   var org = $(this)
+   var org = $(this);
    var html = $('<span style="postion:absolute;width:auto;left:-9999px">' + (text || org.html()) + '</span>');
    if (!text) {
       html.css("font-family", org.css("font-family"));
@@ -85,5 +85,14 @@ function getTextWidth(text){
    html.remove();
    return width;
 }
+
+function getPadding(html){
+   var org = $(this);
+   $('body').append(html);
+   var padding = html.css('padding');
+   html.remove();
+   return padding;
+}
+
 
 

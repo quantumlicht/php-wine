@@ -4,7 +4,7 @@ namespace Library;
 class Form
 {
    protected $entity;
-   protected $fields;
+   protected $fields = array();
    protected $fieldsets = array();
    protected $nb_columns; // Decide how many columns appear in the form
    protected $has_fieldsets;
@@ -13,19 +13,13 @@ class Form
    {
       $this->setEntity($entity);
    }
-     
-   // public function add(Field $field)
-   // {
-   //    $attr = $field->name(); // On récupère le nom du champ.
-   //    $field->setValue($this->entity->$attr()); // On assigne la valeur correspondante au champ.
-
-   //    $this->fields[] = $field; // On ajoute le champ passé en argument à la liste des champs.
-   //    return $this;
-   // }
 
    public function addFieldset($fieldset)
    {
       $this->fieldsets[] = $fieldset; // On ajoute le champ passé en argument à la liste des champs.
+      foreach ($fieldset->fieldlist(0) as $field ) {
+         $this->fields[] = $field;
+      }
       return $this;
    }
 
@@ -34,13 +28,13 @@ class Form
 
       $view = '';
       // Building list of all fields
-      foreach ($this->fieldsets as $fieldset)
-      {
-         foreach($fieldset->fieldlist() as $field)
-         {
-            $this->fields[] = $field;
-         }
-      }
+      // foreach ($this->fieldsets as $fieldset)
+      // {
+      //    foreach($fieldset->fieldlist() as $field)
+      //    {
+      //       $this->fields[] = $field;
+      //    }
+      // }
 
       if(!$this->nb_columns)
       {
@@ -48,22 +42,22 @@ class Form
          if(!$this->has_fieldsets)
          {
             foreach ($this->fields as $field)
-            { 
+            {
                $view .= $field->buildWidget();
             }
          }
          // no columns with fieldsets Ex: Inscription
          else
          {
-            $view .= '<fieldset><legend>'. $fieldset->name().'</legend>';
             foreach($this->fieldsets as $fieldset)
-            {  
+            {
+               $view .= '<fieldset><legend>'. $fieldset->name().'</legend>';
                foreach ($fieldset->fieldlist() as $field) {
                   $view .= $field->buildWidget();
                }
             }
             $view.='</fieldset>';
-         }   
+         }
       }
       else
       {
@@ -76,16 +70,16 @@ class Form
          {
             array_push($columnsContent,'<div class="'.$spanclass.'">');
          }
-         
-         //  columns + fieldsets Ex: Fichevins   
+
+         //  columns + fieldsets Ex: Fichevins
          if($this->has_fieldsets)
          // Populate columns with fieldsets
          {
-            
+
             // Populate columns with fieldsets
             foreach ($this->fieldsets as $fieldset)
             {
-               $columnsContent[$fieldset->columnid()-1] .= '<fieldset><legend>'.$fieldset->name().'</legend>';  
+               $columnsContent[$fieldset->columnid()-1] .= '<fieldset><legend>'.$fieldset->name().'</legend>';
 
                foreach ($fieldset->fieldlist() as $field)
                {
@@ -115,28 +109,29 @@ class Form
       }
       return $view;
    }
-  
+
    public function isValid()
    {
       $valid = true;
+      $nb_invalid=0;
       // On vérifie que tous les champs sont valides.
       foreach ($this->fields as $field)
       {
-         var_dump($field);
          if (!$field->isValid())
          {
+            $nb_invalid++;
             $valid = false;
          }
       }
-
+      // echo $nb_invalid;
       return $valid;
-   }   
-  
+   }
+
    public function entity()
    {
       return $this->entity;
    }
-  
+
    public function fieldsets()
    {
       return $this->fieldSets;
