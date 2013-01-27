@@ -6,18 +6,20 @@ class IndexvinsController extends \Library\BackController
   public function executeIndex(\Library\HTTPRequest $request)
   {
 
-    // On ajoute une définition pour le titre.
     $this->page->addVar('title', 'Index des vins');
+    $manager = $this->managers->getManagerOf('Vins');
 
     // Si le formulaire a été envoyé.
     if ($request->method() == 'POST')
     {
+
       $fichevin = new \Library\Entities\Fichevin(array(
         'nom' => $request->postData('nom'),
         'producteur' => $request->postData('producteur'),
         'annee' => $request->postData('annee'),
         'appelation' => $request->postData('appelation'),
         'pays' => $request->postData('pays'),
+        'encepagement' => $request->postData('encepagement'),
         'region' => $request->postData('region'),
         'alcool' => $request->postData('alcool'),
         'date' => $request->postData('date'),
@@ -33,18 +35,28 @@ class IndexvinsController extends \Library\BackController
         'acidite' => $request->postData('acidite'),
         'tanin' => $request->postData('tanin'),
         'bouche_impression' => $request->postData('bouche_impression'),
-        'couleur' => $request->postData('couleur')
+        'couleur' => $request->postData('couleur'),
+        'tag' => $request->postData('tag')
+
       ));
     }
     else
     {
       $fichevin = new \Library\Entities\Fichevin;
     }
+
     $formBuilder = new \Library\FormBuilder\FichevinFormBuilder($fichevin);
     $formBuilder->build();
 
     $form = $formBuilder->form();
-    $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('Vins'), $request);
+    $formHandler = new \Library\FormHandler($form, $manager, $request);
+
+    if ($manager->wineExists($fichevin) || $manager->codeSaqExists($fichevin))
+    {
+      $this->app->user()->setErrorFlash('Ce vin existe déjà dans la base de données.');
+      $this->app->httpResponse()->redirect('./indexvins.html');
+    }
+
     if ($formHandler->process())
     {
       $this->app->user()->setFlash('La fiche de vin a bien été ajoutée, merci !');

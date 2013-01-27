@@ -43,8 +43,115 @@ class VinsManager_PDO extends VinsManager
     }
     $q->execute();
     $fichevin->setId($this->dao->lastInsertId());
+
+
+    $arrCepage=explode(',',$fichevin->encepagement());
+    foreach ($arrCepage as $cepage)
+    {
+      $id = self::getId('encepagements','encepagement',$cepage) ;
+      if($id)
+      {
+        $query='INSERT INTO encepagement_store (encepagementId,vinId) VALUES('.$id[0]['id'].','.$fichevin->id().')';
+        $q=$this->dao->prepare($query);
+        $q->execute();
+      }
+      else
+      {
+        // first store in list of encepagement
+        $insertQuery='INSERT INTO encepagements (`id`,`encepagement`,`couleur`,`status`) VALUES (NULL,\''.$cepage.'\',\''.$fichevin->couleur().'\',\'pending\')';
+        $qInsert=$this->dao->prepare($insertQuery);
+        $qInsert->execute();
+
+        $encepagementId=$this->dao->lastInsertId();
+        // then add in the encepagement store
+        $storeQuery='INSERT INTO encepagement_store (`encepagementId`,`vinId`) VALUES('.$encepagementId.','.$fichevin->id().')';
+        $qStore=$this->dao->prepare($storeQuery);
+        $qStore->execute();
+      }
+    }
+
+    $arrTag=explode(',',$fichevin->tag());
+    foreach ($arrTag as $tag)
+    {
+      $id = self::getId('tags','tag',$tag);
+      if($id)
+      {
+        $query='INSERT INTO tag_store (`tagId`,`vinId`) VALUES('.$id[0]['id'].','.$fichevin->id().')';
+        $q=$this->dao->prepare($query);
+        $q->execute();
+      }
+      else
+      {
+        // first store in list of tag
+        $insertQuery='INSERT INTO tags (`id`,`tag`,`status`) VALUES (NULL,\''.$tag.'\',\'pending\')';
+        $qInsert=$this->dao->prepare($insertQuery);
+        $qInsert->execute();
+
+        $tagId=$this->dao->lastInsertId();
+        // then add in the tag store
+        $storeQuery='INSERT INTO tag_store (`tagId`,`vinId`) VALUES('.$tagId.','.$fichevin->id().')';
+        $qStore=$this->dao->prepare($storeQuery);
+        $qStore->execute();
+      }
+    }
+
   }
 
+  public function wineExists(Fichevin $fichevin){
+    $q = $this->dao->prepare('SELECT * FROM fichevins WHERE nom = :nom');
+    $q->bindValue(':nom',$fichevin->nom());
+    $q->execute();
+    return count($q->fetchAll());
+  }
+
+  public function codeSaqExists(Fichevin $fichevin){
+    $q = $this->dao->prepare('SELECT * FROM fichevins WHERE code_saq = :code_saq');
+    $q->bindValue(':code_saq',$fichevin->code_saq());
+    $q->execute();
+    return count($q->fetchAll());
+  }
+
+
+  private function getId($table,$column,$value)
+  {
+    $q = $this->dao->prepare('SELECT id FROM '. $table.' WHERE '.$column.'="'.$value.'"');
+    $q->execute();
+    return $q->fetchAll();
+  }
+
+  public function countPending($table)
+  {
+    $query = $this->dao->prepare('SELECT * FROM '.$table. ' WHERE status=\'pending\'');
+    $query->execute();
+    return count($query->fetchAll());
+  }
+
+  public function getPending($table)
+  {
+    $query = $this->dao->prepare('SELECT * FROM '.$table. ' WHERE status=\'pending\'');
+    $query->execute();
+    return $query->fetchAll();
+  }
+
+  public function modifyRow($table,$rowId,$column,$value)
+  {
+    $q = $this->dao->prepare('UPDATE '. $table.' SET '.$column.' = :marker WHERE id = :id');
+    $q->bindValue(':marker', $value);
+    $q->bindValue(':id', $rowId, \PDO::PARAM_INT);
+    echo $value.'   '.$rowId;
+    var_dump($q);
+
+    $q->execute();
+  }
+
+  public function deleteRow($table,$rowId)
+  {
+    $this->dao->exec('DELETE FROM '. $table.' WHERE id = '.(int) $rowId);
+
+  }
+
+  //========================================================================
+  // PUBLIC
   public function getAcidite($couleur)
   {
     $q = $this->dao->prepare('SELECT `id`,`acidite` FROM  `acidites` ORDER BY `id` ASC');

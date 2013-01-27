@@ -5,18 +5,30 @@ class NewsController extends \Library\BackController
 {
   public function executeIndex(\Library\HTTPRequest $request)
   {
-    $nombreNews = $this->app->config()->get('nombre_news');
+    $pageId= $request->getData('page')!=null?$request->getData('page'):0;
+    $newsPerPage=$this->app->config()->get('news_per_page');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
 
-    // On ajoute une définition pour le titre.
-    $this->page->addVar('title', 'Liste des '.$nombreNews.' dernières news');
-
-    // On récupère le manager des news.
     $manager = $this->managers->getManagerOf('News');
 
-    // Cette ligne, vous ne pouviez pas la deviner sachant qu'on n'a pas encore touché au modèle.
-    // Contentez-vous donc d'écrire cette instruction, nous implémenterons la méthode ensuite.
-    $listeNews = $manager->getList(0, $nombreNews);
+    $nb_news = $manager->getNbRows();
+    $nb_page = $nb_news%$newsPerPage==0?intval($nb_news/$newsPerPage):intval($nb_news/$newsPerPage)+1;
+
+
+    if($pageId>$nb_page)
+    {
+      $listeNews = $manager->getList(($nb_page-1)*$newsPerPage,$newsPerPage);
+    }
+    elseif($pageId==0)
+    {
+      $pageId=1;
+      $listeNews = $manager->getList(0,$newsPerPage);
+    }
+    else
+    {
+      $listeNews = $manager->getList(($pageId-1)*$newsPerPage,$newsPerPage);
+    }
+
 
     foreach ($listeNews as $news)
     {
@@ -30,7 +42,11 @@ class NewsController extends \Library\BackController
     }
 
     // On ajoute la variable $listeNews à la vue.
+    $this->page->addVar('activePage',$pageId);
+    $this->page->addVar('title', 'Nouvelles du site');
     $this->page->addVar('listeNews', $listeNews);
+    $this->page->addVar('nb_page',$nb_page);
+    $this->page->addVar('newsPerPage',$newsPerPage);
   }
 
   public function executeShow(\Library\HTTPRequest $request)
@@ -80,7 +96,6 @@ class NewsController extends \Library\BackController
 
     if ($formHandler->process())
     {
-      // $this->managers->getManagerOf('Comments')->save($comment);
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
       $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
     }
