@@ -18,8 +18,7 @@ class LoginFormBuilder extends \Library\FormBuilder
         'span' => 'span4',
         'maxLength' => 20,
         'validators' => array(
-          new \Library\Validators\MaxLengthValidator('Le nom d\'utilisateur doit etre inferieur a 20 characteres', 20),
-          new \Library\Validators\NotNullValidator('Merci de spécifier le nom d\'utilisateur')
+
           )
         )),
         new \Library\Fields\PasswordField(array(
@@ -29,11 +28,10 @@ class LoginFormBuilder extends \Library\FormBuilder
           'span' => 'span4',
           'maxLength' => 48,
           'validators' => array(
-            new \Library\Validators\MaxLengthValidator('Le mot de passe doit etre inferieur a 48 caractères', 48),
-            new \Library\Validators\NotNullValidator('Merci de spécifier le mot de passe')
+
           )
         ))
       )
-  )));  
+  )));
   }
 }

@@ -18,9 +18,22 @@ class User extends ApplicationComponent
     return $flash;
   }
 
+  public function getErrorFlash()
+  {
+    $error_flash = $_SESSION['error_flash'];
+    unset($_SESSION['error_flash']);
+
+    return $error_flash;
+  }
+
   public function hasFlash()
   {
     return isset($_SESSION['flash']);
+  }
+
+  public function hasErrorFlash()
+  {
+    return isset($_SESSION['error_flash']);
   }
 
   public function isAdmin()
@@ -60,5 +73,10 @@ class User extends ApplicationComponent
   public function setFlash($value)
   {
     $_SESSION['flash'] = $value;
+  }
+
+  public function setErrorFlash($value)
+  {
+    $_SESSION['error_flash'] = $value;
   }
 }

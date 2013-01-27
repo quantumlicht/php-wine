@@ -14,9 +14,23 @@
       Philippe Guay.com
       <?php } else { echo $title; } ?>
    </title>
+      <?php $phpSelf = $_SERVER['REQUEST_URI'];?>
 </head>
 
-<body>
+<body style="overflow-y:scroll">
+   <script type="text/javascript" >
+      $(document).ready(function(){
+         // var root_url = "http://philippeguay.com";
+         var phpSelf = "<?php echo $phpSelf;?>";
+            $("ul.nav > li").each(function() {
+               var link = $(this).children("a").attr("href");
+               if(phpSelf == link)
+               {
+                  $(this).addClass("active");
+               }
+            });
+      });
+   </script>
    <div class='page-header'>
       <div class='row-fluid'>
          <div class="span4"></div>
@@ -29,12 +43,12 @@
    <div class="container-fluid">
       <div class="row-fluid">
          <div class="span2"></div>
-         <div class="span8">
+         <div class="span9">
             <div class='navbar navbar-inverse'>
                <div class="navbar-inner">
                   <a class='brand' href="#">Qlicht</a>
                   <ul class='nav'>
-                     <li class='active'><a href="/"> <i class="icon-home"></i> Accueil</a></li>
+                     <li><a href="/"> <i class="icon-home icon-white"></i> Accueil</a></li>
                      <?php if ($user->isAuthenticated()){?>
                         <li class='dropdown'>
 
@@ -92,9 +106,9 @@
 
       <div class='row-fluid'>
          <div class="span2"></div>
-         <div class="span8">
+         <div class="span9">
             <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
-
+            <?php if ($user->hasErrorFlash()) echo '<div class="alert alert-error"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getErrorFlash(), '</div>'; ?>
             <?php echo $content; ?>
          </div>
       </div>
