@@ -21,8 +21,7 @@
       </div>
 
       <div class="row-fluid">
-         <div class="span2"></div>
-         <div class="span8">
+         <div class="span6">
             <fieldset>
                <legend>Impression d'ensemble</legend>
                <div class='row-fluid'>
@@ -30,11 +29,16 @@
                   <p class='muted'><small>Ex: Charnu,Capiteux,Vif,Cuir,etc.</small></p>
                   <p class='text-warning'><small><strong>Inserez un seul tag par case</strong></small></p>
                </div>
-               <input type='text' autocomplete='off' id='inputtag'class='span4' data-provide="type-ahead">
-               <button type='button' id='addtag' class='btn'>Ajouter un Tag</button>
+               <input type='text' autocomplete='off' id='inputtag' class='span4' data-provide="type-ahead">
+               <button type='button' id='addtag' class='btn'><i class="icon-plus"></i> tags</button>
                <div class='row-fluid'>
                </div>
                <div id='tagcontainer' class='row-fluid'> </div>
+            </fieldset>
+         </div>
+         <div class="span6">
+            <fieldset>
+               <legend>Ajouter une Photo</legend>
             </fieldset>
          </div>
       </div>

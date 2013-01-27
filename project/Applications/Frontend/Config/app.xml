@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <definitions>
-	<define var="nombre_news" value="5" />
-	<define var="nombre_caracteres" value="250" />
+	<define var="news_per_page" value="5" />
+	<define var="nombre_caracteres" value="275" />
    <define var="apropos" value="http://ca.linkedin.com/pub/philippe-guay/3a/4a8/845" />
    <define var="github" value="https://github.com/quantumlicht/sandbox" />
    <define var="numeric_help_block" value="1 étant peu intense et 5 très intense." />

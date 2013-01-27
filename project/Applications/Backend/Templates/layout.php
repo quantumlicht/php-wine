@@ -37,7 +37,11 @@
                         <?php if ($user->isAdmin()) { ?>
                         <li><a href="/admin/"><i class="icon-pencil icon-white"></i> edit news</a></li>
                         <li><a href="/admin/news-insert.html"><i class="icon-plus icon-white"></i> add news</a></li>
+                        <?php }
+                        if(isset($nbPendingTasks) && $nbPendingTasks>0){ ?>
+                          <li><a href="/admin/task.html"><span class="badge badge-info"><?php echo $nbPendingTasks; ?></span> Tasks</a></li>
                         <?php } ?>
+
                      </ul>
                      <?php if ($user->isAdmin()){ ?>
                       <form class='navbar-form pull-right' action="/admin/logout.html" method="post">
@@ -54,12 +58,13 @@
             <div class="span2"></div>
                <div class='span8'>
                   <div class="row-fluid">
+                    <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
+
                     <strong>En étant admin, vous pouvez aussi éditer ou supprimer les commentaires des posts qui sont affichés sur la page principale.
                     Pour y accéder, vous n'avez qu'à vous rendre sur la page principale en restant connecté à votre compte admin.
                     vous verrez alors que vous avez maintenant la possibilité d'éditer les commentaires.</strong>
                   </div>
                   <hr>
-                  <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
                   <?php echo $content; ?>
                </div>
            <div class="span2"></div>

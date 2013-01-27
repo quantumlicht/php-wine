@@ -68,8 +68,9 @@ class FichevinFormBuilder extends \Library\FormBuilder
         )),
         new \Library\Fields\StringField(array(
           'label' => 'Encépagement',
-          'name' =>'encepagement',
+          'name' =>'cepage',
           'span'=>'span6',
+          'value'=>$this->form->entity()->encepagement(),
           'typeahead' => True,
           'validators' => array(
             new \Library\Validators\NotNullValidator('Merci de spécifier le ou les cépages.')
@@ -80,9 +81,28 @@ class FichevinFormBuilder extends \Library\FormBuilder
           'name' => 'alcool',
           'placeholder'=>'00.0',
           'value'=> $this->form->entity()->alcool(),
-          'span' => 'span3',
+          'span' => 'span4',
           'validators' => array(
-
+            new \Library\Validators\NotNullValidator('Merci de spécifier le pourcentage d\'alcool')
+          )
+        )),
+        new \Library\Fields\StringField(array(
+          'label' => 'Prix',
+          'name' => 'prix',
+          'placeholder'=>'00.00',
+          'value'=> $this->form->entity()->prix(),
+          'span' => 'span4',
+          'validators' => array(
+            new \Library\Validators\NotNullValidator('Merci de spécifier le prix.')
+          )
+        )),
+        new \Library\Fields\StringField(array(
+          'label' => 'Code SAQ',
+          'name' => 'code_saq',
+          'value'=> $this->form->entity()->code_saq(),
+          'span' => 'span4',
+          'validators' => array(
+            new \Library\Validators\NotNullValidator('Merci de spécifier le code SAQ')
           )
         )),
         new \Library\Fields\DateField(array(
@@ -91,16 +111,6 @@ class FichevinFormBuilder extends \Library\FormBuilder
           'value'=> $this->form->entity()->date(),
           'validators' => array(
             new \Library\Validators\NotNullValidator('Merci de spécifier la date de dégustation.')
-          )
-        )),
-        new \Library\Fields\StringField(array(
-          'label' => 'Prix',
-          'name' => 'prix',
-          'placeholder'=>'00.00',
-          'value'=> $this->form->entity()->prix(),
-          'span' => 'span3',
-          'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier le prix.'),
           )
         ))
       )
@@ -207,7 +217,7 @@ class FichevinFormBuilder extends \Library\FormBuilder
           'span' => 'span4',
           'maxLength'=> 20,
           'validators' => array(
-            new \Library\Validators\NotNullValidator('Merci de spécifier les tanins.')
+
           )
         )),
         new \Library\Fields\TextField(array(

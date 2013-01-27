@@ -7,7 +7,7 @@ class Fichevin extends \Library\Entity
             $producteur,
             $annee,
             $appelation,
-            $cepage,
+            $encepagement,
             $pays,
             $region,
             $alcool,
@@ -24,6 +24,7 @@ class Fichevin extends \Library\Entity
             $acidite,
             $tanin,
             $bouche_impression,
+            $tag,
             $couleur;
 
   // SETTERS
@@ -46,7 +47,9 @@ class Fichevin extends \Library\Entity
 
   public function setAnnee($annee)
   {
-      $this->annee = (int) $annee;
+    if (!empty($annee)){
+      $this->annee = $annee;
+    }
   }
 
   public function setAppelation($appelation)
@@ -57,11 +60,11 @@ class Fichevin extends \Library\Entity
     }
   }
 
-    public function setCepage($cepage)
+    public function setEncepagement($encepagement)
   {
-    if (!empty($cepage))
+    if (!empty($encepagement))
     {
-      $this->cepage = $cepage;
+      $this->encepagement = $encepagement;
     }
   }
 
@@ -183,6 +186,14 @@ class Fichevin extends \Library\Entity
     }
   }
 
+  public function setTag($tag)
+  {
+    if(!empty($tag))
+    {
+      $this->tag = $tag;
+    }
+  }
+
   public function setBouche_impression($bouche_impression)
   {
     if (is_string($bouche_impression) && !empty($bouche_impression))
@@ -205,7 +216,7 @@ class Fichevin extends \Library\Entity
   public function producteur() {return $this->producteur;}
   public function annee() {return $this->annee;}
   public function appelation() {return $this->appelation;}
-  public function cepage() {return $this->cepage;}
+  public function encepagement() {return $this->encepagement;}
   public function pays() {return $this->pays;}
   public function region() {return $this->region;}
   public function alcool() {return $this->alcool;}
@@ -223,5 +234,6 @@ class Fichevin extends \Library\Entity
   public function tanin() {return $this->tanin;}
   public function bouche_impression() {return $this->bouche_impression;}
   public function couleur() {return $this->couleur;}
+  public function tag() {return $this->tag;}
 
 }

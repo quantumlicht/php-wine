@@ -5,14 +5,15 @@ class InscriptionController extends \Library\BackController
 {
   public function executeIndex(\Library\HTTPRequest $request)
   {
-
+    $manager = $this->managers->getManagerOf('Inscriptions');
     // Si le formulaire a été envoyé.
     if ($request->method() == 'POST')
     {
       $inscription = new \Library\Entities\Inscription(array(
         'courriel' => $request->postData('courriel'),
         'utilisateur' => $request->postData('utilisateur'),
-        'motdepasse' => $request->postData('motdepasse')
+        'motdepasse' => sha1($request->postData('motdepasse')),
+        'motdepasse_retype' => sha1($request->postData('motdepasse_retype'))
       ));
     }
     else
@@ -24,7 +25,19 @@ class InscriptionController extends \Library\BackController
     $formBuilder->build();
 
     $form = $formBuilder->form();
-    $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('Inscriptions'), $request);
+    $formHandler = new \Library\FormHandler($form, $manager, $request);
+
+    if ($manager->userExists($inscription))
+    {
+      $this->app->user()->setErrorFlash('Ce nom d\'utilisateur est déjà utilisé.');
+      $this->app->httpResponse()->redirect('./inscription.html');
+    }
+
+    if ($manager->emailTaken($inscription))
+    {
+      $this->app->user()->setErrorFlash('Cette adresse courriel est déjà utilisée.');
+      $this->app->httpResponse()->redirect('./inscription.html');
+    }
 
     if ($formHandler->process() )
     {
@@ -43,8 +56,10 @@ class InscriptionController extends \Library\BackController
     {
       $login = new \Library\Entities\Inscription(array(
         'utilisateur' => $request->postData('utilisateur'),
-        'motdepasse' => sha1($request->postData('motdepasse'))
+        'motdepasse' => sha1($request->postData('motdepasse')),
+        'motdepasse_retype' =>sha1($request->postData('motdepasse_retype'))
         ));
+
       if ($this->managers->getManagerOf('Inscriptions')->isAuthenticated($login))
       {
         $this->app->user()->setAuthenticated(true);

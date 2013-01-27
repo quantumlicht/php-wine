@@ -1,5 +1,3 @@
-<p style="text-align: center">Il y a actuellement <?php echo $nombreNews; ?> news. En voici la liste :</p>
-
 <table class='table table-hover'>
 	<thead>
 		<tr>
