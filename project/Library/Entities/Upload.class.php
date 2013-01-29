@@ -7,7 +7,8 @@ class Upload extends \Library\Entity
              $fullname,
              $name,
              $extension,
-             $ficheid=0;
+             $ficheId=0,
+             $utilisateurId=0;
 
 
   // SETTERS
@@ -16,11 +17,15 @@ class Upload extends \Library\Entity
       $this->fullname = $fullname;
    }
 
-   public function setFicheid($ficheid)
+   public function setFicheid($ficheId)
    {
-      $this->ficheid = (int) $ficheid;
+      $this->ficheId = (int) $ficheId;
    }
 
+   public function setUtilisateurId($utilisateurId)
+   {
+      $this->utilisateurId = (int) $utilisateurId;
+   }
 
    public function setSize($size)
    {
@@ -44,9 +49,14 @@ class Upload extends \Library\Entity
    return $this->extension;
    }
 
-   public function ficheid()
+   public function ficheId()
    {
-   return $this->ficheid;
+   return $this->ficheId;
+   }
+
+   public function utilisateurId()
+   {
+   return $this->utilisateurId;
    }
 
    public function fullname()

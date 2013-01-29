@@ -34,17 +34,20 @@
    ?>
   </ul>
 </div> -->
+<?php if($activePage==1){ ?>
+
 <div class="hero-unit">
   <h1>Bienvenue !</h1>
-  <p>Tagline</p>
-  <!-- <p>
-    <a class="btn btn-primary btn-large">
-      Learn more
+  <p>Créez un compte pour commencer à partager vos dégustations et en discuter avec les autres membres.</p>
+  <p>
+    <a class="btn btn-primary btn-large" href="/admin">
+      DEBUG--Section Admin
     </a>
-  </p> -->
+  </p>
 </div>
 
-<?php
+
+<?php }
 foreach ($listeNews as $news)
 {
 ?>

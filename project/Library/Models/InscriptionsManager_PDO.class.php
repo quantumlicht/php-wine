@@ -5,6 +5,7 @@ use \Library\Entities\Inscription;
 
 class InscriptionsManager_PDO extends InscriptionsManager
 {
+
   protected function add(Inscription $inscription)
   {
     $q = $this->dao->prepare('INSERT INTO inscriptions SET utilisateur = :utilisateur, courriel = :courriel, motdepasse = :motdepasse, dateAjout = NOW()');

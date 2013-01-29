@@ -6,15 +6,16 @@ use \Library\Entities\Upload;
 class UploadManager_PDO extends UploadManager
 {
 
-  protected function add(Upload $upload)
+  protected function addFile(Upload $upload)
   {
-    $requete = $this->dao->prepare('INSERT INTO uploads SET fullname=:fullname, name = :name, extension = :extension, fichevin = :fichevin, size=:size');
+    $requete = $this->dao->prepare('INSERT INTO uploads SET fullname=:fullname, name = :name, extension = :extension, utilisateurId = :utilisateurId, ficheId = :ficheId, size=:size');
 
     $requete->bindValue(':fullname', $upload->fullname());
     $requete->bindValue(':name', $upload->name());
     $requete->bindValue(':extension', $upload->extension());
-    $requete->bindValue(':fichevin', '');
+    $requete->bindValue(':ficheId', $upload->ficheId());
     $requete->bindValue(':size', $upload->size());
+    $requete->bindValue(':utilisateurId', $upload->utilisateurId());
 
     $requete->execute();
   }
@@ -23,6 +24,14 @@ class UploadManager_PDO extends UploadManager
   {
     return $this->dao->query('SELECT COUNT(*) FROM upload')->fetchColumn();
   }
+
+  public function fileExists($filename){
+    $q = $this->dao->prepare('SELECT * FROM uploads WHERE fullname = :fullname');
+    $q->bindValue(':fullname',$filename);
+    $q->execute();
+    return count($q->fetchAll());
+  }
+
 
   public function delete($id)
   {

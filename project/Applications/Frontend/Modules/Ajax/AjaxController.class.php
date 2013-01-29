@@ -30,7 +30,7 @@ class AjaxController extends \Library\BackController
     $json .= implode(',', $json_table); // join the objects by commas;
 
     $json .= ']'; // end the json array element
-    exit('<head><meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" /></head>'.$json);
+    exit('<head><meta http-equiv="Content-type" content="text/html; charset=utf8" /></head>'.$json);
   }
 
   public function executeXml(\Library\HTTPRequest $request)

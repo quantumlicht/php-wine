@@ -56,5 +56,4 @@ abstract class VinsManager extends \Library\Manager
     }
   }
 
-
 }

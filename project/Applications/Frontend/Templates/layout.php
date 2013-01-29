@@ -2,9 +2,10 @@
 <html>
 <head>
 
-   <meta http-equiv="Content-type" content="text/html; charset=utf8" />
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
    <script type='text/javascript' src='/scripts/jquery/jquery.js'></script>
    <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
+   <!-- <link href="/scripts/bootstrap/css/background.css" type="text/css" rel="stylesheet" media="screen"> -->
    <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>
    <script type='text/javascript' src='/scripts/formload.js'></script>
    <script type='text/javascript' src='/scripts/utils.js'></script>
@@ -52,7 +53,7 @@
                      <?php if ($user->isAuthenticated()){?>
                         <li class='dropdown'>
 
-                           <a class='dropdown-toggle' data-toggle='dropdown' href='#'><img style="position:relative;top:-2px" src="/media/bottle-white.png" heigth="14" width="18"/> Les vins
+                           <a class='dropdown-toggle' data-toggle='dropdown' href='#'><img style="position:relative;top:-2px" src="/images/bottle-white.png" heigth="14" width="18"/> Les vins
                               <b class='caret'></b>
                            </a>
 
@@ -69,7 +70,7 @@
                      <li><a href="/courriel.html"><i class="icon-envelope icon-white"></i> Contact</a></li>
 
                      <li><a href="/lien-externe-apropos.html"> <i class="icon-question-sign icon-white"></i> À propos</a></li>
-                     <li><a href="/lien-externe-github.html"> <img style="position:relative;top:-2px" src="/media/github-white.png" heigth="19" width="19"/> Github</a></li>
+                     <li><a href="/lien-externe-github.html"> <img style="position:relative;top:-2px" src="/images/github-white.png" heigth="19" width="19"/> Github</a></li>
                      <li class='divider-vertical'></li>
                      <?php  if ($user->isAdmin()) { ?>
                         <li><a href="/admin/"><i class="icon-th-large icon-white"></i> Admin</a></li>
@@ -107,8 +108,8 @@
       <div class='row-fluid'>
          <div class="span2"></div>
          <div class="span9">
-            <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
-            <?php if ($user->hasErrorFlash()) echo '<div class="alert alert-error"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getErrorFlash(), '</div>'; ?>
+            <?php if ($user->hasFlash()) echo '<div class="alert alert-info" style="text-align:center"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getFlash(), '</div>'; ?>
+            <?php if ($user->hasErrorFlash()) echo '<div class="alert alert-error" style="text-align:center"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getErrorFlash(), '</div>'; ?>
             <?php echo $content; ?>
          </div>
       </div>

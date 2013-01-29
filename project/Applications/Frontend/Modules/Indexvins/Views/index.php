@@ -1,6 +1,6 @@
 
 <div class="container-fluid">
-   <form id='indexvin' class='well form-horizontal'  action=""  method='post'>
+   <form id='indexvin' class='well form-horizontal'  action=""  method='post' enctype="multipart/form-data">
       <div id='section-row' class='row-fluid'>
          <div class='span4'></div>
          <div class='span4'>
@@ -20,7 +20,7 @@
          <?php echo $form ?>
       </div>
 
-      <div class="row-fluid">
+      <!--<div class="row-fluid">
          <div class="span6">
             <fieldset>
                <legend>Impression d'ensemble</legend>
@@ -41,7 +41,7 @@
                <legend>Ajouter une Photo</legend>
             </fieldset>
          </div>
-      </div>
+      </div>-->
       <div class="row-fluid" style="padding-top:4%">
          <div class="span4"></div>
          <div class="span4">

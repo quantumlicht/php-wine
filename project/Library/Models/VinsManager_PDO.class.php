@@ -5,6 +5,7 @@ use \Library\Entities\Fichevin;
 
 class VinsManager_PDO extends VinsManager
 {
+
   protected function add(Fichevin $fichevin)
   {
     $query = 'INSERT INTO fichevins SET nom=:nom, producteur=:producteur, annee =:annee, appelation=:appelation, pays=:pays, region=:region,'.
@@ -45,7 +46,7 @@ class VinsManager_PDO extends VinsManager
     $fichevin->setId($this->dao->lastInsertId());
 
 
-    $arrCepage=explode(',',$fichevin->encepagement());
+    $arrCepage=array_unique(explode(',',$fichevin->encepagement()));
     foreach ($arrCepage as $cepage)
     {
       $id = self::getId('encepagements','encepagement',$cepage) ;
@@ -70,7 +71,7 @@ class VinsManager_PDO extends VinsManager
       }
     }
 
-    $arrTag=explode(',',$fichevin->tag());
+    $arrTag=array_unique(explode(',',$fichevin->tag()));
     foreach ($arrTag as $tag)
     {
       $id = self::getId('tags','tag',$tag);
@@ -110,7 +111,6 @@ class VinsManager_PDO extends VinsManager
     $q->execute();
     return count($q->fetchAll());
   }
-
 
   private function getId($table,$column,$value)
   {
@@ -186,7 +186,6 @@ class VinsManager_PDO extends VinsManager
     $q->execute();
     return $q->fetchAll();
   }
-
 
   public function getTeinte($couleur)
   {

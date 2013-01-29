@@ -22,9 +22,10 @@ $(function(){
          name:'tag'
       }).appendTo('form#indexvin');
 
-      $('#inputtag').after(function(){
+      $('[name=mot-cle]').closest('.control-group').after(function(){
          return $('<div/>',{id:'tagContainer',class:'span12 well well-small',style:'margin-left:2px'});
       });
+
 
       // TypeAheads
       cepageTypeahead=$('[name=cepage]');
@@ -41,12 +42,12 @@ $(function(){
             return arr;
          },
          updater: function(item){
-            Utils.appendToContainer(item,'cepage');
+            Utils.appendToContainer(item,'cepage',5);
             cepageTypeahead.trigger('focus');
          }
       });
 
-      tagTypeahead=$('input#inputtag');
+      tagTypeahead=$('[name=mot-cle]');
       tagTypeahead.typeahead({
          items:5,
          source: function(typeahead,query){
@@ -59,7 +60,7 @@ $(function(){
             return arr;
          },
          updater: function(item){
-            Utils.appendToContainer(item,'tag');
+            Utils.appendToContainer(item,'tag',10);
             tagTypeahead.trigger('focus');
          }
 
@@ -78,6 +79,7 @@ $(function(){
          return $('<span/>',{class:'add-on',text:'%'});
       });
 
+
       // Create container for array
       $('[name=cepage]').wrap(function(){
          return $('<div/>',{class:'input-append'});
@@ -90,32 +92,84 @@ $(function(){
                $cepageInput=$('[name=cepage]');
                var currentCepage = String($cepageInput.val());
                currentCepage = currentCepage.replace(/\s/g,'');
-               Utils.appendToContainer(currentCepage,'cepage');
+               Utils.appendToContainer(currentCepage,'cepage',5);
                $cepageInput.val('');
                $cepageInput.trigger('focus');
             }
          });
       });
 
-      // Adding Click function to add new tags
-      $('button#addtag').click(function(){
-         $tagInput=$('#inputtag');
-         var currentTag = String($tagInput.val());
-         currentTag = currentTag.replace(/\s/g,'');
-         Utils.appendToContainer(currentTag,'tag');
-         $tagInput.val('');
-         $tagInput.trigger('focus');
+      $('[name=mot-cle]').wrap(function(){
+         return $('<div/>',{class:'input-append'});
+      }).after(function(){
+         return $('<button/>',{
+            type:'button',
+            class:'btn',
+            html:'<i class="icon-plus"></i>',
+            click: function(){
+               $tagInput=$('[name=mot-cle]');
+               var currentTag = String($tagInput.val());
+               currentTag = currentTag.replace(/\s/g,'');
+               Utils.appendToContainer(currentTag,'tag',10);
+               $tagInput.val('');
+               $tagInput.trigger('focus');
+            }
+         });
       });
 
-      // Adding Help blocks
 
-        // $("select#couleur").html(options);
-        // var options = '<option></option>';
-        // for (var i = 0; i < json.encepagement.length; i++) {
-        //    options += '<option value="' + json.encepagement[i].id + '">' + json.encepagement[i].encepagement + '</option>';
-        // }
-        // $("select#encepagement").html(options);
-        // $('select#encepagement').scrollTop(0);
+
+
+      // $('[name=fichier]').closest('.control-group').after(function(){
+      //    return $('<div/>',{id:'test',class:'span8 well well-small',style:'margin-left:2px'});
+      // });
+      $('#uploadHiddenDiv').after(function(){
+         return $('<div/>',{
+            id:'divUpload',
+            class:'input-append span6'
+         });
+      });
+      $('#divUpload').append(function(){
+         return $('<input/>',{
+            type:'text',
+            id:'uploadContainer',
+            class:'span12 well well-small'
+         }).attr('disabled','').css('background','white');
+      });
+
+      $('#divUpload').append(function(){
+         return $('<button/>',{
+            type:'button',
+            class:'btn',
+            html:'<i class="icon-plus"></i>',
+            click: function(){
+               $('[name=fichier]').click();
+            }
+         });
+      });
+
+      $('[name=fichier]').change(function(){
+         filename= $(this).val().split('\\')[2];
+         $('#uploadContainer').val(filename);
+      });
+
+
+
+      // // Adding Click function to add new tags
+      // $('button#addtag').click(function(){
+      //    $tagInput=$('#inputtag');
+      //    var currentTag = String($tagInput.val());
+      //    currentTag = currentTag.replace(/\s/g,'');
+      //    Utils.appendToContainer(currentTag,'tag',10);
+      //    $tagInput.val('');
+      //    $tagInput.trigger('focus');
+      // });
+
+      // Adding Help blocks
+         //ajouter cepage maximum
+         //ajouter tag maximum
+         //expliquer lintensite
+         //expliquer cepage
 
    });
 //============================================================================================================================
@@ -137,7 +191,7 @@ $(function(){
          var json = $.parseJSON(objAjaxResponse.responseText.match(/\[.*\]/)[0]);
          var options = '<option></option>';
          for (var i = 0; i < json.length; i++) {
-           options += '<option value="' + json[i].content + '">' + json[i].content + '</option>';
+           options += '<option value="' + json[i].id + '">' + json[i].content + '</option>';
          }
          $('[name='+arrSelects[id]+']').html(options);
       });
@@ -158,8 +212,6 @@ $(function(){
    });
 
 //===========================================================================================================================
-   // FORM VALIDATION UX
-
 
    // On debloque les erreurs si l'utilisateur semble vouloir corriger son erreur
    Utils.removeErrorOnFocus();
@@ -170,7 +222,6 @@ $(function(){
    arrTags = [];
 
    $('form#indexvin').submit(function(){
-
       // Cepages
       cepages=$('#cepageContainer').find('span');
       $.each(cepages,function(){
@@ -198,7 +249,7 @@ $(function(){
       $('[name=date]').val(date);
    });
 //==============================================================================================================================
-   // FORM LOCK
+   // FORM VALIDATION UX
    // $('form#indexvin div#section-row').eq(2).mouseover(function(){
 
    //    $.each(reqinputs,function(){

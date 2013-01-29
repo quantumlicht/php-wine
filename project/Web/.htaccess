@@ -1,10 +1,13 @@
+AddDefaultCharset Off
+
+
 RewriteEngine On
 
 RewriteRule ^admin backend.php [QSA,L]
 
-RewriteRule ^indexvins/(.*) indexvins.php [QSA,L]
+# RewriteRule ^indexvins indexvins.php [QSA,L]
 
-RewriteRule ^concept/ concept.php [QSA,L]
+RewriteRule ^concept(.*) concept.php [QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 

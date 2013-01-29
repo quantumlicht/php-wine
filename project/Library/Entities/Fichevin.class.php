@@ -9,6 +9,7 @@ class Fichevin extends \Library\Entity
             $appelation,
             $encepagement,
             $pays,
+            $fichier,
             $region,
             $alcool,
             $date,
@@ -60,11 +61,19 @@ class Fichevin extends \Library\Entity
     }
   }
 
-    public function setEncepagement($encepagement)
+  public function setEncepagement($encepagement)
   {
     if (!empty($encepagement))
     {
       $this->encepagement = $encepagement;
+    }
+  }
+
+  public function setFichier($fichier)
+  {
+    if (!empty($fichier))
+    {
+      $this->fichier = $fichier;
     }
   }
 
@@ -217,6 +226,7 @@ class Fichevin extends \Library\Entity
   public function annee() {return $this->annee;}
   public function appelation() {return $this->appelation;}
   public function encepagement() {return $this->encepagement;}
+  public function fichier() {return $this->fichier;}
   public function pays() {return $this->pays;}
   public function region() {return $this->region;}
   public function alcool() {return $this->alcool;}

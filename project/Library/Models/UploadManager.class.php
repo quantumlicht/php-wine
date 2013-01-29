@@ -10,7 +10,17 @@ abstract class UploadManager extends \Library\Manager
    * @param $upload upload La upload à ajouter
    * @return void
    */
-  abstract protected function add(Upload $upload);
+  public function saveFile(Upload $upload)
+  {
+    if ($upload->isValid())
+    {
+      $upload->isNew() ? $this->addFile($upload) : $this->modifyFile($upload);
+    }
+    else
+    {
+      throw new \RuntimeException('L\'fichevin doit être validé pour être enregistré');
+    }
+  }
 
   /**
    * Méthode permettant d'enregistrer une upload.
@@ -27,17 +37,6 @@ abstract class UploadManager extends \Library\Manager
    */
   abstract public function delete($id);
 
-  public function save(upload $upload)
-  {
-    if ($upload->isValid())
-    {
-      $upload->isNew() ? $this->add($upload) : $this->modify($upload);
-    }
-    else
-    {
-      throw new \RuntimeException('La upload doit être validée pour être enregistrée');
-    }
-  }
 
   /**
    * Méthode renvoyant le nombre de upload total.

@@ -1,0 +1,11 @@
+.hero-unit{
+   background: url(/scripts/bootstrap/img/background1.jpg);
+   /*background-position: 0px 0px;*/
+   repeat center center fixed 50% 50%;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+
+   color: white;
+}

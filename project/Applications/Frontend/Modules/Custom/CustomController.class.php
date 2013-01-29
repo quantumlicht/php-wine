@@ -56,7 +56,7 @@ class CustomController extends \Library\BackController
                   'extension'=> $extension,
                   'file'=>file_get_contents($media_path . $_FILES["file"]["name"])
                   ));
-               $this->managers->getManagerOf('Upload')->save($upload_file);
+               $this->managers->getManagerOf('Upload')->addVin($upload_file);
                $this->app->user()->setFlash("Fichier téléchargé avec succès!");
 
 

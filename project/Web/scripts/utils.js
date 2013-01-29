@@ -95,37 +95,45 @@ var Utils = {
       return padding;
    },
 
-   appendToContainer : function(item,target){
+   appendToContainer : function(item,target,maxLength){
       $input = $('<span/>',{
             class:'label label-info',
             text:item,
             style:'margin-left:4px'
-          });
+      });
 
-         var button=$('<button/>',{
-            id:target,
-            type: 'button',
-            class: 'close',
-            html: "&times;"
+      var button=$('<button/>',{
+         id:target,
+         type: 'button',
+         class: 'close',
+         html: "&times;"
+      });
+
+      button.appendTo($input);
+
+      //====================================
+      var spacer = 6;
+      var padding = Utils.getPadding($input)
+      padding = padding.split(' ');
+
+      // width = largeur texte + 2*padding + spacer + largeur boutton + 2*margin boutton
+      var width = Utils.getTextWidth(item) +
+         button.width() + spacer +
+         2 * parseInt(padding[1]);
+      //====================================
+      $input.css('width',width);
+
+      $container = $('#'+target+'Container')
+      if ($container.children().length<maxLength){;
+         $container.append($input);
+      }
+      closeButtons=$('button#'+target);
+      $.each(closeButtons,function(){
+         $(this).click(function(){
+            $(this).parent().remove();
          });
-         button.appendTo($input);
-         var spacer = 6;
-         var padding = Utils.getPadding($input)
-         padding = padding.split(' ');
-         // width = largeur texte + 2*padding + spacer + largeur boutton + 2*margin boutton
-         var width = Utils.getTextWidth(item) +
-            button.width() + spacer +
-            2 * parseInt(padding[1]);
-         $input.css('width',width);
+      });
 
-         $('#'+target+'Container').append($input);
-
-         closeButtons=$('button#'+target);
-         $.each(closeButtons,function(){
-            $(this).click(function(){
-               $(this).parent().remove();
-            });
-         });
    },
 
    removeErrorOnFocus : function(){

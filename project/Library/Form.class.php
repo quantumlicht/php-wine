@@ -113,17 +113,13 @@ class Form
    public function isValid()
    {
       $valid = true;
-      $nb_invalid=0;
-      // On vérifie que tous les champs sont valides.
       foreach ($this->fields as $field)
       {
          if (!$field->isValid())
          {
-            $nb_invalid++;
             $valid = false;
          }
       }
-      // echo $nb_invalid;
       return $valid;
    }
 
