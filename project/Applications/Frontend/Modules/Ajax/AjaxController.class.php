@@ -5,26 +5,40 @@ class AjaxController extends \Library\BackController
 {
   public function executeAjax(\Library\HTTPRequest $request)
   {
-    $couleur=$request->getData('couleur');
-    $table=$request->getData('table');
-    $method='get'.ucfirst($table);
 
-    $manager = $this->managers->getManagerOf('Vins');
+    $ajaxRequest = new \Library\Entities\AjaxRequest(array(
+        'couleur'=>$request->getData('couleur'),
+        'table'=>$request->getData('table'),
+        'manager' => ucfirst($request->getData('manager')),
+        'source'=>$request->getData('source')
+    ));
+
+    $method='get'.ucfirst($ajaxRequest->table());
+    $manager = $this->managers->getManagerOf($ajaxRequest->manager());
 
     if (!is_callable(array($manager, $method)))
     {
-      throw new \RuntimeException('syntax error: method not available');
+      throw new \RuntimeException('Method called is not available');
     }
-
-    // Le ajax doit savoir s'il doit appeler le manager avec une couleur pour obtenir la requete
-    $contents = $manager->$method($couleur);
-
+    $contents = $manager->$method($ajaxRequest);
 
     // BUILDING AJAX REQUEST
-    $json = '['; // start the json array element
+    // The response will return a full row in the db.
+    // The caller needs to retrieve the fields he is interested in.
+    $json = '['; // start the json array element.
     $json_table = array();
     foreach ($contents as $content) {
-        $json_table[] = '{"id":"'. $content['id'].'", "content": "'.$content[$table].'"}';
+        $temp = array();
+        $innerjson = '{';
+        foreach($content as $key=>$value){
+            if (!is_numeric($key)){
+                $temp[] = '"'.$key.'":"'. $value.'"';
+            }
+        }
+        $innerjson .= implode(',',$temp). '}';
+
+
+        $json_table[] = $innerjson;
     }
 
     $json .= implode(',', $json_table); // join the objects by commas;
@@ -32,6 +46,10 @@ class AjaxController extends \Library\BackController
     $json .= ']'; // end the json array element
     exit('<head><meta http-equiv="Content-type" content="text/html; charset=utf8" /></head>'.$json);
   }
+
+
+
+
 
   public function executeXml(\Library\HTTPRequest $request)
   {

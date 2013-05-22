@@ -40,7 +40,7 @@
   <h1>Bienvenue !</h1>
   <p>Créez un compte pour commencer à partager vos dégustations et en discuter avec les autres membres.</p>
   <p>
-    <a class="btn btn-primary btn-large" href="/admin">
+    <a class="btn btn-primary btn-large" href="/admin/">
       DEBUG--Section Admin
     </a>
   </p>

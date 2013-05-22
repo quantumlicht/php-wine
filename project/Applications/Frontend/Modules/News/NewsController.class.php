@@ -3,6 +3,7 @@ namespace Applications\Frontend\Modules\News;
 
 class NewsController extends \Library\BackController
 {
+
   public function executeIndex(\Library\HTTPRequest $request)
   {
     $pageId= $request->getData('page')!=null?$request->getData('page'):0;
@@ -72,13 +73,13 @@ class NewsController extends \Library\BackController
     }
     else
     {
-      $username = 'Anonyme';
+      $username = self::ANONYM_USER;
     }
 
     if ($request->method() == 'POST')
     {
       $comment = new \Library\Entities\Comment(array(
-        'news' => $request->getData('news'),
+        'source' => $request->getData('source'),
         'auteur' => $username,
         'contenu' => $request->postData('contenu')
       ));
@@ -97,7 +98,7 @@ class NewsController extends \Library\BackController
     if ($formHandler->process())
     {
       $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
-      $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+      $this->app->httpResponse()->redirect('news-'.$request->getData('source').'.html');
     }
 
     $this->page->addVar('comment', $comment);

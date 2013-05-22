@@ -69,8 +69,8 @@ var Utils = {
       return bRes;
    },
 
-   ScrollBottom : function(){
-      var container = $('#scrollContainer');
+   ScrollBottom : function(id){
+      var container = $(id);
       container.scrollTop(container.prop('scrollHeight'));
    },
 

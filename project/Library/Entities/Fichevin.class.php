@@ -7,7 +7,7 @@ class Fichevin extends \Library\Entity
             $producteur,
             $annee,
             $appelation,
-            $encepagement,
+            $encepagement=array(),
             $pays,
             $fichier,
             $region,
@@ -18,14 +18,12 @@ class Fichevin extends \Library\Entity
             $teinte,
             $nez_intensite,
             $arome,
-            $nez_impression,
             $bouche_intensite,
             $persistance,
             $saveur,
             $acidite,
             $tanin,
-            $bouche_impression,
-            $tag,
+            $tag=array(),
             $couleur;
 
   // SETTERS
@@ -65,7 +63,7 @@ class Fichevin extends \Library\Entity
   {
     if (!empty($encepagement))
     {
-      $this->encepagement = $encepagement;
+      $this->encepagement[] = $encepagement;
     }
   }
 
@@ -147,13 +145,6 @@ class Fichevin extends \Library\Entity
     }
   }
 
-  public function setNez_impression($nez_impression)
-  {
-    if (is_string($nez_impression) && !empty($nez_impression))
-    {
-      $this->nez_impression = $nez_impression;
-    }
-  }
 
   public function setBouche_intensite($bouche_intensite)
   {
@@ -199,17 +190,10 @@ class Fichevin extends \Library\Entity
   {
     if(!empty($tag))
     {
-      $this->tag = $tag;
+      $this->tag[] = $tag;
     }
   }
 
-  public function setBouche_impression($bouche_impression)
-  {
-    if (is_string($bouche_impression) && !empty($bouche_impression))
-    {
-      $this->bouche_impression = $bouche_impression;
-    }
-  }
 
   public function setCouleur($couleur)
   {
@@ -236,13 +220,11 @@ class Fichevin extends \Library\Entity
   public function teinte() {return $this->teinte;}
   public function nez_intensite() {return $this->nez_intensite;}
   public function arome() {return $this->arome;}
-  public function nez_impression() {return $this->nez_impression;}
   public function bouche_intensite() {return $this->bouche_intensite;}
   public function persistance() {return $this->persistance;}
   public function saveur() {return $this->saveur;}
   public function acidite() {return $this->acidite;}
   public function tanin() {return $this->tanin;}
-  public function bouche_impression() {return $this->bouche_impression;}
   public function couleur() {return $this->couleur;}
   public function tag() {return $this->tag;}
 

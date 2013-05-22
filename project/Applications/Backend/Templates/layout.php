@@ -6,7 +6,7 @@
     <script type='text/javascript' src='/scripts/jquery/jquery.js'></script>
     <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
     <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='/scripts/formload.js'></script>
+    <script type='text/javascript' src='/scripts/core.js'></script>
     <script type='text/javascript' src='/scripts/utils.js'></script>
 
     <title>
@@ -58,7 +58,8 @@
             <div class="span2"></div>
                <div class='span8'>
                   <div class="row-fluid">
-                    <?php if ($user->hasFlash()) echo '<div class="alert alert-info"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getFlash(), '</div>'; ?>
+                     <?php if ($user->hasFlash()) echo '<div class="alert alert-info" style="text-align:center"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getFlash(), '</div>'; ?>
+            <?php if ($user->hasErrorFlash()) echo '<div class="alert alert-error" style="text-align:center"> <button type="button" class="close" data-dismiss="alert">&times;</button>', $user->getErrorFlash(), '</div>'; ?>
 
                     <strong>En étant admin, vous pouvez aussi éditer ou supprimer les commentaires des posts qui sont affichés sur la page principale.
                     Pour y accéder, vous n'avez qu'à vous rendre sur la page principale en restant connecté à votre compte admin.

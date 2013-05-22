@@ -16,34 +16,34 @@ abstract class Application
     $this->name = '';
     // User et Config utilisent le constructeur de ApplicationComponent pour s'instancier.
     //Cette classe requiert qu'on lui passe une application.
-    $this->user = new User($this); 
+    $this->user = new User($this);
     $this->config = new Config($this);
   }
-  
+
   public function getController()
   {
     $router = new \Library\Router;
-    
+
     $xml = new \DOMDocument;
     $xml->load(__DIR__.'/../Applications/'.$this->name.'/Config/routes.xml');
-    
+
     $routes = $xml->getElementsByTagName('route');
-    
+
     // On parcourt les routes du fichier XML.
     foreach ($routes as $route)
     {
       $vars = array();
-      
+
       // On regarde si des variables sont présentes dans l'URL.
       if ($route->hasAttribute('vars'))
       {
         $vars = explode(',', $route->getAttribute('vars'));
       }
-      
+
       // On ajoute la route au routeur.
       $router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
     }
-    
+
     try
     {
       // On récupère la route correspondante à l'URL.
@@ -57,27 +57,27 @@ abstract class Application
         $this->httpResponse->redirect404();
       }
     }
-    
+
     // On ajoute les variables de l'URL au tableau $_GET.
     $_GET = array_merge($_GET, $matchedRoute->vars());
-    
+
     // On instancie le contrôleur.
     $controllerClass = 'Applications\\'.$this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
     return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
   }
-  
+
   abstract public function run();
-  
+
   public function httpRequest()
   {
     return $this->httpRequest;
   }
-  
+
   public function httpResponse()
   {
     return $this->httpResponse;
   }
-  
+
   public function name()
   {
     return $this->name;

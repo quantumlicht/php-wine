@@ -7,7 +7,8 @@
    <link href="/scripts/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen">
    <!-- <link href="/scripts/bootstrap/css/background.css" type="text/css" rel="stylesheet" media="screen"> -->
    <script type='text/javascript' src='/scripts/bootstrap/js/bootstrap.min.js'></script>
-   <script type='text/javascript' src='/scripts/formload.js'></script>
+   <script type='text/javascript' src='/scripts/core.js'></script>
+   <script type='text/javascript' src='/scripts/vinsComments.js'></script>
    <script type='text/javascript' src='/scripts/utils.js'></script>
 
    <title>
@@ -15,9 +16,10 @@
       Philippe Guay.com
       <?php } else { echo $title; } ?>
    </title>
-      <?php $phpSelf = $_SERVER['REQUEST_URI'];?>
+
 </head>
 
+<?php $phpSelf = $_SERVER['REQUEST_URI'];?>
 <body style="overflow-y:scroll">
    <script type="text/javascript" >
       $(document).ready(function(){

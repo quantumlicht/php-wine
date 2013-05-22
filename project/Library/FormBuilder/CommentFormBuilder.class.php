@@ -3,12 +3,12 @@ namespace Library\FormBuilder;
 
 class CommentFormBuilder extends \Library\FormBuilder
 {
-  public function build()
+  public function build($title="Ajout d'un commentaire")
   {
     $this->form->setNb_columns(0);
     $this->form->setHas_fieldsets(True);
     $this->form->addFieldset(new \Library\Entities\Fieldset(array(
-      'name' =>'Ajout d\'un commentaire',
+      'name' =>$title,
       'fieldlist' => array(
         // new \Library\Fields\StringField(array(
         // 'label' => 'Auteur',
@@ -23,7 +23,7 @@ class CommentFormBuilder extends \Library\FormBuilder
         //   )
         // )),
         new \Library\Fields\TextField(array(
-          'label' => 'Contenu',
+          'label' => '',
           'name' => 'contenu',
           'value'=> $this->form->entity()->contenu(),
           'has_controlgroup'=>True,

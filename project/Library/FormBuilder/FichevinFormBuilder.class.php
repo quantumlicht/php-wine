@@ -249,7 +249,7 @@ class FichevinFormBuilder extends \Library\FormBuilder
       )
     )))
     ->addFieldset(new \Library\Entities\Fieldset(array(
-      'name' => 'Ajoutez une photo',
+      'name' => "Ajoutez une photo de l'étiquette",
       'columnid' => 2,
       'fieldlist'=>array(
         new \Library\Fields\FileField(array(

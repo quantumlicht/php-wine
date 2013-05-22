@@ -34,10 +34,10 @@ $(function(){
          items:5,
          source: function(typeahead,query){
             arr=[];
-            var obj = $.getJSON("/ajax-encepagement-"+couleur);
+            var obj = $.getJSON("/ajax-encepagement-"+couleur+'-vins-none');
             var json = $.parseJSON(obj.responseText.match(/\[.*\]/)[0]);
             for (var i = 0; i<json.length;i++ ){
-              arr.push(json[i].content);
+              arr.push(json[i].encepagement);
             }
             return arr;
          },
@@ -52,10 +52,10 @@ $(function(){
          items:5,
          source: function(typeahead,query){
             arr=[];
-            var obj = $.getJSON("/ajax-tag-"+couleur);
+            var obj = $.getJSON("/ajax-tag-"+couleur+'-vins-none');
             var json = $.parseJSON(obj.responseText.match(/\[.*\]/)[0]);
             for (var i = 0; i<json.length;i++ ){
-               arr.push(json[i].content);
+               arr.push(json[i].tag);
             }
             return arr;
          },
@@ -141,7 +141,7 @@ $(function(){
          return $('<button/>',{
             type:'button',
             class:'btn',
-            html:'<i class="icon-plus"></i>',
+            html:'<i class="icon-download"></i>',
             click: function(){
                $('[name=fichier]').click();
             }
@@ -186,14 +186,14 @@ $(function(){
       couleur = $(this).val();
 
       // Select Fields filling
-      $.each(arrSelects,function(id,value){
-         var objAjaxResponse =  $.getJSON("/ajax-" + arrSelects[id] + "-" + couleur);
+      $.each(arrSelects,function(idx,value){
+         var objAjaxResponse =  $.getJSON("/ajax-" + arrSelects[idx] + "-" + couleur+'-vins-none');
          var json = $.parseJSON(objAjaxResponse.responseText.match(/\[.*\]/)[0]);
          var options = '<option></option>';
          for (var i = 0; i < json.length; i++) {
-           options += '<option value="' + json[i].id + '">' + json[i].content + '</option>';
+           options += '<option value="' + json[i].id + '">' + json[i][arrSelects[idx]] + '</option>';
          }
-         $('[name='+arrSelects[id]+']').html(options);
+         $('[name='+arrSelects[idx]+']').html(options);
       });
 
       // Toggling tanin

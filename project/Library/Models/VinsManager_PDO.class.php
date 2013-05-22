@@ -119,6 +119,64 @@ class VinsManager_PDO extends VinsManager
     return $q->fetchAll();
   }
 
+  public function getRow($table,$id)
+  {
+    $q = $this->dao->prepare('SELECT * FROM '. $table.' WHERE id = :id');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    return $q->fetchAll();
+  }
+
+  public function getFullRow($id)
+  {
+    // Make sure that we've cleaned up the db entries that won't that are not properly linked with the id as a foreign key.
+    $q = $this->dao->prepare('SELECT nom,producteur,annee,appelation,region,alcool,date,code_saq,prix,nez_intensite,bouche_intensite,persistance,couleur FROM fichevins WHERE id = :id');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $fichevin=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT pays FROM pays WHERE id = (SELECT pays FROM fichevins WHERE id=:id)');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $pays=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT teinte FROM teintes WHERE id = (SELECT teinte FROM fichevins WHERE id=:id)');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $teinte=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT arome FROM aromes WHERE id = (SELECT arome FROM fichevins WHERE id=:id)');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $arome=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT encepagement FROM encepagements WHERE id IN (SELECT encepagementId FROM  encepagement_store WHERE vinId=:id)');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $encepagement=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT tag FROM tags WHERE id IN (SELECT tagId FROM  tag_store WHERE vinId=:id)');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $tag=$q->fetch();
+
+    $q = $this->dao->prepare('SELECT fullname FROM uploads WHERE ficheId=:id');
+    $q->bindValue(':id',$id);
+    $q->execute();
+    $q->setFetchMode(\PDO::FETCH_ASSOC);
+    $upload=$q->fetch();
+
+    $fichevin = new \Library\Entities\Fichevin(array_merge($fichevin,$encepagement,$tag,$pays,$teinte,$arome));
+    $fichevin->setFichier($upload['fullname']);
+    return $fichevin;
+  }
+
   public function countPending($table)
   {
     $query = $this->dao->prepare('SELECT * FROM '.$table. ' WHERE status=\'pending\'');
@@ -133,6 +191,17 @@ class VinsManager_PDO extends VinsManager
     return $query->fetchAll();
   }
 
+  protected function modify(Fichevin $fichevin)
+  {
+    $q = $this->dao->prepare('UPDATE fichevins SET utilisateur = :utilisateur, courriel = :courriel, motdepasse = :motdepasse, dateAjout = NOW() WHERE id = :id');
+
+    $q->bindValue(':utilisateur', $comment->utilisateur());
+    $q->bindValue(':courriel', $comment->utilisateur());
+    $q->bindValue(':motdepasse', sha1($comment->motdepasse()));
+    $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
+
+    $q->execute();
+  }
   public function modifyRow($table,$rowId,$column,$value)
   {
     $q = $this->dao->prepare('UPDATE '. $table.' SET '.$column.' = :marker WHERE id = :id');
@@ -144,12 +213,24 @@ class VinsManager_PDO extends VinsManager
     $q->execute();
   }
 
+
   public function deleteRow($table,$rowId)
   {
     $this->dao->exec('DELETE FROM '. $table.' WHERE id = '.(int) $rowId);
 
   }
 
+  public function getAll()
+  {
+    $sql = 'SELECT * FROM fichevins';
+
+    $q = $this->dao->query($sql);
+    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Fichevin');
+    $listeVins = $q->fetchAll();
+
+    $q->closeCursor();
+    return $listeVins;
+  }
   //========================================================================
   // PUBLIC
   public function getAcidite($couleur)
@@ -208,27 +289,5 @@ class VinsManager_PDO extends VinsManager
     return $q->fetchAll();
   }
 
-  protected function modify(Fichevin $fichevin)
-  {
-    $q = $this->dao->prepare('UPDATE fichevins SET utilisateur = :utilisateur, courriel = :courriel, motdepasse = :motdepasse, dateAjout = NOW() WHERE id = :id');
 
-    $q->bindValue(':utilisateur', $comment->utilisateur());
-    $q->bindValue(':courriel', $comment->utilisateur());
-    $q->bindValue(':motdepasse', sha1($comment->motdepasse()));
-    $q->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
-
-    $q->execute();
-  }
-
-  public function getAll()
-  {
-    $sql = 'SELECT id, nom, annee, pays, prix FROM fichevins';
-
-    $q = $this->dao->query($sql);
-    $q->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Fichevin');
-    $listeVins = $q->fetchAll();
-
-    $q->closeCursor();
-    return $listeVins;
-  }
 }

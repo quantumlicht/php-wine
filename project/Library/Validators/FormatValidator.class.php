@@ -16,7 +16,6 @@ class FormatValidator extends \Library\Validator
   {
     $value = explode(".", $value);
     $extension=end($value);
-
     return in_array($extension, $this->validFormat);
   }
 

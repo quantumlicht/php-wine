@@ -39,7 +39,7 @@ class IndexvinsController extends \Library\BackController
             'bouche_impression' => $request->postData('bouche_impression'),
             'couleur' => $request->postData('couleur'),
             'tag' => $request->postData('tag'),
-            'fichier' =>$request->filesData('file')
+            'fichier' =>$request->filesData('fichier')
          ));
       }
       else
@@ -124,4 +124,46 @@ class IndexvinsController extends \Library\BackController
       $this->page->addVar('title', 'Index des vins');
    }
 
+
+   public function executeShowFiche(\Library\HTTPRequest $request)
+   {
+
+      $source = $request->getData('source');
+      $fichevin = $this->managers->getManagerOf('Vins')->getFullRow($source);
+      $this->page->addVar('fichevin', $fichevin);
+      $this->page->addVar('title', 'Index des vins');
+
+      $username = $this->app->user()->isAuthenticated() ?
+      $this->app->user()->getAttribute('username'):
+      self::ANONYM_USER;
+
+
+      //TODO: rename source to source in the context of the comments manager and entity.
+      if ($request->method() == 'POST')
+      {
+         $comment = new \Library\Entities\Comment(array(
+           'source' => $source,
+           'auteur' => $username,
+           'contenu' => $request->postData('contenu')
+         ));
+      }
+      else
+      {
+         $comment = new \Library\Entities\Comment;
+      }
+
+      $formBuilder = new \Library\FormBuilder\CommentFormBuilder($comment);
+      $formBuilder->build('Commentaire sur ce vin');
+      $form = $formBuilder->form();
+
+      $formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('VinsComments'), $request);
+
+      if ($formHandler->process())
+      {
+         $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
+         $this->app->httpResponse()->redirect('fiche-'.$request->getData('source').'.html');
+      }
+
+      $this->page->addVar('commentForm', $form->createView());
+   }
 }

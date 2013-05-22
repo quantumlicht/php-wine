@@ -11,14 +11,14 @@ abstract class CommentsManager extends \Library\Manager
    * @return void
    */
   abstract protected function add(Comment $comment);
-  
+
   /**
    * Méthode permettant de supprimer un commentaire.
    * @param $id L'identifiant du commentaire à supprimer
    * @return void
    */
   abstract public function delete($id);
-  
+
   /**
    * Méthode permettant d'enregistrer un commentaire.
    * @param $comment Le commentaire à enregistrer
@@ -42,18 +42,17 @@ abstract class CommentsManager extends \Library\Manager
    * @return Comment
    */
   abstract public function get($id);
-  
+
   /**
    * Méthode permettant de modifier un commentaire.
    * @param $comment Le commentaire à modifier
    * @return void
    */
   abstract protected function modify(Comment $comment);
-  
+
   /**
    * Méthode permettant de récupérer une liste de commentaires.
-   * @param $news La news sur laquelle on veut récupérer les commentaires
+   * @param $source La source sur laquelle on veut récupérer les commentaires
    * @return array
    */
-  abstract public function getListOf($news);
 }

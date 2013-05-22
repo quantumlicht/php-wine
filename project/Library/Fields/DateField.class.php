@@ -25,7 +25,7 @@ class DateField extends \Library\Field
 
     $jour = range(1,31,-1);
     $mois = array(1=>'janvier',2=>'février',3=>'mars',4=>'avril',5=>'mai',6=>'juin',7=>'juillet',8=>'août',9=>'septembre',10=>'octobre',11=>'novembre',12=>'décembre');
-    $annee =range(date("Y"),1950,-1);
+    $annee = range(date("Y"),1950,-1);
 
     $jour_select='<option></option>';
     $mois_select='<option></option>';
@@ -44,9 +44,9 @@ class DateField extends \Library\Field
     }
 
 
-    $widget.= '<select id="date_jour" class="span3">'.$jour_select.'</select>';
-    $widget.= '<select id="date_mois" class="span4">'.$mois_select.'</select>';
-    $widget.= '<select id="date_annee" class="span3">'.$annee_select.'</select>';
+    $widget.= '<select id="date_jour" class="span2">'.$jour_select.'</select>';
+    $widget.= '<select id="date_mois" class="span3">'.$mois_select.'</select>';
+    $widget.= '<select id="date_annee" class="span2">'.$annee_select.'</select>';
     $widget.= '<input  name="date" type="hidden" readonly="readonly"/>';
 
     // if (!empty($this->value))

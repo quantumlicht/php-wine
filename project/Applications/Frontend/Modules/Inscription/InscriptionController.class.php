@@ -12,8 +12,8 @@ class InscriptionController extends \Library\BackController
       $inscription = new \Library\Entities\Inscription(array(
         'courriel' => $request->postData('courriel'),
         'utilisateur' => $request->postData('utilisateur'),
-        'motdepasse' => sha1($request->postData('motdepasse')),
-        'motdepasse_retype' => sha1($request->postData('motdepasse_retype'))
+        'motdepasse' => $request->postData('motdepasse'),
+        'motdepasse_retype' => $request->postData('motdepasse_retype')
       ));
     }
     else
@@ -52,6 +52,8 @@ class InscriptionController extends \Library\BackController
 
   public function executeLogin(\Library\HTTPRequest $request)
   {
+    echo sha1('test').'<br>';
+    echo sha1($request->postData('motdepasse'));
     if ($request->method() == 'POST')
     {
       $login = new \Library\Entities\Inscription(array(
@@ -59,6 +61,7 @@ class InscriptionController extends \Library\BackController
         'motdepasse' => sha1($request->postData('motdepasse')),
         'motdepasse_retype' =>sha1($request->postData('motdepasse_retype'))
         ));
+
 
       if ($this->managers->getManagerOf('Inscriptions')->isAuthenticated($login))
       {
